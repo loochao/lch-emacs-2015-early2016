@@ -1,0 +1,20 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("Second.Submission.to.prl_seperate.bib"
+ (filename . "~/Dropbox/Research/Menuscript/Surface.Relief2/Submission/Second.Submission/Second.Submission.to.prl_seperate.bib/")
+ (front-context-string . "Makefile\n  -rw--")
+ (rear-context-string . "35 Jun 15 09:31 ")
+ (position . 343))
+("lch-bmk.el"
+ (filename . "~/Dropbox/.emacs.d/rc/lch-bmk.el")
+ (front-context-string . "\n\n\n;;; PROVIDE\n(")
+ (rear-context-string . "      ;; j: jump")
+ (position . 1065))
+("org-capture-last-stored"
+ (filename . "~/Dropbox/Org/org/iJournal.org")
+ (front-context-string . "*** 在虾米上听歌, 可以先从")
+ (rear-context-string . "ournal\n** Weibo\n")
+ (position . 376))
+)

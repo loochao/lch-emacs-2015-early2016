@@ -1,0 +1,15 @@
+*** tabbar-ruler and textmate-yas => inbox
+[2014-04-17 Thu]
+tabbar-ruler provide useful keystroke and functionality for the tabbar
+manipulation. Color is a little awkward, needs tweak.
+
+textmate-yas.el translates snippets in textmate into Yasnippets, but there's
+bugs which cause it not evaluatable.
+*** Add a folder named inbox
+To keep good plugins which just need a little tweak.
+*** Enable <Tab> for YASnippet
+[2014-04-17 Thu]
+
+- Start to use YASnippet more and more, so enable tab for the expansion.
+- Amazingly, it does not conflict with org, so in org, tab works as
+hide/expand. Then use M-' to yas-expand.

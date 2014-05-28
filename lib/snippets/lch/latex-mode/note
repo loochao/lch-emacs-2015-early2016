@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: note
+# key: no
+# --
+\note[itemize]{
+\item $0
+}
