@@ -327,17 +327,18 @@
 ;; Anything.el provides a framework.
 ;; has to enable anything-config to make it really go.
 ;; anything-config is quite long and powerful.
-(require 'anything)
-(require 'anything-match-plugin)
+;; (require 'anything)
+;; (require 'anything-match-plugin)
 
-(require 'anything-config)
-(define-key global-map (kbd "M-SPC") 'anything)
-(define-key global-map (kbd "M-a") 'anything-command-map)
+;; (require 'anything-config)
+;; (define-key global-map (kbd "M-SPC") 'anything)
+;; (define-key global-map (kbd "M-a") 'anything-command-map)
 ;;; Helm
-;; (require 'helm-config)
-;; (helm-mode 1)
-;; (global-set-key (kbd "C-c h") 'helm-mini)
-
+(require 'helm-config)
+(require 'helm-files)
+(helm-mode 1)
+(define-key global-map (kbd "M-SPC") 'helm-mini)
+(push "Press M-SPC to do quicksilver in emacs." lch-tips)
 ;;; Outline
 ;; Outline is part of GNU Emacs
 ;; TODO: bind the outline-minor-mode-prefix C-c @ to C-o

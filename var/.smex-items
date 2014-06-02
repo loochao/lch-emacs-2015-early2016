@@ -3,11 +3,11 @@
 (
  R
  cd
- lm
  5x5
  arp
  dbx
  dig
+ erc
 )
 
 ;; ----- smex-data -----

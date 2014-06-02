@@ -314,7 +314,8 @@ kill all buffers with MODE except current buffer."
 
 ;;; Lch-emacs-tips
 (defvar lch-tips
-  '("Press M-f1 <=>  Access Emacs help system M-<f1> (one-key-menu-help)"
+  '(
+    "Press M-f1 <=>  Access Emacs help system M-<f1> (one-key-menu-help)"
     "Press M-6  <=>  to switch between erc buffers"
     "Press M-/  <=>  to do dabbrev-expand"
     "Press M--  <=>  to apply thing edit functions"
@@ -332,7 +333,6 @@ kill all buffers with MODE except current buffer."
     "/ m in dired to get file filtering, like C-<f12> in TC."
     "<f9s>: remote-notes; <f9> m: org-notes; <f10s> dirs; <f10> m: emacs-conf"
     "Don't forget there's hexview and eperiodic!"))
-
 (defun lch-tip-of-the-day ()
   "Display a random entry from `lch-tips'."
   (interactive)

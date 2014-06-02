@@ -2,17 +2,193 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Wed May 28 14:43:19 2014
+;; Created Mon Jun  2 14:26:14 2014
 ;; Desktop file format version 206
-;; Emacs version 23.3.1
+;; Emacs version 24.3.1
 
 ;; Global section:
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name nil)
 (setq tags-table-list nil)
-(setq search-ring '("magit" "kill-new" "http://www.xia" "song" "songs" "256" "baidu" "max" "po" "recent" "ibuffer" "speedbar" "helm" "w3m-mode" "w3m-mode-map" "anyth"))
+(setq search-ring '("2.5" "diffraction" "bright" "lyric" "emm" "ij" "magit" "kill-new" "http://www.xia" "song" "songs" "256" "baidu" "max" "po" "recent"))
 (setq regexp-search-ring nil)
 (setq register-alist (list '(97 . "(setq viper-inhibit-startup-message 't)") (list 213465889 "Unprintable entity" (let ((mk (make-marker))) (add-hook 'desktop-delay-hook (list 'lambda '() (list 'set-marker mk nil (get-buffer " *temp*")))) mk)) (list 213465879 "Unprintable entity" (let ((mk (make-marker))) (add-hook 'desktop-delay-hook (list 'lambda '() (list 'set-marker mk nil (get-buffer " *temp*")))) mk))))
-(setq file-name-history '("/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Org/org/#Unix.org#" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/magit/magit.el" "/Users/LooChao/Dropbox/Org/org/Miscellaneous.org" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Org/Scratch/Miscellaneous.org" "/Users/LooChao/Downloads/test.el" "/Volumes/DATA/Music/INBOX/Xiami/Current" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.lib/emacs-deepin/deepin-emacs/site-lisp/extensions/emms-mwolson/emms-lyrics.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.lib/redguardtoo/site-lisp/better-registers/better-registers.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/popup/popup.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.lib/redguardtoo/site-lisp/org-mime/org-mime.el" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-ibuffer.el" "/Users/LooChao/Dropbox/.emacs.d/lisp/ibuffer-vc/ibuffer-vc.el" "~/Dropbox/.emacs.d/lisp/ibuffer-vc" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.lib/purcell/lisp/init-auto-complete.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/js2-mode/js2-mode.el" "~/Dropbox/.emacs.lib/purcell" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/emacs-deepin/deepin-emacs/site-lisp/config/init-emms.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/c-eldoc/c-eldoc.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/emacs-deepin/deepin-emacs/site-lisp/config/init-golang.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/emacs-deepin/deepin-emacs/site-lisp/extensions/ipython-0.9.1/ipython.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/emmet-mode/emmet-mode.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/emacs-deepin/deepin-emacs/site-lisp/extensions/emmet-mode/emmet-mode.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/emacs-deepin/deepin-emacs/site-lisp/extensions/g-client/g.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/emacs-deepin/deepin-emacs/site-lisp/extensions/ghc-mod/ghc-command.el" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-web.el" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-elisp.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/emacs-deepin/deepin-emacs/site-lisp/extensions/emacs-jedi/jedi.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/webkit/rgbcolor.js" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/emacs-deepin/deepin-emacs/site-lisp/config/init-python.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/emacs-deepin/deepin-emacs/site-lisp/extensions/python-mode-1.0/pycomplete.py"))
+(setq file-name-history '("/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Research/Research/Research.org" "/Users/LooChao/Dropbox/Programming/Java/loochao.java" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/deepin-emacs-master/site-lisp/config/init-helm.el" "~/Dropbox/.emacs.d/var/emms/emms-history" "~/.breadcrumb" "~/Dropbox/Org/org/iJournal.org" "~/Dropbox/.emacs.d/rc/lch-emms.el" "/Volumes/DATA/Music/INBOX/Xiami/Roxette/" "/Volumes/DATA/Music/INBOX/Xiami/\221\320 \260\221\264\276/" "/Volumes/DATA/Music/INBOX/Xiami/Modern.Talking/" "/Volumes/DATA/Music/INBOX/Xiami/ABBA/" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Org/org/#Unix.org#" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/magit/magit.el" "/Users/LooChao/Dropbox/Org/org/Miscellaneous.org" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Org/Scratch/Miscellaneous.org" "/Users/LooChao/Downloads/test.el" "/Volumes/DATA/Music/INBOX/Xiami/Current" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.lib/emacs-deepin/deepin-emacs/site-lisp/extensions/emms-mwolson/emms-lyrics.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.lib/redguardtoo/site-lisp/better-registers/better-registers.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/popup/popup.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.lib/redguardtoo/site-lisp/org-mime/org-mime.el" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-ibuffer.el" "/Users/LooChao/Dropbox/.emacs.d/lisp/ibuffer-vc/ibuffer-vc.el" "~/Dropbox/.emacs.d/lisp/ibuffer-vc" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.lib/purcell/lisp/init-auto-complete.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/js2-mode/js2-mode.el" "~/Dropbox/.emacs.lib/purcell" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/emacs-deepin/deepin-emacs/site-lisp/config/init-emms.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/c-eldoc/c-eldoc.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/emacs-deepin/deepin-emacs/site-lisp/config/init-golang.el"))
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  nil
+  "AndreaCrotti"
+  'dired-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode helm-mode yas-minor-mode)
+  212
+  '(nil nil)
+  t
+  '("/Users/LooChao/Dropbox/.emacs.d/lib/snippets/AndreaCrotti/")
+  nil)
+
+(desktop-create-buffer 206
+  nil
+  "Java"
+  'dired-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode helm-mode yas-minor-mode)
+  246
+  '(nil nil)
+  t
+  '("/Users/LooChao/Dropbox/Programming/Java/")
+  nil)
+
+(desktop-create-buffer 206
+  "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Research/Research/Research.org"
+  "Research.org"
+  'org-mode
+  '(auto-fill-mode global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode flyspell-mode helm-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode)
+  4
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix) (truncate-lines . t)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/Programming/Java/loochao.java"
+  "loochao.java"
+  'java-mode
+  '(abbrev-mode global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode helm-mode undo-tree-mode yas-minor-mode auto-complete-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  nil
+  "Silver"
+  'dired-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode helm-mode yas-minor-mode)
+  1104
+  '(nil nil)
+  t
+  '("/Users/LooChao/Dropbox/Research/Project/Silver/")
+  nil)
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/Research/Project/Silver/silver.tex"
+  "silver.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode flyspell-mode helm-mode undo-tree-mode yas-minor-mode outline-minor-mode)
+  37349
+  '(34574 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix) (case-fold-search . t)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/.emacs.d/rc/lch-elisp.el"
+  "lch-elisp.el"
+  'emacs-lisp-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode helm-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode paredit-mode)
+  11501
+  '(12344 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/Org/org/Pearl.org"
+  "Pearl.org"
+  'org-mode
+  '(auto-fill-mode global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode flyspell-mode helm-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode)
+  299
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix) (truncate-lines . t)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/Org/org/Private.org"
+  "Private.org"
+  'org-mode
+  '(auto-fill-mode global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode flyspell-mode helm-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode)
+  644
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix) (truncate-lines . t)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/deepin-emacs-master/site-lisp/config/init-helm.el"
+  "init-helm.el"
+  'emacs-lisp-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode helm-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode paredit-mode)
+  3069
+  '(1871 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/Programming/C_C++/random.cpp"
+  "random.cpp"
+  'c++-mode
+  '(abbrev-mode global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode helm-mode undo-tree-mode yas-minor-mode auto-complete-mode)
+  195
+  '(562 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  nil
+  "C_C++"
+  'dired-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode helm-mode yas-minor-mode)
+  639
+  '(nil nil)
+  t
+  '("/Users/LooChao/Dropbox/Programming/C_C++/")
+  nil)
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/Programming/0_lch_templates/loochao_template.js"
+  "loochao_template.js"
+  'fundamental-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode helm-mode undo-tree-mode yas-minor-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/Programming/0_lch_templates/loochao_template.atom"
+  "loochao_template.atom"
+  'fundamental-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode helm-mode undo-tree-mode yas-minor-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/.emacs.d/rc/lch-emms.el"
+  "lch-emms.el"
+  'emacs-lisp-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode helm-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode paredit-mode)
+  1827
+  '(1 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/Org/org/iJournal.org"
+  "iJournal.org"
+  'org-mode
+  '(auto-fill-mode global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode flyspell-mode helm-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode)
+  1238
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix) (truncate-lines . t)))
+
