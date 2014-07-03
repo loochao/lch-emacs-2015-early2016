@@ -79,7 +79,7 @@
   "The `one-key' menu for IRC-CHANNEL."
   (interactive)
   (one-key-menu "IRC-CHANNEL" one-key-menu-irc-channel-alist t))
-(define-key global-map (kbd "M-6") 'one-key-menu-irc-channel)
+(define-key global-map (kbd "M-7") 'one-key-menu-irc-channel)
 ;;; SSH
 ;; use ssh through this mode will enable auto-completion
 (require 'ssh)

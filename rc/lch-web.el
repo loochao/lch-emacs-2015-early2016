@@ -157,9 +157,11 @@ Argument STRING the string that need beauty."
         (setq string (replace-match (cdr replace) nil nil string))))
     string))
 
+;; FIXME: Add an if else to handle cases not in a w3m buffer.
 (defun lch-view-current-url-external ()
   (interactive)
   (chrome-browse-url w3m-current-url))
+(define-key global-map (kbd "<f3> <f4>") 'lch-view-current-url-external)
 
 (defun w3m-view-this-url-background-session ()
   (interactive)
@@ -206,8 +208,8 @@ Argument STRING the string that need beauty."
    ("[" . w3m-view-previous-page)
    ("]" . w3m-view-next-page)
 
-   ("," . w3m-previous-buffer)
-   ("." . w3m-next-buffer)
+   ("n" . w3m-previous-buffer)
+   ("p" . w3m-next-buffer)
 
    (";" . w3m-previous-form)
    ("'" . w3m-next-form)
@@ -222,8 +224,8 @@ Argument STRING the string that need beauty."
 
    ("m" . w3m-scroll-down-or-previous-url)
 
-   ("n" . w3m-next-anchor)
-   ("p" . w3m-previous-anchor)
+   ("," . w3m-next-anchor)
+   ("." . w3m-previous-anchor)
 
    ("o" . w3m-goto-url)
    ("C-o" . lch-view-current-url-external)
@@ -295,7 +297,6 @@ Argument STRING the string that need beauty."
   "Wget interface to download URI asynchronously" t)
 (autoload 'wget-web-page "wget"
   "Wget interface to download URI asynchronously" t)
-(define-key global-map (kbd "<f3> <f4>") 'wget)
 (define-key global-map (kbd "<f3> d") 'wget)
 
 ;;; PROVIDE

@@ -40,7 +40,7 @@
 ;;; Publish
 (require 'ox-publish)
 (defvar lch-ox-html-postamble "<div id='hosted'><table><tr><td><a href='http://www.gnu.org/software/emacs/'><img src='./theme/emacs-logo.png' alt='Emacs' title ='Powered by GNU/Emacs' style='width:30px;'/></a></td> <td><a href='http://orgmode.org/'><img src='./theme/org-logo-unicorn.png' alt='Org' title='Powered by Emacs Org-mode'  style='width:30px;'/></a></td><td><a href='http://www.princeton.edu'><img src='./theme/PUTiger-logo.gif' alt='Princeton' title='Hosted by Princeton'  style='width:30px;'/></a></td></tr></table></div>")
-(defvar lch-ox-html-head "<link rel=\"icon\" href=\"theme/favicon.ico\" type=\"image/x-icon\"/> <link rel=\"stylesheet\" href=\"./theme/org.css\"  type=\"text/css\"> </link>")
+(defvar lch-ox-html-head "<link rel=\"icon\" href=\"theme/favicon.ico\" type=\"image/x-icon\"/> <link rel=\"stylesheet\" href=\"./theme/loochao.css\"  type=\"text/css\"> </link>")
 
 (setq org-publish-project-alist
       `(

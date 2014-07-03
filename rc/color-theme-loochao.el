@@ -80,6 +80,17 @@
      (emms-playlist-mark-face ((t (:foreground "Pink"))))
      (emms-playlist-track-face ((t (:foreground "DarkSeaGreen"))))
 
+     ;; Helm
+     (helm-ff-directory ((t (:background "black" :foreground "dodgerblue"))))
+     (helm-candidate-number ((t (:background "#303030" :foreground "Black"))))
+     (helm-ff-file ((t (:background "black" :foreground "darkgreen"))))
+     (helm-ff-invalid-symlink ((t (:background "black" :foreground "red"))))
+     (helm-ff-prefix ((t (:background "black" :foreground "yellow"))))
+     (helm-ff-symlink ((t (:foreground "DarkOrange4"))))
+     (helm-selection ((t (:background "Pink" :foreground "Black"))))
+     (helm-source-header ((t (:background "black" :foreground "orange" :underline t :height 1.1))))
+     (helm-visible-mark ((t (:background "darkgreen" :foreground "grey"))))
+
      ;; Org
      (org-document-title ((t (:foreground "Pale Turquoise" :weight normal :height 1.2))))
 

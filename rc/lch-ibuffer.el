@@ -64,10 +64,9 @@
                                  (mode . sr-mode)
                                  ))
                     ("erc" (mode . erc-mode))
-                    ("planner" (or
+                    ("org" (or
                                 (name . "^\\*Calendar\\*$")
                                 (name . "^diary$")
-                                (mode . muse-mode)
                                 (mode . org-mode)
                                 (mode . org-agenda-mode)
                                 ))

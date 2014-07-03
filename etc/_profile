@@ -5,3 +5,21 @@
 # if [ -e ~/.bashrc ] ; then
 #     . ~/.bashrc
 # fi
+
+##
+# Your previous /Users/LooChao/.profile file was backed up as /Users/LooChao/.profile.macports-saved_2014-06-15_at_13:18:06
+##
+
+# MacPorts Installer addition on 2014-06-15_at_13:18:06: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+
+##
+# Your previous /Users/LooChao/.profile file was backed up as /Users/LooChao/.profile.macports-saved_2014-06-15_at_19:06:36
+##
+
+# MacPorts Installer addition on 2014-06-15_at_19:06:36: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: org-figure
+# key: fig
+# --
+
+[[./figure/$1][$1]]
+$0

@@ -1,16 +1,17 @@
 
 ;; ----- smex-history -----
 (
+ color-theme-loochao
  R
  cd
  5x5
  arp
  dbx
- dig
- erc
+ mf
 )
 
 ;; ----- smex-data -----
 (
- 
+ (moe-dark . 1)
+ (color-theme-loochao . 1)
 )

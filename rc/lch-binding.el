@@ -94,7 +94,7 @@
         (("<right>" . "show-all") . show-all)                                   ;; => lch-elisp.el
         (("<up>" . "outline-previous-heading") . outline-previous-heading)      ;; => lch-elisp.el
         (("<down>" . "outline-next-heading") . outline-next-heading)            ;; => lch-elisp.el
-        (("<SPC>" . "anything") . anything)                                     ;; => lch-elisp.el
+        (("<SPC>" . "helm") . helm-dwim)                                        ;; => lch-elisp.el
         (("/" . "dabbrev") . dabbrev-expand)                                    ;; => emacs-defaults
         (("'" . "yasnippet") . yas-expand)                                      ;; => lch-elisp.el
         (("`" . "multi-scratch-term") . one-key-menu-term-scratch)              ;; => lch-binding.el
@@ -108,9 +108,10 @@
         (("2" . "lch-matlab") . lch-matlab)                                     ;; => lch-util.el
         (("3" . "lch-python") . lch-python)                                     ;; => lch-util.el        
         (("4" . "lch-R") . lch-R)                                               ;; => lch-util.el
-        (("5" . "lch-mathematica") . lch-mathematica)                           ;; => lch-util.el        
-        ;; (("2" . "multi-term") . multi-term-try-create)                          ;; => lch-binding.el
-        (("6" . "erc-switch") . one-key-menu-irc-channel)                       ;; => lch-web.el
+        (("5" . "lch-mathematica") . lch-mathematica)                           ;; => lch-util.el
+        (("6" . "lch-ruby") . lch-ruby)                                         ;; => lch-elisp.el
+        ;; (("2" . "multi-term") . multi-term-try-create)                       ;; => lch-binding.el
+        (("7" . "erc-switch") . one-key-menu-irc-channel)                       ;; => lch-network.el
         (("8" . "org-agenda") . org-agenda)                                     ;; => lch-org.el
         (("9" . "anything-menu") . one-key-menu-anything)                       ;; => lch-binding.el
         (("a" . "anything-map") . anything)                                     ;; => lch-elisp.el
@@ -397,8 +398,9 @@
 
 (setq one-key-menu-network-alist
       '(
+        (("<f2>" . "web-bookmark") . one-key-menu-web-bmk)                 ;; => lch-binding.el
         (("<f3>" . "w3m-toggle") . lch-toggle-w3m)                         ;; => lch-web.el
-        (("<f4>" . "wget") . wget)                                         ;; => lch-web.el
+        (("<f4>" . "view-url-chrome") . lch-view-current-url-external)     ;; => lch-web.el
         (("<f6>" . "lch-erc-init") . lch-erc-init)                         ;; => lch-network.el
         (("<f7>" . "lch-erc-quit") . lch-erc-quit)                         ;; => lch-network.el        
         (("d" . "wget") . wget)                                            ;; => lch-web.el
@@ -412,6 +414,20 @@
   (interactive)
   (one-key-menu "NETWORK" one-key-menu-network-alist t))
 (define-key global-map (kbd "<f3> m") 'one-key-menu-network)
+
+;; F3 F2: Web-bmk-map
+;; Good webs goes to Bookmark.org, but best deserve a shortcut here.
+(defvar one-key-menu-web-bmk-alist nil "")
+(setq one-key-menu-web-bmk-alist
+      '(
+        (("s" . "slang") . (lambda () (interactive) (browse-url "http://www.urbandictionary.com/random.php")))
+        ))
+
+(defun one-key-menu-web-bmk ()
+  "The `one-key' menu for F10S."
+  (interactive)
+  (one-key-menu "web-bmk" one-key-menu-web-bmk-alist t))
+(define-key global-map (kbd "<f3> <f2>") 'one-key-menu-web-bmk)
 
 ;;; F4:  (buffer-edit-map)
 (lch-set-key
@@ -587,7 +603,7 @@
 (defvar remote-notes-root "/scpc:chaol@nobel.princeton.edu:/u/chaol/Scan")
 (defvar remote-lib-root "/scpc:loochao@loochao.synology.me:/")
 
-(defvar one-key-menu--alist nil "")
+(defvar one-key-menu-rmt-alist nil "")
 (setq one-key-menu-rmt-alist
       '(
         (("c" . "computese-rmt") . (lambda () (interactive) (dired-x-find-file (concat remote-notes-root "/ComputerSE/"))))
@@ -605,17 +621,18 @@
 (setq one-key-menu-f10s-alist
       '(
         (("<f10>" . "remote-notes-menu") . one-key-menu-rmt)
-
+        (("c" . "code") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Programming")))
         (("d" . "downloads") . (lambda () (interactive) (dired-x-find-file "~/Downloads")))
         (("e" . ".emacs.lib") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/.emacs.lib/")))
         (("f" . "flv") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Flv/")))
         (("h" . "public_html") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Org/public_html/")))
+        (("g" . "git-repo") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Repository/")))        
         (("l" . "library") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Library/")))
         (("m" . "music") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Music/")))
-        (("p" . "code") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Programming")))
+        (("n" . "remote-notes") . (lambda () (interactive) (dired-x-find-file remote-notes-root)))
         (("P" . "paper") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Research/Papers2/Articles/")))
-        (("s" . "remote-notes") . (lambda () (interactive) (dired-x-find-file remote-notes-root)))
         (("r" . "research") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Research/")))
+        (("s" . "snippet") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/.emacs.d/lib/snippets/lch/")))        
         (("v" . "video") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Video/")))
         (("V" . "flv") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Flv/")))
         ))

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: org-css-loochao
+# key: css
+# --
+
+#+HTML_HEAD: <link href="http://www.princeton.edu/~chaol/css/loochao.css" rel="stylesheet">
+$0

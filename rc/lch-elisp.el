@@ -14,6 +14,21 @@
 ;;; CODE
 (message "=> lch-elisp: loading...")
 
+;;; Inf-Ruby
+(autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
+(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
+(defun lch-ruby ()
+  (interactive)
+  (inf-ruby)
+  (delete-other-windows))
+(define-key global-map (kbd "M-6") 'lch-ruby)
+;;; Coffee-mode
+(require 'coffee-mode)
+(add-to-list 'auto-mode-alist '("\\.coffee\\'" . coffee-mode))
+(add-to-list 'auto-mode-alist '("\\.iced\\'" . coffee-mode))
+(add-to-list 'auto-mode-alist '("Cakefile\\'" . coffee-mode))
+(add-to-list 'interpreter-mode-alist '("coffee" . coffee-mode))
+
 ;;; Multiple-cursor
 (require 'multiple-cursors)
 (define-key global-map (kbd "<f2> <f2>") 'mc/edit-lines)
@@ -22,9 +37,9 @@
 (define-key global-map (kbd "<f1> g") 'magit-status)
 ;;; Keyfreq
 ;; Use keyfreq-show to see how many times you used a command.
-(require 'keyfreq)
-(keyfreq-mode 1)
-(keyfreq-autosave-mode 1)
+;; (require 'keyfreq)
+;; (keyfreq-mode 1)
+;; (keyfreq-autosave-mode 1)
 ;;; js2-mode
 ;; Said to be the best javascript mode
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
@@ -198,7 +213,7 @@
 ;;; Less-mode
 (require 'less)
 (require 'lch-key-util)
-(define-key global-map (kbd "C-c v") 'less-minor-mode)
+(define-key global-map (kbd "C-c l") 'less-minor-mode)
 (defvar vi-move-key-alist nil
   "The key alist that like vi move.")
 (setq vi-move-key-alist
@@ -333,12 +348,6 @@
 ;; (require 'anything-config)
 ;; (define-key global-map (kbd "M-SPC") 'anything)
 ;; (define-key global-map (kbd "M-a") 'anything-command-map)
-;;; Helm
-(require 'helm-config)
-(require 'helm-files)
-(helm-mode 1)
-(define-key global-map (kbd "M-SPC") 'helm-mini)
-(push "Press M-SPC to do quicksilver in emacs." lch-tips)
 ;;; Outline
 ;; Outline is part of GNU Emacs
 ;; TODO: bind the outline-minor-mode-prefix C-c @ to C-o

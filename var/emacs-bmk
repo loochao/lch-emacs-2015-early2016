@@ -14,7 +14,7 @@
  (position . 1065))
 ("org-capture-last-stored"
  (filename . "~/Dropbox/Org/org/iJournal.org")
- (front-context-string . "*** TED talk又能练英")
+ (front-context-string . "*** GitHub 是 gee")
  (rear-context-string . "ournal\n** Weibo\n")
  (position . 376))
 )

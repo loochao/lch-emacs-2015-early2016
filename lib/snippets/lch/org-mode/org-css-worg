@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: org-css-worg
+# key: css1
+# --
+
+#+HTML_HEAD: <link href="http://orgmode.org/worg/style/worg.css" rel="stylesheet">
+$0

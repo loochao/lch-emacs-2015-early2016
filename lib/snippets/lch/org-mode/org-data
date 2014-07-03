@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: org-data
+# key: dat
+# --
+
+[[./data/$1][$1]]
+$0
