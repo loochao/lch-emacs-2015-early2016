@@ -262,6 +262,7 @@
         (("s" . "-> scratch") . lch-create-switch-scratch)                      ;; => lch-util.el
         (("u" . "uncomment-region") . uncomment-region)                         ;; => lch-binding.el
         (("v" . "viper") . toggle-viper-mode)                                   ;; => lch-binding.el
+        (("y" . "helm-yas") . helm-c-yas-complete)                              ;; => lch-binding.el        
         (("C-b" . "list-bookmarks") . list-bookmarks)                           ;; => lch-binding.el
         (("C-f" . "lch-sudo-edit") . lch-sudo-edit)                             ;; => lch-network.el
         ))
