@@ -58,14 +58,16 @@
         (("=" . "magnify-font") . text-scale-increase)                          ;; => lch-binding.el
         (("-" . "demagnify-font") . text-scale-decrease)                        ;; => lch-binding.el
 
-        (("7" . "tabbar-backward-group") . tabbar-backward-group)               ;; => lch-ui.el
-        (("8" . "tabbar-forward-group") . tabbar-forward-group)                 ;; => lch-ui.el
+        (("7" . "tabbar-backward") . tabbar-backward)                           ;; => lch-ui.el
+        (("8" . "tabbar-forward") . tabbar-forward)                             ;; => lch-ui.el
+        (("9" . "tabbar-backward-group") . tabbar-backward-group)               ;; => lch-ui.el
+        (("0" . "tabbar-forward-group") . tabbar-forward-group)                 ;; => lch-ui.el
 
         (("a" . "select all") . mark-whole-buffer)
 
         (("h" . "tabbar-backward") . tabbar-backward)                           ;; => lch-ui.el
         (("l" . "tabbar-forward") . tabbar-forward)                             ;; => lch-ui.el
-
+        
         (("k" . "kill-this-buffer") . kill-this-buffer)                         ;; => lch-binding
         (("s" . "w3m-search") . one-key-menu-w3m-search)                        ;; => lch-binding.el
 
@@ -237,7 +239,8 @@
  '(
    ("C-c ." . repeat-complex-command)
    ("C-c c" . comment-region)                                                   ;; Shift+4 == $
-   ("C-c g" . grep-find)
+   ("C-c g" . moccur-grep-find-pwd)   
+   ("C-c G" . grep-find)
    ("C-c l" . less-minor-mode)
    ("C-c o" . occur)
    ("C-c u" . uncomment-region)
@@ -254,7 +257,8 @@
         (("a" . "toggle-archive") . lch-toggle-archive)                         ;; => lch-util.el
         (("c" . "comment-region") . comment-region)                             ;; => lch-binding.el
         (("e" . "eval-buffer") . lch-eval-buffer)                               ;; => lch-util.el
-        (("g" . "grep-find") . grep-find)                                       ;; => lch-binding.el
+        (("g" . "moccur-grep-pwd") . moccur-grep-find-pwd)                      ;; => lch-binding.el        
+        (("G" . "grep-find") . grep-find)                                       ;; => lch-binding.el
         (("i" . "indent-buffer-or-region") . lch-indent-region-or-buffer)       ;; => lch-util.el
         (("j" . "ace-jump") . ace-jump-mode)                                    ;; => lch-binding.el
         (("l" . "less") . less-minor-mode)                                      ;; => lch-binding.el
@@ -595,28 +599,47 @@
 (define-key global-map (kbd "<f10> p") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-one-key.el"))))
 (define-key global-map (kbd "<f10> t") (lambda() (interactive) (find-file (concat emacs-dir "/rc/color-theme-loochao.el"))))
 (define-key global-map (kbd "<f10> u") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-util.el"))))
-(define-key global-map (kbd "<f10> v") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-var.el"))))
 (define-key global-map (kbd "<f10> U") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-ui.el"))))
+
+(defvar vimp-dir "~/vimperator")
+(define-prefix-command 'f10-v-map)
+(define-key global-map (kbd "<f10> v") 'f10-v-map)
+(define-key global-map (kbd "<f10> v 1") (lambda() (interactive) (dired vimp-dir)))
+(define-key global-map (kbd "<f10> v 2") (lambda() (interactive) (dired (concat vimp-dir "/colors"))))
+(define-key global-map (kbd "<f10> v 3") (lambda() (interactive) (dired (concat vimp-dir "/plugin"))))
+(define-key global-map (kbd "<f10> v 4") (lambda() (interactive) (dired (concat vimp-dir "/info"))))
+(define-key global-map (kbd "<f10> v d") (lambda() (interactive) (find-file "~/.vimperatorrc")))
+(define-key global-map (kbd "<f10> v i") (lambda() (interactive) (find-file (concat vimp-dir "/lch-init.vimp"))))
+(define-key global-map (kbd "<f10> v k") (lambda() (interactive) (find-file (concat vimp-dir "/lch-key.vimp"))))
+(define-key global-map (kbd "<f10> v p") (lambda() (interactive) (find-file (concat vimp-dir "/lch-plugin.vimp"))))
+(define-key global-map (kbd "<f10> v u") (lambda() (interactive) (find-file (concat vimp-dir "/lch-ui.vimp"))))
+(define-key global-map (kbd "<f10> v U") (lambda() (interactive) (find-file (concat vimp-dir "/lch-util.vimp"))))
+
+(define-key global-map (kbd "<f10> V") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-var.el"))))
 (define-key global-map (kbd "<f10> w") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-web.el"))))
 ;; F10-end
 
 ;;; F10s (dir-map)
-(defvar remote-notes-root "/scpc:chaol@nobel.princeton.edu:/u/chaol/Scan")
-(defvar remote-lib-root "/scpc:loochao@loochao.synology.me:/")
+(defvar remote-notes "/scpc:chaol@nobel.princeton.edu:/u/chaol/Scan")
+(defvar remote-lib "/scpc:loochao@loochao.synology.me:/")
+(defvar remote-chili "/scpc:chaol@chili.princeton.edu:/home/chaol")
+(defvar remote-chili-su "/scpc:gradstudent@chili.princeton.edu:/home/chaol")
 
 (defvar one-key-menu-rmt-alist nil "")
 (setq one-key-menu-rmt-alist
       '(
-        (("c" . "computese-rmt") . (lambda () (interactive) (dired-x-find-file (concat remote-notes-root "/ComputerSE/"))))
-        (("e" . "emacs-rmt") . (lambda () (interactive) (dired-x-find-file (concat remote-notes-root "/ComputerSE/Emacs/"))))
-        (("p" . "programming-rmt") . (lambda () (interactive) (dired-x-find-file (concat remote-notes-root "/Programming/"))))
-        (("s" . "scaned_notes") . (lambda () (interactive) (dired-x-find-file remote-notes-root)))
+        (("c" . "chili") . (lambda () (interactive) (dired-x-find-file (concat remote-chili "/Downloads/"))))
+        (("C" . "chili-su") . (lambda () (interactive) (dired-x-find-file (concat remote-chili "/Downloads/"))))        
+        (("e" . "emacs-rmt") . (lambda () (interactive) (dired-x-find-file (concat remote-notes "/ComputerSE/Emacs/"))))
+        (("p" . "programming-rmt") . (lambda () (interactive) (dired-x-find-file (concat remote-notes "/Programming/"))))
+        (("s" . "scaned_notes") . (lambda () (interactive) (dired-x-find-file remote-notes)))
         ))
 
 (defun one-key-menu-rmt ()
   "The `one-key' menu for Remote Notes."
   (interactive)
   (one-key-menu "RMT" one-key-menu-rmt-alist t))
+(define-key global-map (kbd "<f9> <f8>") 'one-key-menu-rmt)
 
 (defvar one-key-menu-f10s-alist nil "")
 (setq one-key-menu-f10s-alist
@@ -630,7 +653,7 @@
         (("g" . "git-repo") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Repository/")))        
         (("l" . "library") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Library/")))
         (("m" . "music") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Music/")))
-        (("n" . "remote-notes") . (lambda () (interactive) (dired-x-find-file remote-notes-root)))
+        (("n" . "remote-notes") . (lambda () (interactive) (dired-x-find-file remote-notes)))
         (("P" . "paper") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Research/Papers2/Articles/")))
         (("r" . "research") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Research/")))
         (("s" . "snippet") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/.emacs.d/lib/snippets/lch/")))        
@@ -650,7 +673,7 @@
    ("<f11> /" . eyedropper-foreground)
    ("<f11> b" . eyedropper-background)
    ("<f11> h" . global-hl-line-mode)
-   ("<f11> l" . setnu-mode)
+   ("<f11> l" . linum-mode)
    ("<f11> L" . toggle-truncate-lines)
    ("<f11> t" . tool-bar-mode)
    ))
@@ -674,7 +697,7 @@
         (("f" . "fill-column-indicator") . fci-mode)                            ;; => lch-ui.el
         (("F" . "pick-face") . lch-face-at-point)                               ;; => lch-ui.el
         (("h" . "highlight-line") . global-hl-line-mode)                        ;; => lch-binding.el
-        (("l" . "setnu-mode") . setnu-mode)                                     ;; => lch-binding.el
+        (("l" . "setnu-mode") . linum-mode)                                     ;; => lch-binding.el
         (("L" . "line-truncate") . toggle-truncate-lines)                       ;; => lch-binding.el
         (("r" . "rainbow-mode") . rainbow-mode)                                 ;; => lch-ui.el
         (("t" . "tool-bar-mode") . tool-bar-mode)                               ;; => lch-binding.el

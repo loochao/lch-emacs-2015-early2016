@@ -13,8 +13,8 @@
  (rear-context-string . "      ;; j: jump")
  (position . 1065))
 ("org-capture-last-stored"
- (filename . "~/Dropbox/Org/org/iJournal.org")
- (front-context-string . "*** 哥大两门finance ")
- (rear-context-string . "rnal\n** Scratch\n")
- (position . 378))
+ (filename . "~/Dropbox/Org/org/iPrv.org")
+ (front-context-string . "*** ACTIVE Douba")
+ (rear-context-string . "ND:\n** TODO-#B-\n")
+ (position . 1367))
 )

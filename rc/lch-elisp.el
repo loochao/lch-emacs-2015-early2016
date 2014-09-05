@@ -66,6 +66,10 @@
 (define-key global-map (kbd "M-[") 'multi-term-prev)
 (define-key global-map (kbd "M-]") 'multi-term-next)
 
+(defun lch-multi-term-disable-yas-minor-mode ()
+  (yas-minor-mode -1))
+(add-hook 'term-mode-hook 'lch-multi-term-disable-yas-minor-mode)
+
 ;; One-key-menu-term-scratch
 (defvar one-key-menu-term-scratch-alist nil "")
 (setq one-key-menu-term-scratch-alist

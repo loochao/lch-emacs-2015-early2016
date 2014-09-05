@@ -1,16 +1,18 @@
 
 ;; ----- smex-history -----
 (
+ gdb
+ fundamental-mode
+ revert-buffer-with-coding-system
  R
  cd
  5x5
  arp
- dbx
- dig
- erc
 )
 
 ;; ----- smex-data -----
 (
- 
+ (revert-buffer-with-coding-system . 8)
+ (fundamental-mode . 1)
+ (gdb . 1)
 )

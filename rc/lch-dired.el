@@ -18,15 +18,24 @@
 
 (require 'dired)
 (require 'lch-key-util)
-(require 'dired-extension)
+(require 'dired-extension-wux)
+(require 'dired-extension)                             ;; Lazycat version
 (require 'dired-tar)
+(require 'dired+)
+(require 'dired-details)
 
 (setq dired-recursive-copies t)                        
-(setq dired-recursive-copies 'always)                  ;No ask when copying recursively.
+(setq dired-recursive-copies 'always)                  ;; No ask when copying recursively.
 (setq dired-recursive-deletes t)                       
-(setq dired-recursive-deletes 'always)                 ;No ask when delete recursively.
+(setq dired-recursive-deletes 'always)                 ;; No ask when delete recursively.
 
 (setq dired-use-ls-dired nil)
+(toggle-dired-find-file-reuse-dir 1)                   ;; From dired+
+(setq dired-details-hidden-string "[ ... ] ")          
+(setq dired-listing-switches "-aluh")                  ;; Parameters passed to ls
+(setq directory-free-space-args "-Pkh")                ;; Options for space
+(setq dired-omit-size-limit nil)                       ;; Number of file omitted
+
 ;;; Dired-lisps
 ;; Dired-x
 ;; dired-x is part of GNU Emacs
@@ -43,6 +52,44 @@
 (require 'wdired)
 (define-key dired-mode-map "w" 'wdired-change-to-wdired-mode)
 
+;; Dired view
+;; Jump to a file by typing that filename's first character.
+(require 'dired-view)
+
+;; Dired sort
+(require 'dired-sort)
+;; Directory ahead of files
+(add-hook 'dired-after-readin-hook '(lambda ()
+                                      (progn
+                                        (require 'dired-extension)
+                                        (dired-sort-method))))
+
+(setq one-key-menu-dired-sort-alist
+      '(
+        (("s" . "Size") . dired-sort-size)
+        ;; (("x" . "Extension") . dired-sort-extension)        ;; Does not work with mac
+        (("n" . "Name") . dired-sort-name)
+        (("t" . "Modified Time") . dired-sort-time)
+        (("u" . "Access Time") . dired-sort-utime)
+        (("c" . "Create Time") . dired-sort-ctime)))
+
+(defun one-key-menu-dired-sort ()
+  "The `one-key' menu for DIRED-SORT."
+  (interactive)
+  (require 'one-key)
+  (require 'dired-sort)
+  (one-key-menu "DIRED-SORT" one-key-menu-dired-sort-alist nil))
+
+;; Omit
+(setq my-dired-omit-status t)                          ;; 设置默认忽略文件
+(setq my-dired-omit-regexp "^\\.?#\\|^\\..*")          ;; 设置忽略文件的匹配正则表达式
+(setq my-dired-omit-extensions '(".cache"))            ;; 设置忽略文件的扩展名列表
+
+(add-hook 'dired-mode-hook '(lambda ()
+                              (progn
+                                (require 'dired-extension)
+                                (dired-omit-method))))
+;;; Dired-lisps
 ;;; Utils
 (defun dired-open-mac ()
   (interactive)
@@ -72,7 +119,9 @@ Otherwise, just `dired-up-directory'."
 
 ;;; Keymap
 (lch-set-key
- '(("f"              . dired-single-buffer)
+ '((";"              . dired-view-minor-mode-toggle)
+   ("?"              . dired-get-size)
+   ("f"              . dired-single-buffer)
    ("<return>"       . dired-single-buffer)
    ("<RET>"          . dired-single-buffer)
    ("<down-mouse-1>" . dired-single-buffer)
@@ -84,6 +133,7 @@ Otherwise, just `dired-up-directory'."
    ("/."             . dired-filter-extension)
    ("C-<f12>"        . dired-filter-extension)
 
+   ("s"              . one-key-menu-dired-sort)
    ("v"              . dired-x-find-file)
    ("V"              . dired-view-file)
    ("j"              . dired-next-line)

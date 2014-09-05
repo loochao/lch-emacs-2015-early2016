@@ -227,6 +227,7 @@
         ;; ("q" "QUESTION" entry (file+olp (concat org-private-dir "/Refile.org") "QUESTIONs" "QUESTION") "* %? \t%U" :prepend t)
         ;; ("v" "VERBAL" entry (file+olp (concat org-private-dir "/English.org") "Verbal" "Verbal") "* %? \n %U" :prepend t)
         ("s" "SCRATCH" entry (file+olp (concat org-private-dir "/iJournal.org") "Journal" "Scratch") "* %? \n%u" :prepend t)
+        ("0" "SCR" entry (file+olp (concat org-private-dir "/iJournal.org") "Journal" "Secret") "* %u \n%?" :prepend t)        
         ;; ("n" "note" entry (file (concat org-private-dir "/iPrv.org")) "* %? :NOTE: %U %a :CLOCK: :END:" :clock-in t :clock-resume t)
         ;; ("f" "appointment" entry (file+datetree (concat org-private-dir "/iPrv.org")) "* %? %U" :clock-in t :clock-resume t)
         ;; ("p" "Phone call" entry (file (concat org-private-dir "iPrv.org")) "* Phone %(bh/phone-call) - %(gjg/bbdb-company) :PHONE:\n%U\n\n%?" :clock-in t :clock-resume t)

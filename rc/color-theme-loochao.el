@@ -17,6 +17,9 @@
 (defun color-theme-loochao ()
   "Loochao colour theme by Charles Lu."
   (interactive)
+  (set-fringe-mode '(0 . 0))              ;Make fringe mini size
+  (setq linum-format (concat " %" (number-to-string (length (number-to-string (count-lines (point-min) (point-max))))) "d "))
+  
   (color-theme-install
    '(color-theme-loochao
      ((background-color . "Black")
@@ -87,12 +90,19 @@
      (helm-ff-invalid-symlink ((t (:background "black" :foreground "red"))))
      (helm-ff-prefix ((t (:background "black" :foreground "yellow"))))
      (helm-ff-symlink ((t (:foreground "DarkOrange4"))))
-     (helm-selection ((t (:background "Pink" :foreground "Black"))))
+     (helm-selection ((t (:background "#404040" :foreground "white"))))     
+     ;; (helm-selection ((t (:background "Pink" :foreground "Black"))))
      (helm-source-header ((t (:background "black" :foreground "orange" :underline t :height 1.1))))
      (helm-visible-mark ((t (:background "darkgreen" :foreground "grey"))))
 
+     ;; Linum
+     ;(linum ((t (:background "black" :foreground "#7f9f7f" :height 0.9 :family "monaco"))))
+     ;(linum ((t (:background "black" :foreground "gray15" :height 0.9 :family "monaco"))))
+     (linum ((t (:background "black" :foreground "#10650f" :height 0.7 :family "monaco"))))     
+
      ;; Org
-     (org-document-title ((t (:foreground "Pale Turquoise" :weight normal :height 1.2))))
+     ;(org-document-title ((t (:foreground "Pale Turquoise" :weight normal :height 1.2))))
+     (org-document-title ((t (:foreground "Dodgerblue" :weight normal :height 1.2))))
 
      (org-level-1 ((t (:foreground "PaleGreen"))))
      (org-level-2 ((t (:foreground "DarkSeaGreen"))))
@@ -111,14 +121,24 @@
      (isearch-fail ((t (:background "grey90" :foreground "red2"))))
 
      ;; Tabbar
-     (tabbar-default ((t (:height 0.97 :background "black"))))
-     (tabbar-highlight ((t (nil))))
-     (tabbar-button ((t (:background "black" :foreground "green" :box (:line-width -1 :color "green" :style released-button)))))
-     (tabbar-button-highlight ((t (:background "black" :foreground "green" :box (:line-width -1 :color "green" :style released-button)))))
-     (tabbar-selected ((t (:background "grey30" :foreground "LawnGreen" :height 0.97))))
-     (tabbar-separator ((t (:background "black" :height 0.97))))
-     (tabbar-unselected ((t (:background "grey20" :foreground "grey60" :height 0.97))))
+     ;; Version1:
+     ;; (tabbar-default ((t (:height 0.97 :background "black"))))
+     ;; (tabbar-highlight ((t (nil))))
+     ;; (tabbar-button ((t (:background "black" :foreground "green" :box (:line-width -1 :color "green" :style released-button)))))
+     ;; (tabbar-button-highlight ((t (:background "black" :foreground "green" :box (:line-width -1 :color "green" :style released-button)))))
+     ;; (tabbar-selected ((t (:background "grey30" :foreground "LawnGreen" :height 0.97))))
+     ;; (tabbar-separator ((t (:background "black" :height 0.97))))
+     ;; (tabbar-unselected ((t (:background "grey20" :foreground "grey60" :height 0.97))))
+     ;; (tabbar-button ((t (:inherit tabbar-default :background "black" :foreground "red" :box (:line-width 1 :color "black" :style released-button)))))
+     ;; (tabbar-button-highlight ((t (:inherit tabbar-default :background "black" :foreground "green" :box (:color "red")))))
 
+     ;; Version2 -- deepin
+     (tabbar-default ((((class color grayscale) (background dark)) (:inherit variable-pitch :height 0.97))))
+     (tabbar-selected ((t (:inherit tabbar-default :background "black" :foreground "green2" :box (:line-width 1 :color "#10650F")))))
+     (tabbar-selected-face ((t (:inherit tabbar-default-face :background "black" :foreground "grey" :box (:line-width -1 :color "grey" :style released-button)))))
+     (tabbar-separator ((t (:inherit tabbar-default :background "black" :foreground "brown" :height 0.1))))
+     (tabbar-unselected ((t (:inherit tabbar-default :background "black" :foreground "#10650F" :box (:line-width 1 :color "#10650F")))))
+     (tabbar-unselected-face ((t (:inherit tabbar-default-face :background "black" :foreground "white" :box (:line-width -1 :color "black" :style pressed-button)))))
      ;; (tabbar-default (((:inherit variable-pitch :height 0.95 :family "monaco"))))
      ;; (tabbar-separator ((t (:inherit tabbar-default :background "black" :foreground "brown" :height 0.1))))
      ;; (tabbar-button-highlight ((t (:inherit tabbar-default :background "black"
@@ -185,7 +205,7 @@
      (w3m-tab-unselected-retrieving ((t (:background "grey20" :foreground "grey80" :height 0.97))))
      (w3m-tab-unselected-unseen ((t (:background "grey20" :foreground "grey80" :height 0.97))))
      (w3m-underline ((t (:underline t))))
-     
+
      ;; Dired
      (dired-directory ((t (:foreground "LightSkyBlue" :height 1.05))))
      ;; (dired-flagged ((t (:foreground "red" :height 1.05))))
