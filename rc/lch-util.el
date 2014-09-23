@@ -36,11 +36,11 @@
 
 (defun lch-python ()
   (interactive)
-  (if (get-buffer "*Python*")
-      (switch-to-buffer "*Python*")
+  (if (get-buffer "*IPython*")
+      (switch-to-buffer "*IPython*")
     (progn
-      (python)
-      (switch-to-buffer "*Python*")
+      (ipython)
+      (switch-to-buffer "*IPython*")
       (delete-other-windows))))
 (define-key global-map (kbd "M-3") 'lch-python)
 

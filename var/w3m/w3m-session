@@ -1,11 +1,7 @@
 ;;; w3m-session  -*- mode: emacs-lisp; coding: iso-2022-7bit -*-
 ;; This file is generated automatically by emacs-w3m v1.4.517.
 
-(("Crash recovery sessions"
-  (21498 33943 427395 0)
-  (("http://www.princeton.edu/~chaol/" nil nil "LooChao' Notes") ("http://www.douban.com/group/topic/9770594/" (0) (("http://www.princeton.edu/~chaol/" (:title "LooChao' Notes") (0) :window-start 1 :position (1 . 0) :window-hscroll 0)) "$A!626CN!7#-#-Da6{,A7$A8GB|(B"))
-  nil)
- ("Automatic saved sessions-1"
+(("Automatic saved sessions-1"
   (21474 36599 971024 0)
   (("http://www.princeton.edu/~chaol/" nil nil "LooChao' Notes"))
   0)

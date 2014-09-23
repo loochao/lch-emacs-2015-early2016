@@ -1,18 +1,19 @@
 
 ;; ----- smex-history -----
 (
- gdb
- fundamental-mode
- revert-buffer-with-coding-system
+ lisp-mode
+ ediff
+ ipy
+ query-replace-regexp
  R
  cd
  5x5
- arp
 )
 
 ;; ----- smex-data -----
 (
- (revert-buffer-with-coding-system . 8)
- (fundamental-mode . 1)
- (gdb . 1)
+ (query-replace-regexp . 2)
+ (ipy . 1)
+ (ediff . 2)
+ (lisp-mode . 2)
 )
