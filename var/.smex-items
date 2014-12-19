@@ -1,19 +1,16 @@
 
 ;; ----- smex-history -----
 (
- lisp-mode
- ediff
- ipy
- query-replace-regexp
  R
  cd
  5x5
+ arp
+ dbx
+ dig
+ erc
 )
 
 ;; ----- smex-data -----
 (
- (query-replace-regexp . 2)
- (ipy . 1)
- (ediff . 2)
- (lisp-mode . 2)
+ 
 )

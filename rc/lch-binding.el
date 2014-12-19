@@ -621,6 +621,7 @@
 
 ;;; F10s (dir-map)
 (defvar remote-notes "/scpc:chaol@nobel.princeton.edu:/u/chaol/Scan")
+(defvar remote-mit "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl")
 (defvar remote-lib "/scpc:loochao@loochao.synology.me:/")
 (defvar remote-chili "/scpc:chaol@chili.princeton.edu:/home/chaol")
 (defvar remote-chili-su "/scpc:gradstudent@chili.princeton.edu:/home/chaol")
@@ -628,6 +629,7 @@
 (defvar one-key-menu-rmt-alist nil "")
 (setq one-key-menu-rmt-alist
       '(
+        (("m" . "mit") . (lambda () (interactive) (dired-x-find-file (concat remote-mit "/milos/")))) 
         (("c" . "chili") . (lambda () (interactive) (dired-x-find-file (concat remote-chili "/Downloads/"))))
         (("C" . "chili-su") . (lambda () (interactive) (dired-x-find-file (concat remote-chili "/Downloads/"))))        
         (("e" . "emacs-rmt") . (lambda () (interactive) (dired-x-find-file (concat remote-notes "/ComputerSE/Emacs/"))))
@@ -641,6 +643,8 @@
   (one-key-menu "RMT" one-key-menu-rmt-alist t))
 (define-key global-map (kbd "<f9> <f8>") 'one-key-menu-rmt)
 
+(defvar netease-music-dir "/Volumes/DATA/Applications/Library/Netease_Music/")
+
 (defvar one-key-menu-f10s-alist nil "")
 (setq one-key-menu-f10s-alist
       '(
@@ -653,7 +657,9 @@
         (("g" . "git-repo") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Repository/")))        
         (("l" . "library") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Library/")))
         (("m" . "music") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Music/")))
-        (("n" . "remote-notes") . (lambda () (interactive) (dired-x-find-file remote-notes)))
+        (("n" . "netease-music") . (lambda () (interactive) (dired-x-find-file netease-music-dir)))
+        (("N" . "remote-notes") . (lambda () (interactive) (dired-x-find-file remote-notes)))
+        (("p" . "PPTNotes") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/PPTNotes/")))        
         (("P" . "paper") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Research/Papers2/Articles/")))
         (("r" . "research") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Research/")))
         (("s" . "snippet") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/.emacs.d/lib/snippets/lch/")))        

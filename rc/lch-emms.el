@@ -33,8 +33,8 @@
 (setq emms-score-file (concat emms-dir "/scores"))
 
 (setq emms-playlist-buffer-name "*Music*")
-(if lch-mac-p (setq emms-source-file-default-directory "/Volumes/DATA/Music/INBOX/Xiami/Current"))
-(if lch-win32-p (setq emms-source-file-default-directory "~/Dropbox/Music/CHECKIN"))
+(if lch-mac-p (setq emms-source-file-default-directory "/Volumes/DATA/Applications/Library/Netease_Music/"))
+(if lch-win32-p (setq emms-source-file-default-directory "/Volumes/DATA/Applications/Library/Netease_Music/"))
 
 (setq emms-player-list
       '(emms-player-mplayer
@@ -175,7 +175,7 @@
 	(message ""))
       (progn
       (require 'lch-emms)
-      (emms-add-directory-tree lch-music-check-in-dir)
+      (emms-add-directory-tree emms-source-file-default-directory)
       (emms-playlist-mode-go)
       ;; (setnu-mode)
       ;; (emms-shuffle)

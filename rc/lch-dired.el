@@ -66,6 +66,7 @@
 
 (setq one-key-menu-dired-sort-alist
       '(
+        (("a" . "All/Hidden") . dired-omit-mode)
         (("s" . "Size") . dired-sort-size)
         ;; (("x" . "Extension") . dired-sort-extension)        ;; Does not work with mac
         (("n" . "Name") . dired-sort-name)

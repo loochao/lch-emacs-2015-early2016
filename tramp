@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <14/09/23 02:28:52 /Users/LooChao/Dropbox/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <14/10/31 11:10:56 /Users/LooChao/Dropbox/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -80,4 +80,25 @@
   ("ls-dired" t)
   ("stat" "\\stat")
   ("id" "/usr/bin/id")
-  ("gid-integer" 34)))
+  ("gid-integer" 34))
+ (["scpc" "chaol" "chili.princeton.edu" nil nil]
+  ("uname" "Linux 3.2.0-67-generic")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("busybox" nil)
+  ("file-exists" "test -e")
+  ("ls" "/bin/ls --color=never")
+  ("ls-dired" t)
+  ("stat" "\\stat")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 1001)
+  ("readlink" "\\readlink")
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("uid-integer" 1001)
+  ("~" "/home/chaol"))
+ (["scpc" "jaimevrl" "ab-initio.mit.edu" nil nil]
+  nil))

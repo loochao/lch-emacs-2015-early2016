@@ -39,6 +39,7 @@
                 ("\\.cgi$"                             . perl-mode)
                 ("[mM]akefile"                         . makefile-mode)
                 ("\\.bash$"                            . shell-script-mode)
+                ("\\.ctl$"                             . emacs-lisp-mode)
                 ) auto-mode-alist))
 ;;; PROVIDE
 (provide 'lch-var)

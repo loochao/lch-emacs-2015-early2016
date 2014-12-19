@@ -57,10 +57,11 @@
     (auto-complete-mode -1)
     var))
 
+(defvar ac-trigger-commands-on-completing nil)
+
 
 
 ;;;; Customization
-
 (defgroup auto-complete nil
   "Auto completion."
   :group 'completion

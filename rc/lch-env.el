@@ -50,11 +50,11 @@
                              ":/usr/texbin"
                              ":/opt/local/bin"
                              ":/Applications/Documents/Emacs.app/Contents/MacOS/bin"
-                             ":/Applications/Mathematics/MATLAB_R2010b.app/bin"
+                             ":/Applications/Mathematics/MATLAB_R2014a.app/bin"
                              ))
       (setq exec-path (append exec-path
                               '(
-                                "/Applications/Mathematics/MATLAB_R2010b.app/bin"
+                                "/Applications/Mathematics/MATLAB_R2014a.app/bin"
                                 "/Applications/Documents/Emacs.app/Contents/MacOS/bin"
                                 "/usr/texbin"
                                 "/opt/local/bin"

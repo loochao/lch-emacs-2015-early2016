@@ -2,7 +2,7 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Tue Sep 23 02:28:53 2014
+;; Created Fri Dec 19 01:02:15 2014
 ;; Desktop file format version 206
 ;; Emacs version 24.3.1
 
@@ -10,9 +10,31 @@
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name nil)
 (setq tags-table-list nil)
-(setq search-ring '("as_raw" "as2" "pml" "slice" "block" "geome" "*she" "matlab" "&" "song" "eva" "180" "refracti" "erro" "error" "tcp"))
+(setq search-ring '("ac-trigger-command" "movi" "computer" "computerse" "ease" "lif" "ad-ad" "mul" "multi-" "mil" "milo" "mit" "course" "model_f" "eps_si" "si"))
 (setq regexp-search-ring nil)
 (setq register-alist (list '(97 . "(setq viper-inhibit-startup-message 't)") (list 213465889 "Unprintable entity" (let ((mk (make-marker))) (add-hook 'desktop-delay-hook (list 'lambda '() (list 'set-marker mk nil (get-buffer " *temp*")))) mk)) (list 213465879 "Unprintable entity" (let ((mk (make-marker))) (add-hook 'desktop-delay-hook (list 'lambda '() (list 'set-marker mk nil (get-buffer " *temp*")))) mk))))
-(setq file-name-history '("/bin/bash" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/Research/Project/ChG_PhC/As2S3_Absorption/L1_532nm1per20x.txt" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Research/Data/UVvis/140126_Metal_Salts_As2S3/uv_as2s3.m" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Research/Data/UVvis/140126_Metal_Salts_As2S3/uv.m" "~/Downloads/" "/bin/bash" "~/Downloads/" "/bin/bash" "~/Downloads/" "/bin/bash" "~/Downloads/" "/bin/bash" "~/Downloads/" "/bin/bash" "~/Downloads/" "/bin/bash" "~/Downloads/" "/bin/bash" "~/Downloads/" "/bin/bash" "/scpc:chaol@chili.princeton.edu:/home/chaol/Downloads/meep_graphene/graphene4.ctl" "/scpc:chaol@chili.princeton.edu:/home/chaol/Downloads/meep_graphene/graphene.ctl" "/bin/bash" "/scpc:chaol@chili.princeton.edu:/home/chaol/Downloads/meep_graphene/graphene_debug.ctl" "/bin/bash" "/scpc:chaol@chili.princeton.edu:/home/chaol/Downloads/meep_graphene/graphene4.ctl" "/scpc:chaol@chili.princeton.edu:/home/chaol/Downloads/meep_graphene/graphene.ctl" "/scpc:chaol@chili.princeton.edu:/home/chaol/Downloads/meep_graphene/graphene4.ctl" "/scpc:chaol@chili.princeton.edu:/home/chaol/Downloads/meep_graphene/graphene.ctl" "/scpc:chaol@chili.princeton.edu:/home/chaol/Downloads/meep_graphene/graphene4.ctl"))
+(setq file-name-history '("~/Dropbox/.emacs.d/rc/lch-auto-complete.el" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-conf.el" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-auto-complete.el" "~/Downloads/auto-complete.el" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-conf.el" "~/Downloads/auto-complete-config.el" "/Users/LooChao/Dropbox/.emacs.d/lisp/auto-complete/auto-complete-config.el" "~/Downloads/lch-auto-complete.el" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-auto-complete.el" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-conf.el" "/Users/LooChao/Dropbox/.emacs.d/lisp/auto-complete/auto-complete-config.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/rc/lch-auto-complete.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/rc/lch-env.el" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-conf.el" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-auto-complete.el" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-conf.el" "/Users/LooChao/Dropbox/.emacs.d/rc/dotEmacs" "~/Dropbox/Private/Lehigh" "/Volumes/DATA/Applications/Library/Netease_Music/Test/rename.pl" "/Volumes/DATA/Applications/Library/Netease_Music/music_rename.pl" "~/Downloads/" "/bin/bash" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/fit_lorentzian.m" "~/Downloads/" "/bin/bash" "~/Downloads/" "/scpc:jaimevrl@ab-initio.mit.edu:" "~/Dropbox/.emacs.d/rc/lch-env.el" "~/Dropbox/.emacs.d/rc/lch-env_bak.el" "/scpc:chaol@chili.princeton.edu:/home/chaol/Downloads/meep_graphene_band/graphene-band.ctl"))
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/.emacs.d/rc/lch-bmk.el"
+  "lch-bmk.el"
+  'emacs-lisp-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode undo-tree-mode yas-minor-mode outline-minor-mode linum-mode auto-complete-mode)
+  276
+  '(313 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  nil
+  "rc"
+  'dired-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode smooth-scroll-mode volatile-highlights-mode yas-minor-mode)
+  305
+  '(nil nil)
+  t
+  '("/Users/LooChao/Dropbox/.emacs.d/rc/")
+  nil)
+
