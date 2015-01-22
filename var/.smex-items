@@ -1,17 +1,16 @@
 
 ;; ----- smex-history -----
 (
- evil-motion-state
- evil-ace-jump-char-mode
+ helm-dash-install-docset
  R
  cd
  tt
  5x5
  arp
+ dbx
 )
 
 ;; ----- smex-data -----
 (
- (evil-ace-jump-char-mode . 1)
- (evil-motion-state . 1)
+ (helm-dash-install-docset . 3)
 )

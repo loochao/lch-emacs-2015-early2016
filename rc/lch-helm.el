@@ -27,6 +27,8 @@
 (require 'helm-helm-commands)
 (require 'helm-ls-git)
 
+
+
 (setq helm-scroll-amount 4
       helm-quick-update t
       helm-idle-delay 0.01
@@ -99,5 +101,44 @@
 
 ;; If nil, you can slightly boost invoke speed in exchange for text color
 (setq helm-swoop-speed-or-color nil)
+
+;;; helm-dash
+(require 'helm-dash)
+(setq helm-dash-docsets-path "/Volumes/DATA/Applications/Library/Dash/DocSets")
+(define-key global-map (kbd "C-c d") 'helm-dash)
+(setq helm-dash-common-docsets
+      '("SciPy" "Ruby" "Perl" "NumPy"
+        "MATLAB" "LaTeX" "C++" "R" "Python_2"))
+;; Installed but not activated: ("Android")
+;; (helm-dash-install-docset "Android")
+;; (helm-dash-install-docset "AppleScript")
+;; (helm-dash-install-docset "Arduino")
+;; (helm-dash-install-docset "Bash")
+;; (helm-dash-install-docset "C")
+;; (helm-dash-install-docset "C++")
+;; (helm-dash-install-docset "C.docset")
+;; (helm-dash-install-docset "CSS")
+;; (helm-dash-install-docset "CoffeeScript")
+;; (helm-dash-install-docset "Emacs_Lisp")
+;; (helm-dash-install-docset "JavaScript")
+;; (helm-dash-install-docset "Java_SE7")
+;; (helm-dash-install-docset "LaTeX")
+;; (helm-dash-install-docset "MATLAB")
+;; (helm-dash-install-docset "MongoDB")
+;; (helm-dash-install-docset "MySQL")
+;; (helm-dash-install-docset "NumPy")
+;; (helm-dash-install-docset "PHP")
+;; (helm-dash-install-docset "Perl")
+;; (helm-dash-install-docset "Python_2")
+;; (helm-dash-install-docset "R")
+;; (helm-dash-install-docset "Ruby")
+;; (helm-dash-install-docset "Ruby_on_Rails_3")
+;; (helm-dash-install-docset "SQLite")
+;; (helm-dash-install-docset "SciPy")
+;; (helm-dash-install-docset "Vagrant")
+;; (helm-dash-install-docset "Vim")
+;; (helm-dash-install-docset "jQuery")
+
+
 ;;; PROVIDE
 (provide 'lch-helm)

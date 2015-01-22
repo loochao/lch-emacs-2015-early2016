@@ -1,4 +1,18 @@
-((("escape" .
+((("helm-dash-install-docset" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
+  ("lch-dash" .
+   [0 0 0 0 0 0 1 0])
+  ("helm-dash-install" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("helm-dash-docset" .
+   [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
+  ("mapc" .
+   [1 0 0 0])
+  ("/Volumes/DATA/Applications/Library/Dash/DocSets/" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
+  ("helm-dash" .
+   [2 0 0 0 0 0 0 0 0])
+  ("escape" .
    [1 0 0 0 0 0])
   ("iPrv.org" .
    [0 0 0 0 1 0 0 0])
@@ -43,7 +57,7 @@
   ("powerline" .
    [0 0 0 1 0 0 0 0 0])
   ("require" .
-   [1 0 0 2 0 0 0])
+   [2 0 0 2 0 0 0])
   ("defun" .
    [2 0 0 0 0])
   ("powerline-evil-theme" .
@@ -79,7 +93,7 @@
   ("kbd" .
    [9 0 0])
   ("setq" .
-   [4 0 0 0])
+   [6 0 0 0])
   ("turn-on-evil-mode" .
    [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0])
   ("zap-to-char" .
@@ -149,4 +163,8 @@
   ("org-dir" .
    [1 0 0 0 0 0 0])
   ("lch-org" .
-   [1 0 0 0 0 0 0])))
+   [1 0 0 0 0 0 0])
+  ("ace-jump-mode" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("helm" .
+   [1 0 0 0])))

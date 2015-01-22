@@ -248,6 +248,7 @@
  '(
    ("C-c ." . repeat-complex-command)
    ("C-c c" . comment-region)                                                   ;; Shift+4 == $
+   ("C-c d" . helm-dash)
    ("C-c g" . moccur-grep-find-pwd)
    ("C-c G" . grep-find)
    ("C-c l" . less-minor-mode)
@@ -603,7 +604,7 @@
 (define-key global-map (kbd "<f10> d") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-dired.el"))))
 (define-key global-map (kbd "<f10> D") (lambda() (interactive) (find-file "~/.emacs")))
 (define-key global-map (kbd "<f10> e") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-elisp.el"))))
-(define-key global-map (kbd "<f10> E") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-emms.el"))))
+(define-key global-map (kbd "<f10> E") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-evil.el"))))
 (define-key global-map (kbd "<f10> C-e") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-env.el"))))
 (define-key global-map (kbd "<f10> i") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-init.el"))))
 (define-key global-map (kbd "<f10> n") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-network.el"))))

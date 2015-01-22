@@ -73,11 +73,13 @@
 ;; (evil-leader/set-key "x" 'helm-M-x)
 (evil-leader/set-key "e" 'eval-buffer)
 (evil-leader/set-key "b" 'switch-to-buffer)
+(evil-leader/set-key "d" 'helm-dash)
 (evil-leader/set-key "k" 'kill-buffer)
 (evil-leader/set-key "K" 'kill-current-buffer)
 (evil-leader/set-key "t" 'transpose-lines)
-(evil-leader/set-key "m" 'evil-motion-state)       ; ESC back to normal state
+(evil-leader/set-key "m" 'evil-motion-state)       ;; ESC back to normal state
 (evil-leader/set-key "," 'ace-jump-mode)
+(evil-leader/set-key "/" 'lch-switch-to-message)   ;; Defined in lch-util.el
 ;; (evil-leader/set-key "," 'evil-ace-jump-word-mode) ; ,, for Ace Jump (word)
 ;; (evil-leader/set-key "l" 'evil-ace-jump-line-mode) ; ,l for Ace Jump (line)
 ;; (evil-leader/set-key "x" 'evil-ace-jump-char-mode) ; ,x for Ace Jump (char)
