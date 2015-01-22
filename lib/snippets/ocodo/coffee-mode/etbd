@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: expect().toBeDefined
+# group: jasmine
+# key: etbd
+# --
+expect($1).toBeDefined()
+$0

@@ -10,6 +10,14 @@
 ;;
 ;; Commentary:
 ;; Settings for elisp packages.
+;;
+(require 'helm)
+;; (helm-mode 1)
+(when (featurep 'helm-mode)
+  (diminish 'helm-mode " H"))
+
+(define-key global-map (kbd "C-h o") 'helm-occur)
+(define-key global-map (kbd "C-h SPC") 'helm-all-mark-rings)
 
 (require 'helm-config)
 (require 'helm-files)
@@ -18,6 +26,19 @@
 (require 'helm-descbinds)
 (require 'helm-helm-commands)
 (require 'helm-ls-git)
+
+(setq helm-scroll-amount 4
+      helm-quick-update t
+      helm-idle-delay 0.01
+      helm-input-idle-delay 0.05
+      helm-candidate-number-limit 200
+      helm-M-x-requires-pattern 0
+      helm-move-to-line-cycle-in-source t
+      ido-use-virtual-buffers t
+      helm-buffers-fuzzy-matching t)
+
+;; (setq helm-split-window-default-side 'other
+;;       helm-split-window-in-side-p t)
 
 (require 'helm-swoop)
 (autoload 'helm-swoop "helm-swoop" nil t)
@@ -46,15 +67,15 @@
 
 (eval-after-load 'helm
   '(progn
-	 (define-key helm-map (kbd "M-i")			'helm-previous-line)
-	 (define-key helm-map (kbd "M-k")			'helm-next-line)
-	 (define-key helm-map (kbd "M-n")			'helm-next-source)
+         (define-key helm-map (kbd "M-i")			'helm-previous-line)
+         (define-key helm-map (kbd "M-k")			'helm-next-line)
+         (define-key helm-map (kbd "M-n")			'helm-next-source)
          (define-key helm-map (kbd "M-SPC")			'helm-next-source)
-	 (define-key helm-map (kbd "M-p")			'helm-previous-source)
-	 (define-key helm-map (kbd "M-h")			'helm-next-page)
-	 (define-key helm-map (kbd "M-y")			'helm-previous-page)
-	 (define-key helm-map (kbd "<escape>")		        'helm-keyboard-quit)
-	 (define-key helm-map (kbd "C-w")			'backward-kill-word)))
+         (define-key helm-map (kbd "M-p")			'helm-previous-source)
+         (define-key helm-map (kbd "M-h")			'helm-next-page)
+         (define-key helm-map (kbd "M-y")			'helm-previous-page)
+         (define-key helm-map (kbd "<escape>")                  'helm-keyboard-quit)
+         (define-key helm-map (kbd "C-w")			'backward-kill-word)))
 
 (push "Press M-SPC to do quicksilver in emacs." lch-tips)
 

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: expect().toBeFalsy
+# group: jasmine
+# key: etf
+# --
+expect($1).toBeFalsy()
+$0

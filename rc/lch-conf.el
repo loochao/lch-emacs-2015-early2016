@@ -22,6 +22,7 @@
 (require 'lch-util)
 (require 'lch-elisp)
 (require 'lch-helm)
+(require 'lch-evil)
 (require 'lch-ibuffer)
 (require 'lch-auto-complete)
 (require 'lch-dired)

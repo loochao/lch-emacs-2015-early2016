@@ -19,38 +19,22 @@
 ;;; Code:
 
 (require 'cl-lib)
+(require 'color)
 
 (defun pl/interpolate (color1 color2)
   "Interpolate between COLOR1 and COLOR2.
 
 COLOR1 and COLOR2 must be supplied as hex strings with a leading #."
-  (let* ((c1 (replace-regexp-in-string "#" "" color1))
-         (c2 (replace-regexp-in-string "#" "" color2))
-         (c1r (string-to-number (substring c1 0 2) 16))
-         (c1g (string-to-number (substring c1 4 6) 16))
-         (c1b (string-to-number (substring c1 2 4) 16))
-         (c2r (string-to-number (substring c2 0 2) 16))
-         (c2g (string-to-number (substring c2 4 6) 16))
-         (c2b (string-to-number (substring c2 2 4) 16))
-         (red (/ (+ c1r c2r) 2))
-         (green (/ (+ c1g c2g) 2))
-         (blue (/ (+ c1b c2b) 2)))
-    (format "#%02X%02X%02X" red green blue)))
+  (let* ((c1 (color-name-to-rgb color1))
+         (c2 (color-name-to-rgb color2))
+         (red (/ (+ (nth 0 c1) (nth 0 c2)) 2))
+         (green (/ (+ (nth 1 c1) (nth 1 c2)) 2))
+         (blue (/ (+ (nth 2 c1) (nth 2 c2)) 2)))
+    (color-rgb-to-hex red green blue)))
 
 (defun pl/hex-color (color)
   "Get the hexadecimal value of COLOR."
-  (let ((ret color))
-    (cond ((and (stringp color) (string= "#" (substring color 0 1)))
-           (setq ret (upcase ret)))
-          ((color-defined-p color)
-           (setq ret (concat "#"
-                             (mapconcat (lambda (val)
-                                          (format "%02X" (* val 255)))
-                                        (color-name-to-rgb color)
-                                        ""))))
-          (t
-           (setq ret nil)))
-    (symbol-value 'ret)))
+  (apply 'color-rgb-to-hex (color-name-to-rgb color)))
 
 (defun pl/pattern (lst)
   "Turn LST into an infinite pattern."
@@ -109,9 +93,9 @@ destination color, and 2 is the interpolated color between 0 and 1."
                      (second-pattern-height (/ pattern-height 2))
                      (pattern-height ,(if second-pattern '(ceiling pattern-height 2) 'pattern-height)))
                    `((mapconcat 'identity ',header "")
-                     (mapconcat 'identity (subseq ',pattern 0 pattern-height) "")
+                     (mapconcat 'identity (cl-subseq ',pattern 0 pattern-height) "")
                      (mapconcat 'identity ',center "")
-                     (mapconcat 'identity (subseq ',second-pattern 0 second-pattern-height) "")
+                     (mapconcat 'identity (cl-subseq ',second-pattern 0 second-pattern-height) "")
                      (mapconcat 'identity ',footer "")))))
 
 (defun pl/wrap-defun (name dir width let-vars body)
@@ -121,7 +105,6 @@ destination color, and 2 is the interpolated color between 0 and 1."
     `(defun ,(intern (format "powerline-%s-%s" name (symbol-name dir)))
        (face1 face2 &optional height)
        (when window-system
-         (message "pl/ generating new separator")
          (unless height
            (setq height (pl/separator-height)))
          (let* ,(append `((color1 (when ,src-face

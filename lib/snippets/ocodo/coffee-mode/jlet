@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: jlet
+# group: jasmine
+# key: jlet
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
+# --
+jlet '$1', -> $0

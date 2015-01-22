@@ -23,6 +23,13 @@
 ;; others are command-map-prefix
 ;; according how often the command will be used, it goes into those maps by this seq:
 ;; [C-c/C-x] => f1 => C-z => C-{. , / o}
+;;; Guide-key
+(require 'guide-key)
+(setq guide-key/guide-key-sequence
+      '("," "g" "C-x" "C-c" "C-z" "C-x r"
+        "<f1>" "<f2>" "<f3>" "<f4>" "<f5>" "<f6>"
+        "<f7>" "<f8>" "<f9>" "<f10>" "<f11>" "<f12>"))
+(guide-key-mode 1)
 ;;; Mouse
 (define-key global-map (kbd "<C-wheel-up>") 'text-scale-increase)
 (define-key global-map (kbd "<C-wheel-down>") 'text-scale-decrease)
@@ -67,7 +74,7 @@
 
         (("h" . "tabbar-backward") . tabbar-backward)                           ;; => lch-ui.el
         (("l" . "tabbar-forward") . tabbar-forward)                             ;; => lch-ui.el
-        
+
         (("k" . "kill-this-buffer") . kill-this-buffer)                         ;; => lch-binding
         (("s" . "w3m-search") . one-key-menu-w3m-search)                        ;; => lch-binding.el
 
@@ -100,23 +107,25 @@
         (("/" . "dabbrev") . dabbrev-expand)                                    ;; => emacs-defaults
         (("'" . "yasnippet") . yas-expand)                                      ;; => lch-elisp.el
         (("`" . "multi-scratch-term") . one-key-menu-term-scratch)              ;; => lch-binding.el
-        
+
         (("," . "scratch-prev") . multi-scratch-prev)                           ;; => lch-elisp.el
         (("." . "scratch-next") . multi-scratch-next)                           ;; => lch-elisp.el
         (("s" . "scratch-new") . multi-scratch-new)                             ;; => lch-elisp.el
-        
-        ;; (("`" . "menu-bar") . menu-bar)                                      ;; => emacs-defaults        
+
+        ;; (("`" . "menu-bar") . menu-bar)                                      ;; => emacs-defaults
         (("1" . "shell") . shell)                                               ;; => lch-binding.el
-        (("2" . "lch-matlab") . lch-matlab)                                     ;; => lch-util.el
-        (("3" . "lch-python") . lch-python)                                     ;; => lch-util.el        
-        (("4" . "lch-R") . lch-R)                                               ;; => lch-util.el
-        (("5" . "lch-mathematica") . lch-mathematica)                           ;; => lch-util.el
-        (("6" . "lch-ruby") . lch-ruby)                                         ;; => lch-elisp.el
+        (("2" . "lch-term") . lch-term)                                         ;; => lch-util.el
+        (("3" . "lch-matlab") . lch-matlab)                                     ;; => lch-util.el
+        (("4" . "lch-python") . lch-python)                                     ;; => lch-util.el
+        (("5" . "lch-ruby") . lch-ruby)                                         ;; => lch-elisp.el
+        (("6" . "lch-R") . lch-R)                                               ;; => lch-util.el
+        (("7" . "lch-mathematica") . lch-mathematica)                           ;; => lch-util.el
         ;; (("2" . "multi-term") . multi-term-try-create)                       ;; => lch-binding.el
-        (("7" . "erc-switch") . one-key-menu-irc-channel)                       ;; => lch-network.el
+
         (("8" . "org-agenda") . org-agenda)                                     ;; => lch-org.el
-        (("9" . "anything-menu") . one-key-menu-anything)                       ;; => lch-binding.el
-        (("a" . "anything-map") . anything)                                     ;; => lch-elisp.el
+        (("9" . "erc-switch") . one-key-menu-irc-channel)                       ;; => lch-network.el
+        ;; (("9" . "anything-menu") . one-key-menu-anything)                    ;; => lch-binding.el
+        ;; (("a" . "anything-map") . anything)                                  ;; => lch-elisp.el
         (("k" . "one-key-kill") . one-key-menu-kill)                            ;; => lch-util.el
         (("o" . "org-export-menu") . one-key-menu-org-export)                   ;; => lch-org-export.el
         ))
@@ -127,52 +136,52 @@
   (one-key-menu "META" one-key-menu-meta-alist t))
 (define-key global-map (kbd "M-m") 'one-key-menu-meta)
 
-(defun lch-anything-menu ()
-  "Generate one-key menu from anything-config.el"
-  (with-temp-buffer
-    (delete-region (point-min) (point-max))
-    (insert-file (concat emacs-lisp-dir "/anything/anything-config.el"))
-    (goto-char (point-min))
-    (search-forward "define-key anything-command-map")
-    (beginning-of-line)
-    (kill-region (point-min) (point))
-    (search-forward "'anything-c-run-external-command)")
-    (end-of-line)
-    (kill-region (point) (point-max))
-    (goto-char (point-min))
-    (while (search-forward "(define-key anything-command-map (kbd " nil t)
-      (replace-match ""))
-    (goto-char (point-min))
-    (while (re-search-forward ") +'" nil t) (replace-match " . "))
-    (goto-char (point-min))
-    (while (re-search-forward "^\"" nil t) (replace-match "((\""))
-    (goto-char (point-min))
-    (while (re-search-forward "\\. \\(.+\\))" nil t) (replace-match ". \\1) . \\1)"))
-    (goto-char (point-min))
-    (while (re-search-forward " \\. \\(.*?\\))" nil t) (replace-match " . \"\\1\")"))
-    (goto-char (point-min))
-    (while (re-search-forward ") \\. \"\\(.*?\\)\")" nil t) (replace-match ") . \\1)"))
-    (goto-char (point-min))
-    (insert "(defvar one-key-menu-anything-alist nil \"\")")
-    (newline-and-indent)
-    (insert "(setq one-key-menu-anything-alist")
-    (newline-and-indent)
+;; (defun lch-anything-menu ()
+;;   "Generate one-key menu from anything-config.el"
+;;   (with-temp-buffer
+;;     (delete-region (point-min) (point-max))
+;;     (insert-file (concat emacs-lisp-dir "/anything/anything-config.el"))
+;;     (goto-char (point-min))
+;;     (search-forward "define-key anything-command-map")
+;;     (beginning-of-line)
+;;     (kill-region (point-min) (point))
+;;     (search-forward "'anything-c-run-external-command)")
+;;     (end-of-line)
+;;     (kill-region (point) (point-max))
+;;     (goto-char (point-min))
+;;     (while (search-forward "(define-key anything-command-map (kbd " nil t)
+;;       (replace-match ""))
+;;     (goto-char (point-min))
+;;     (while (re-search-forward ") +'" nil t) (replace-match " . "))
+;;     (goto-char (point-min))
+;;     (while (re-search-forward "^\"" nil t) (replace-match "((\""))
+;;     (goto-char (point-min))
+;;     (while (re-search-forward "\\. \\(.+\\))" nil t) (replace-match ". \\1) . \\1)"))
+;;     (goto-char (point-min))
+;;     (while (re-search-forward " \\. \\(.*?\\))" nil t) (replace-match " . \"\\1\")"))
+;;     (goto-char (point-min))
+;;     (while (re-search-forward ") \\. \"\\(.*?\\)\")" nil t) (replace-match ") . \\1)"))
+;;     (goto-char (point-min))
+;;     (insert "(defvar one-key-menu-anything-alist nil \"\")")
+;;     (newline-and-indent)
+;;     (insert "(setq one-key-menu-anything-alist")
+;;     (newline-and-indent)
 
-    (insert "'(")
-    (goto-char (point-max))
+;;     (insert "'(")
+;;     (goto-char (point-max))
 
-    (newline-and-indent)
-    (insert "))")
-    (lch-indent-buffer)
-    (eval-buffer)
-    ))
+;;     (newline-and-indent)
+;;     (insert "))")
+;;     (lch-indent-buffer)
+;;     (eval-buffer)
+;;     ))
 
-(lch-anything-menu)
-(defun one-key-menu-anything ()
-  "The `one-key' menu for ANYTHING."
-  (interactive)
-  (one-key-menu "ANYTHING" one-key-menu-anything-alist t))
-(define-key global-map (kbd "M-9") 'one-key-menu-anything)
+;; (lch-anything-menu)
+;; (defun one-key-menu-anything ()
+;;   "The `one-key' menu for ANYTHING."
+;;   (interactive)
+;;   (one-key-menu "ANYTHING" one-key-menu-anything-alist t))
+;; (define-key global-map (kbd "M-9") 'one-key-menu-anything)
 
 ;;; Ctrl (command-map)
 (lch-set-key
@@ -239,12 +248,12 @@
  '(
    ("C-c ." . repeat-complex-command)
    ("C-c c" . comment-region)                                                   ;; Shift+4 == $
-   ("C-c g" . moccur-grep-find-pwd)   
+   ("C-c g" . moccur-grep-find-pwd)
    ("C-c G" . grep-find)
    ("C-c l" . less-minor-mode)
    ("C-c o" . occur)
    ("C-c u" . uncomment-region)
-   ("C-c v" . toggle-viper-mode)
+   ;; ("C-c v" . toggle-viper-mode)
    ("C-c C-b" . list-bookmarks)
    ))
 
@@ -257,7 +266,7 @@
         (("a" . "toggle-archive") . lch-toggle-archive)                         ;; => lch-util.el
         (("c" . "comment-region") . comment-region)                             ;; => lch-binding.el
         (("e" . "eval-buffer") . lch-eval-buffer)                               ;; => lch-util.el
-        (("g" . "moccur-grep-pwd") . moccur-grep-find-pwd)                      ;; => lch-binding.el        
+        (("g" . "moccur-grep-pwd") . moccur-grep-find-pwd)                      ;; => lch-binding.el
         (("G" . "grep-find") . grep-find)                                       ;; => lch-binding.el
         (("i" . "indent-buffer-or-region") . lch-indent-region-or-buffer)       ;; => lch-util.el
         (("j" . "ace-jump") . ace-jump-mode)                                    ;; => lch-binding.el
@@ -265,10 +274,12 @@
         (("o" . "occur") . occur)                                               ;; => lch-binding.el
         (("s" . "-> scratch") . lch-create-switch-scratch)                      ;; => lch-util.el
         (("u" . "uncomment-region") . uncomment-region)                         ;; => lch-binding.el
-        (("v" . "viper") . toggle-viper-mode)                                   ;; => lch-binding.el
-        (("y" . "helm-yas") . helm-c-yas-complete)                              ;; => lch-binding.el        
+        (("v" . "evil") . evil-mode)                                            ;; => lch-binding.el
+        (("y" . "helm-yas") . helm-c-yas-complete)                              ;; => lch-binding.el
         (("C-b" . "list-bookmarks") . list-bookmarks)                           ;; => lch-binding.el
         (("C-f" . "lch-sudo-edit") . lch-sudo-edit)                             ;; => lch-network.el
+        (("R->" . "winner-redo") . winner-redo)                                 ;; => lch-ui.el
+        (("L->" . "winner-undo") . winner-undo)                                 ;; => lch-ui.el
         ))
 
 (defun one-key-menu-ctrl-c ()
@@ -287,6 +298,7 @@
 (setq one-key-menu-ctrl-z-alist
       '(
         (("c" . "count-words") . count-words)                                       ;; => lch-binding.el
+        (("d" . "org-drill") . org-drill)                                           ;; => lch-org.el
         (("f" . "fortune") . lch-echo-fortune)                                      ;; => lch-util.el
         (("v" . "clipboard") . view-clipboard)                                      ;; => lch-util.el
         ))
@@ -308,11 +320,11 @@
         (("<f1> <f2>" . "start-terminal") . lch-start-terminal)                 ;; => lch-util.el
         (("<f2>" . "multi-term-new") . multi-term)                              ;; => lch-elisp.el
         (("<f2> <f1>" . "multi-term-prev") . multi-term-prev)                   ;; => lch-elisp.el
-        (("<f2> <f3>" . "multi-term-next") . multi-term-next)                   ;; => lch-elisp.el                
+        (("<f2> <f3>" . "multi-term-next") . multi-term-next)                   ;; => lch-elisp.el
         (("<f3>" . "w3m") . lch-toggle-w3m)                                     ;; => lch-web.el
 ;;      (("<f4>" . "kill-buffer") . kill-this-buffer)                           ;; => lch-binding.el
         (("<f4>" . "goto-last-change") . goto-last-change)                      ;; => lch-elisp.el
-        (("<f4> <f3>" . "thing-edit") . one-key-menu-edit)                      ;; => lch-one-key.el        
+        (("<f4> <f3>" . "thing-edit") . one-key-menu-edit)                      ;; => lch-one-key.el
         (("<f5>" . "bc-set") . bc-set)                                          ;; => lch-bmk.el
         (("<f6>" . "erc") . lch-erc-init)                                       ;; => lch-network.el
         (("<f7>" . "dictionary") . dictionary-search)                           ;; => lch-elisp.el
@@ -407,9 +419,9 @@
         (("<f3>" . "w3m-toggle") . lch-toggle-w3m)                         ;; => lch-web.el
         (("<f4>" . "view-url-chrome") . lch-view-current-url-external)     ;; => lch-web.el
         (("<f6>" . "lch-erc-init") . lch-erc-init)                         ;; => lch-network.el
-        (("<f7>" . "lch-erc-quit") . lch-erc-quit)                         ;; => lch-network.el        
+        (("<f7>" . "lch-erc-quit") . lch-erc-quit)                         ;; => lch-network.el
         (("d" . "wget") . wget)                                            ;; => lch-web.el
-        (("e" . "lch-erc-init") . lch-erc-init)                            ;; => lch-network.el        
+        (("e" . "lch-erc-init") . lch-erc-init)                            ;; => lch-network.el
         (("g" . "google") . lch-google)                                    ;; => lch-web.el
         (("s" . "w3m-search") . one-key-menu-w3m-search)                   ;; => lch-web.el
         ))
@@ -490,7 +502,7 @@
   (one-key-menu "BMK" one-key-menu-bmk-alist t))
 (define-key global-map (kbd "<f5> m") 'one-key-menu-bmk)
 
-;;; F6:  
+;;; F6:
 ;; (setq one-key-menu-network-alist
 ;;       '(
 ;;         ))
@@ -569,6 +581,7 @@
       '(
         (("l" . "libns-finder") . lch-open-libns-finder)
         (("s" . "scaned-notes-finder") . lch-open-pu-finder)
+        (("w" . "libns-web-finder") . lch-open-libns-web-finder)
         ))
 
 (defun one-key-menu-df ()
@@ -629,9 +642,9 @@
 (defvar one-key-menu-rmt-alist nil "")
 (setq one-key-menu-rmt-alist
       '(
-        (("m" . "mit") . (lambda () (interactive) (dired-x-find-file (concat remote-mit "/milos/")))) 
+        (("m" . "mit") . (lambda () (interactive) (dired-x-find-file (concat remote-mit "/milos/"))))
         (("c" . "chili") . (lambda () (interactive) (dired-x-find-file (concat remote-chili "/Downloads/"))))
-        (("C" . "chili-su") . (lambda () (interactive) (dired-x-find-file (concat remote-chili "/Downloads/"))))        
+        (("C" . "chili-su") . (lambda () (interactive) (dired-x-find-file (concat remote-chili "/Downloads/"))))
         (("e" . "emacs-rmt") . (lambda () (interactive) (dired-x-find-file (concat remote-notes "/ComputerSE/Emacs/"))))
         (("p" . "programming-rmt") . (lambda () (interactive) (dired-x-find-file (concat remote-notes "/Programming/"))))
         (("s" . "scaned_notes") . (lambda () (interactive) (dired-x-find-file remote-notes)))
@@ -654,17 +667,18 @@
         (("e" . ".emacs.lib") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/.emacs.lib/")))
         (("f" . "flv") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Flv/")))
         (("h" . "public_html") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Org/public_html/")))
-        (("g" . "git-repo") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Repository/")))        
+        (("g" . "git-repo") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Repository/")))
         (("l" . "library") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Library/")))
         (("m" . "music") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Music/")))
         (("n" . "netease-music") . (lambda () (interactive) (dired-x-find-file netease-music-dir)))
         (("N" . "remote-notes") . (lambda () (interactive) (dired-x-find-file remote-notes)))
-        (("p" . "PPTNotes") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/PPTNotes/")))        
+        (("o" . "Org") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Org/org/")))
+        (("p" . "PPTNotes") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/PPTNotes/")))
         (("P" . "paper") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Research/Papers2/Articles/")))
         (("r" . "research") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Research/")))
-        (("s" . "snippet") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/.emacs.d/lib/snippets/lch/")))        
+        (("s" . "snippet") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/.emacs.d/lib/snippets/lch/")))
         (("v" . "video") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Video/")))
-        (("V" . "flv") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Flv/")))
+        (("V" . "volumes") . (lambda () (interactive) (dired-x-find-file "/Volumes/")))
         ))
 
 (defun one-key-menu-f10s ()

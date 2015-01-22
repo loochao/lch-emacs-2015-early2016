@@ -30,6 +30,9 @@
 ;; Org now part of GNU Emacs
 ;;(require 'org-install)
 (require 'org)
+;; Org drill
+(autoload 'org-drill "org-drill" t)
+(define-key global-map (kbd "C-z d") 'org-drill)
 ;; (load "org-loaddefs")
 
 (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
@@ -48,8 +51,9 @@
 (setq org-deadline-warning-days 14)    ;; No. of days to display before expiration of a deadline.
 
 (setq org-directory org-private-dir)
-(setq org-agenda-files
-      (append (file-expand-wildcards (concat org-source-dir "/*.org"))))
+;; (setq org-agenda-files
+;;       (append (file-expand-wildcards (concat org-source-dir "/*.org"))))
+(setq org-agenda-files `(,(concat org-source-dir "/iPrv.org")))
 (setq org-export-default-language "EN")
 
 (setq org-mobile-directory org-mobile-dir)
@@ -206,7 +210,7 @@
 (setq org-capture-templates
       '(
         ("a" "TODO-#A" entry (file+olp (concat org-private-dir "/iPrv.org") "TODO-#A" "TODO-#A-") "* %? :#A:\n%U" :prepend t)
-	;; ("A" "TODO-#A~" entry (file+olp (concat org-private-dir "/Refile.org") "TODOs" "TODO-#A") "* %? :#A:\n%U" :prepend t)
+        ;; ("A" "TODO-#A~" entry (file+olp (concat org-private-dir "/Refile.org") "TODOs" "TODO-#A") "* %? :#A:\n%U" :prepend t)
         ("b" "TODO-#B" entry (file+olp (concat org-private-dir "/iPrv.org") "TODO-#B" "TODO-#B-") "* %? :#B:\n%U" :prepend t)
         ("B" "ACTIVE-#B" entry (file+olp (concat org-private-dir "/iPrv.org") "TODO-#B" "TODO-#B-") "* ACTIVE %? :#B:\n%U" :prepend t)
         ("8" "BIB" entry (file+olp (concat org-private-dir "/Refile.org") "BIBs" "BIB") "* %? \n%U" :prepend t)
@@ -216,7 +220,7 @@
         ("e" "Emacs" entry (file+olp (concat org-private-dir "/iJournal.org") "Logs" "Emacs") "* %? \n%U" :prepend t)
         ;; ("g" "GOOD" entry (file+olp (concat org-private-dir "/iPrv.org") "GOOD" "-GOOD-") "* %? :#B:\n%U" :prepend t)
         ;; ("i" "INBOX" entry (file+olp (concat org-private-dir "/Refile.org") "INBOXs" "INBOX") "* %? \n%U" :prepend t)
-        ("m" "Mac" entry (file+olp (concat org-private-dir "/iJournal.org") "Logs" "Mac") "* %? \n" :prepend t)        
+        ("m" "Mac" entry (file+olp (concat org-private-dir "/iJournal.org") "Logs" "Mac") "* %? \n" :prepend t)
         ;; ("n" "NOTES" entry (file+olp (concat org-private-dir "/Refile.org") "NOTEs" "NOTE") "* %? \n%U" :prepend t)
         ;; ("q" "QUESTION" entry (file+olp (concat org-private-dir "/iPrv.org") "QUESTIONs" "QUESTION") "* %? \n%U" :prepend t)
         ;; ("l" "LOG" entry (file+datetree (concat org-private-dir "/iLog.org")) "* %U\n%?" :prepend t)
@@ -227,7 +231,7 @@
         ;; ("q" "QUESTION" entry (file+olp (concat org-private-dir "/Refile.org") "QUESTIONs" "QUESTION") "* %? \t%U" :prepend t)
         ;; ("v" "VERBAL" entry (file+olp (concat org-private-dir "/English.org") "Verbal" "Verbal") "* %? \n %U" :prepend t)
         ("s" "SCRATCH" entry (file+olp (concat org-private-dir "/iJournal.org") "Journal" "Scratch") "* %? \n%u" :prepend t)
-        ("0" "SCR" entry (file+olp (concat org-private-dir "/iJournal.org") "Journal" "Secret") "* %u \n%?" :prepend t)        
+        ("0" "SCR" entry (file+olp (concat org-private-dir "/iJournal.org") "Journal" "Secret") "* %u \n%?" :prepend t)
         ;; ("n" "note" entry (file (concat org-private-dir "/iPrv.org")) "* %? :NOTE: %U %a :CLOCK: :END:" :clock-in t :clock-resume t)
         ;; ("f" "appointment" entry (file+datetree (concat org-private-dir "/iPrv.org")) "* %? %U" :clock-in t :clock-resume t)
         ;; ("p" "Phone call" entry (file (concat org-private-dir "iPrv.org")) "* Phone %(bh/phone-call) - %(gjg/bbdb-company) :PHONE:\n%U\n\n%?" :clock-in t :clock-resume t)
@@ -236,80 +240,80 @@
 
 ;;; Agenda
 (setq org-agenda-time-grid '((daily require-timed)
-			     "________"
-			     (0800 1000 1200 1400 1600 1800 2000 2200)))
+                             "________"
+                             (0800 1000 1200 1400 1600 1800 2000 2200)))
 
 (define-key global-map (kbd "M-8") 'org-agenda)
 (setq org-agenda-custom-commands
       '(
         ("=" "ALL" tags "#A|DAILY|DUALLY|WEEKLY|RECUR|AUDIO|CAR|MOBILE|#B|#C|IDEA")
-	("-" agenda "DAY/FOCUS" ((org-agenda-ndays 1)))
-	 ;; ("1m" "MOBILE" tags "MOBILE/ACTIVE")
-	 ;; ("1a" "AUDIO" tags "AUDIO/ACTIVE")
-	 ;; ("1c" "CAR" tags "CAR/ACTIVE")
-	 ;; ("1d" "RECUR DAILY" tags "DAILY/ACTIVE")
-	 ;; ("1D" "RECUR DUALLY" tags "DUALLY/ACTIVE")
-	 ;; ("1t" "RECUR TRIPLY" tags "TRIPLY/ACTIVE")
-	 ;; ("1w" "RECUR WEEKLY" tags "WEEKLY/ACTIVE")
+        ("-" agenda "DAY/FOCUS" ((org-agenda-ndays 1)))
+         ;; ("1m" "MOBILE" tags "MOBILE/ACTIVE")
+         ;; ("1a" "AUDIO" tags "AUDIO/ACTIVE")
+         ;; ("1c" "CAR" tags "CAR/ACTIVE")
+         ;; ("1d" "RECUR DAILY" tags "DAILY/ACTIVE")
+         ;; ("1D" "RECUR DUALLY" tags "DUALLY/ACTIVE")
+         ;; ("1t" "RECUR TRIPLY" tags "TRIPLY/ACTIVE")
+         ;; ("1w" "RECUR WEEKLY" tags "WEEKLY/ACTIVE")
         ("`" "ALL TODO"
          (
-	  (tags "#A/ACTIVE")
-	  (tags "#B|OBTAIN/ACTIVE")
-	  (tags "DAILY&T|DUALLY&T|WEEKLY/ACTIVE")
+          (tags "#A/ACTIVE")
+          (tags "#B|OBTAIN/ACTIVE")
+          (tags "DAILY&T|DUALLY&T|WEEKLY/ACTIVE")
           (tags "MOBILE|AUDIO|CAR/ACTIVE")
-	  (tags "DAILY|DUALLY/ACTIVE")
+          (tags "DAILY|DUALLY/ACTIVE")
           ))
         ("1" "ACTIVE TODO-#A"
          (
           ;; (tags "PLAN/ACTIVE" ((org-agenda-overriding-header
           ;; ";>--------PLAN--------<;")))
           (tags "#E/ACTIVE")
-	  (tags "#A/ACTIVE|WAITING" ((org-agenda-overriding-header
+          (tags "#A/ACTIVE|WAITING" ((org-agenda-overriding-header
                                       ";>--------ACTIVE & #A TASKs--------<;")))
-	  (agenda "Week Agenda" ((org-agenda-ndays 12)
-				 (org-agenda-sorting-strategy
-				  (quote ((agenda time-up priority-down tag-up))))
-				 (org-deadline-warning-days 0)
-				 (org-agenda-overriding-header
-				  "\n;>--------AGENDA--------<;")))
-	  (tags "#A/PENDING" ((org-agenda-overriding-header
+          (agenda "Week Agenda" ((org-agenda-ndays 12)
+                                 (org-agenda-sorting-strategy
+                                  (quote ((agenda time-up priority-down tag-up))))
+                                 (org-deadline-warning-days 0)
+                                 (org-agenda-overriding-header
+                                  "\n;>--------AGENDA--------<;")))
+          (tags "#A/PENDING" ((org-agenda-overriding-header
                                ";>--------PENDING #A TASKs--------<;")))
           ))
-	 ("2" "ACTIVE BLOCKS"
-	  (
+         ("2" "ACTIVE BLOCKS"
+          (
            (tags "MOBILE|AUDIO|CAR/ACTIVE")
            (tags "DAILY&T|DUALLY&T|WEEKLY/ACTIVE")
            (tags "#B|OBTAIN/ACTIVE")
            ;; (tags "#C/ACTIVE")
-	   )
-	  )
- 	 ("3" "RECUR ACTIVE"
-	  (
-	   (tags "DAILY/ACTIVE")
-	   (tags "DUALLY/ACTIVE")
-	   (tags "WEEKLY/ACTIVE")
-	   ;; (tags "RECUR/ACTIVE")
-	   ))
+           )
+          )
+         ("3" "RECUR ACTIVE"
+          (
+           (tags "DAILY/ACTIVE")
+           (tags "DUALLY/ACTIVE")
+           (tags "WEEKLY/ACTIVE")
+           ;; (tags "RECUR/ACTIVE")
+           ))
          ;; ("4" "RECUR TOFNSH"
          ;;  (
          ;;   (tags "DAILY|DUALLY|WEEKLY/TOFNSH")
          ;;   ))
-	 ;; ("5" "FUN ITEMS" tags "FUN")
+         ;; ("5" "FUN ITEMS" tags "FUN")
          ("0" .  "MISCITEMS")
-	 ("01" "TODO-#A QUEUE" tags "#A-ACTIVE")
-	 ("02" "TODO-#B/#C/OBT QUEUE" tags "#B|OBTAIN|#C/QUEUE")
-	 ("03" "ACM QUEUE" tags "AUDIO|CAR|MOBILE/QUEUE")
-	 ("04" "TODO-#B" tags "#B")
-	 ("05" "OBTAIN" tags "OBTAIN")
-	 ("06" "TODO-#C" tags "#C")
-	 ;; ("10" "TEST" occur-tree "Title="Quantum Mechanics"")
-	 ;;       (agenda "")
-	 ;;       (todo "ACTIVE|NEXT|QUEUE")
-	 ;;       (tags "ACTIVE|TIMEBOX|MOBILE|AUDIO|CAR|DAILY|DUALLY|WEEKLY")
-	 ;;  (todo "ACTIVE")
-	 ;;  (tags "CAR")
-	 ;;       ))
-	 ;;  ("lpq" "Quantum Mechanics" tags "KEYWORD=\"Quantum Mechanics,\"")
+         ("01" "TODO-#A QUEUE" tags "#A-ACTIVE")
+         ("02" "TODO-#B/#C/OBT QUEUE" tags "#B|OBTAIN|#C/QUEUE")
+         ("03" "ACM QUEUE" tags "AUDIO|CAR|MOBILE/QUEUE")
+         ("04" "TODO-#B" tags "#B")
+         ("05" "OBTAIN" tags "OBTAIN")
+         ("06" "TODO-#C" tags "#C")
+         ;; ("10" "TEST" occur-tree "Title="Quantum Mechanics"")
+         ;;       (agenda "")
+         ;;       (todo "ACTIVE|NEXT|QUEUE")
+         ;;       (tags "ACTIVE|TIMEBOX|MOBILE|AUDIO|CAR|DAILY|DUALLY|WEEKLY")
+         ;;  (todo "ACTIVE")
+         ;;  (tags "CAR")
+         ;;       ))
+         ;;  ("lpq" "Quantum Mechanics" tags "KEYWORD=\"Quantum Mechanics,\"")
       ("p" "Printed agenda"
          ((agenda "" ((org-agenda-ndays 7)                      ;; overview of appointments
                       (org-agenda-start-on-weekday nil)         ;; calendar begins today
@@ -327,20 +331,20 @@
                  (org-agenda-overriding-header "\nTasks by Context\n------------------\n"))))
          ()
          )
- 	("p" . "Priorities")
+        ("p" . "Priorities")
         ("pa" "A items" tags-todo "+PRIORITY=\"A\"")
         ("pb" "B items" tags-todo "+PRIORITY=\"B\"")
         ("pc" "C items" tags-todo "+PRIORITY=\"C\"")
 
-	("t" . "Tags")
-	("ta" "ALL #B" tags "#B" ((org-agenda-prefix-format "[ ] %T: ")
+        ("t" . "Tags")
+        ("ta" "ALL #B" tags "#B" ((org-agenda-prefix-format "[ ] %T: ")
                  (org-agenda-sorting-strategy '(tag-up priority-down))
                  (org-agenda-todo-keyword-format "")
                  (org-agenda-overriding-header "8<========ALL #B========>8")
-		 (org-agenda-with-colors t)
-		 (org-agenda-compact-blocks nil)
-		 (org-agenda-remove-tags t)))
-	("te" "Emacs #B" tags "#B" ((org-agenda-files (list (concat org-source-dir "/iPrv.org")))))
+                 (org-agenda-with-colors t)
+                 (org-agenda-compact-blocks nil)
+                 (org-agenda-remove-tags t)))
+        ("te" "Emacs #B" tags "#B" ((org-agenda-files (list (concat org-source-dir "/iPrv.org")))))
         ))
 ;;; Key-binding
 (define-key org-mode-map (kbd "M-<left>") 'hide-body)

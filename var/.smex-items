@@ -1,16 +1,17 @@
 
 ;; ----- smex-history -----
 (
+ evil-motion-state
+ evil-ace-jump-char-mode
  R
  cd
+ tt
  5x5
  arp
- dbx
- dig
- erc
 )
 
 ;; ----- smex-data -----
 (
- 
+ (evil-ace-jump-char-mode . 1)
+ (evil-motion-state . 1)
 )

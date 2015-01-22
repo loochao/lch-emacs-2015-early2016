@@ -73,16 +73,16 @@
 (require 'color-theme)
 (require 'color-theme-loochao)
 (color-theme-loochao)
-(define-key global-map (kbd "<f11> <f2>") 
+(define-key global-map (kbd "<f11> <f2>")
   (lambda () (interactive) "" (color-theme-loochao) (message "Color-theme-loochao loaded.")))
 
 (autoload 'color-theme-lazycat "color-theme-lazycat" "" t)
-(define-key global-map (kbd "<f11> <f3>") 
+(define-key global-map (kbd "<f11> <f3>")
   (lambda () (interactive) (color-theme-lazycat) (message "Color-theme-lazycat loaded.")))
 
 ;;; Fonts
 (if lch-linux-p (set-face-attribute 'default nil :height 160))
-(when lch-win32-p 
+(when lch-win32-p
   ;; (set-face-attribute 'default nil :height 160)
   (set-default-font "Courier New:pixelsize=24"))
 
@@ -228,6 +228,37 @@ See `cycle-color'."
 (define-key global-map (kbd "<f11> 4") 'lch-frame-pink)
 
 
+;;; Winner
+(autoload 'winner-mode "winner" t)
+(winner-mode 1)
+(define-key global-map (kbd "<f11> <left>") 'winner-undo)
+(define-key global-map (kbd "<f11> <right>") 'winner-redo)
+;;;
+(defun lch-adjust-opacity (frame incr)
+  (let* ((oldalpha (or (frame-parameter frame 'alpha) 100))
+         (newalpha (+ incr oldalpha)))
+    (when (and (<= frame-alpha-lower-limit newalpha) (>= 100 newalpha))
+      (modify-frame-parameters frame (list (cons 'alpha newalpha))))))
+
+(defun lch-decrease-opacity ()
+  (interactive)
+  (lch-adjust-opacity nil -2)
+  )
+
+(defun lch-increase-opacity ()
+  (interactive)
+  (lch-adjust-opacity nil 2)
+  )
+
+(defun lch-reset-opacity ()
+  (interactive)
+  (modify-frame-parameters nil `((alpha . 100)))
+  )
+
+(global-set-key (kbd "M-C-8") 'lch-decrease-opacity)
+(global-set-key (kbd "M-C-9") 'lch-increase-opacity)
+(global-set-key (kbd "M-C-0") 'lch-reset-opacity)
+
 ;;; Modeline
 ;; (defun get-lines-4-mode-line ()
 ;;   "get line numbers of current buffer"
@@ -299,9 +330,11 @@ See `cycle-color'."
 ;; (mode-line-setting)
 
 ;;; Powerline
-(when (and (>= emacs-major-version 24) (>= emacs-minor-version 3))
-    (require 'powerline)
-    (powerline-default-theme))
+;; (when (and (>= emacs-major-version 24) (>= emacs-minor-version 3))
+;;     (require 'powerline)
+;;     (powerline-evil-theme))
+
+;;    (powerline-default-theme))
 
 ;;; PROVIDE
 (provide 'lch-ui)
@@ -312,4 +345,3 @@ See `cycle-color'."
 ;; mode: outline-minor
 ;; outline-regexp: ";;;;* "
 ;; End:
-

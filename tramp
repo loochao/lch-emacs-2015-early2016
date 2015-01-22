@@ -1,24 +1,8 @@
-;; -*- emacs-lisp -*- <14/10/31 11:10:56 /Users/LooChao/Dropbox/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <15/01/12 16:56:08 /Users/LooChao/Dropbox/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
-((["sudo" "root" "localhost" nil nil]
-  ("uname" "Darwin 12.2.0")
-  ("test" "test")
-  ("remote-path"
-   ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/bin" "/opt/local/bin"))
-  ("remote-shell" "/bin/sh")
-  ("busybox" nil)
-  ("readlink" nil)
-  ("perl-file-spec" t)
-  ("perl-cwd-realpath" t)
-  ("perl" "\\perl5")
-  ("stat" nil)
-  ("id" "/usr/bin/id")
-  ("gid-integer" 0)
-  ("file-exists" "test -e")
-  ("uid-integer" 0))
- (["ssh" "chaol" "nobel.princeton.edu" nil nil]
+((["ssh" "chaol" "nobel.princeton.edu" nil nil]
   ("uname" "Linux 2.6.32-220.23.1.el6.x86_64")
   ("test" "test")
   ("remote-path"
@@ -101,4 +85,36 @@
   ("uid-integer" 1001)
   ("~" "/home/chaol"))
  (["scpc" "jaimevrl" "ab-initio.mit.edu" nil nil]
-  nil))
+  ("uname" "Linux 2.6.32-5-amd64")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("busybox" nil)
+  ("readlink" "\\readlink")
+  ("stat" "\\stat")
+  ("file-exists" "test -e")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 100)
+  ("ls" "/bin/ls --color=never")
+  ("ls-dired" t)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("~" "/home/jaimevrl"))
+ (["sudo" "root" "localhost" nil nil]
+  ("uname" "Darwin 12.4.0")
+  ("test" "test")
+  ("remote-path"
+   ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/bin" "/opt/local/bin"))
+  ("remote-shell" "/bin/sh")
+  ("busybox" nil)
+  ("stat" nil)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl5")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 0)
+  ("readlink" nil)
+  ("file-exists" "test -e")
+  ("uid-integer" 0)))

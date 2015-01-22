@@ -20,6 +20,31 @@
 ;; Part of GNU Emacs
 (require 'erc)
 
+(erc-autojoin-mode 1)
+(erc-spelling-mode 1)
+(erc-fill-mode -1)
+;; Enable flyspell mode in ERC buffers.
+(erc-spelling-mode t)
+
+(require 'erc-track)
+(setq erc-track-exclude-types '("NICK" "JOIN" "LEAVE" "QUIT" "PART"
+                                "301"   ; away notice
+                                "305"   ; return from awayness
+                                "306"   ; set awayness
+                                "324"   ; modes
+                                "329"   ; channel creation date
+                                "332"   ; topic notice
+                                "333"   ; who set the topic
+                                "353"   ; Names notice
+                                ))
+(setq erc-track-exclude '("irc.freenode.net:7000"
+                          "localhost:6667"
+                          ))
+(setq erc-track-showcount t)
+(erc-track-mode 1)
+(setq erc-server-reconnect-attempts 4
+      erc-server-reconnect-timeout 30)
+
 ;; utf-8 always and forever
 (setq erc-server-coding-system '(utf-8 . utf-8))
 
@@ -44,9 +69,10 @@
   (kill-buffers-by-mode 'erc-mode))
 (define-key global-map (kbd "<f3> <f7>") 'lch-erc-quit)
 
+(setq erc-prompt (lambda () (format "[%s]" (erc-current-nick))))
 ;; Instead of #c, use ##c.
 (setq erc-autojoin-channels-alist
-      '(("freenode.net" "#emacs")))
+      '(("freenode\\.net" . ("#evil-mode" "#emacs"))))
 ;'(("freenode.net" "#emacs" "#perl" "#python" "#ruby" "#java" "##c")))
 ;; If you wanna join two servers at start
 ;; (erc :server "irc.freenode.net" :port 6667 :nick "yournick")
@@ -73,13 +99,13 @@
         (("u" . "#ubuntu") . (lambda () (interactive) (try-to-switch-buffer "#ubuntu")))
         (("s" . "##English") . (lambda () (interactive) (try-to-switch-buffer "##English")))
         (("p" . "#python") . (lambda () (interactive) (try-to-switch-buffer "#python")))
-	))
+        ))
 
 (defun one-key-menu-irc-channel ()
   "The `one-key' menu for IRC-CHANNEL."
   (interactive)
   (one-key-menu "IRC-CHANNEL" one-key-menu-irc-channel-alist t))
-(define-key global-map (kbd "M-7") 'one-key-menu-irc-channel)
+(define-key global-map (kbd "M-9") 'one-key-menu-irc-channel)
 ;;; SSH
 ;; use ssh through this mode will enable auto-completion
 (require 'ssh)

@@ -15,24 +15,97 @@
 
 ;;; CODE
 (message "=> lch-util: loading...")
+;;; Smart-beginning-of-line
+(defun lch-smarter-move-beginning-of-line (arg)
+  "Move point back to indentation of beginning of line.
 
+Move point to the first non-whitespace character on this line.
+If point is already there, move to the beginning of the line.
+Effectively toggle between the first non-whitespace character and
+the beginning of the line.
+
+If ARG is not nil or 1, move forward ARG - 1 lines first.  If
+point reaches the beginning or end of the buffer, stop there."
+  (interactive "^p")
+  (setq arg (or arg 1))
+
+  ;; Move lines first
+  (when (/= arg 1)
+    (let ((line-move-visual nil))
+      (forward-line (1- arg))))
+
+  (let ((orig-point (point)))
+    (back-to-indentation)
+    (when (= orig-point (point))
+      (move-beginning-of-line 1))))
+
+;; remap C-a to `smarter-move-beginning-of-line'
+(global-set-key [remap move-beginning-of-line]
+                'lch-smarter-move-beginning-of-line)
+;;; Enhanced-window-splitting
+;; it opens the previous buffer instead of giving me two panes with the same buffer
+(defun lch-vsplit-last-buffer (prefix)
+  "Split the window vertically and display the previous buffer."
+  (interactive "p")
+  (split-window-vertically)
+  (other-window 1 nil)
+  (if (= prefix 1)
+    (switch-to-next-buffer)))
+(defun lch-hsplit-last-buffer (prefix)
+  "Split the window horizontally and display the previous buffer."
+  (interactive "p")
+  (split-window-horizontally)
+  (other-window 1 nil)
+  (if (= prefix 1) (switch-to-next-buffer)))
+(define-key global-map (kbd "C-x 2") 'lch-vsplit-last-buffer)
+(define-key global-map (kbd "C-x 3") 'lch-hsplit-last-buffer)
+;;; Persistent-scratch
+;; By default, my machine drops me in to a =*scratch*= buffer. Originally designed
+;; to be an lisp playground that you could dive right in to on start up, it's sort
+;; of eclipsed that for me in to a general purpose buffer, where I will put things
+;; like elisp I am prototyping or playtesting, small snippets of code that I want
+;; to use in dayjob, etc. But when you kill emacs, or it dies, that buffer
+;; disappears. This code will save the Scratch buffer every five minutes and
+;; restores it on Emacs startup.
+
+(defvar persistent-scratch-file (concat emacs-var-dir "/emacs-persistent-scratch"))
+
+(defun save-persistent-scratch ()
+  "Write the contents of *scratch* to the file name 'Persistent-scratch-file'"
+  (with-current-buffer (get-buffer-create "*scratch*")
+    (write-region (point-min) (point-max) persistent-scratch-file)))
+
+(defun load-persistent-scracth ()
+  (if (file-exists-p persistent-scratch-file)
+      (with-current-buffer (get-buffer-create "*scratch*")
+        (delete-region (point-min) (point-max))
+        (insert-file-contents persistent-scratch-file))))
+
+(push #'load-persistent-scracth after-init-hook)
+(push #'save-persistent-scratch kill-emacs-hook)
+
+(run-with-idle-timer 300 t 'save-persistent-scratch)
 ;;; Invoke-interactives
 (define-key global-map (kbd "M-1") 'shell)
+
+(defun lch-term ()
+  "Switch to terminal. Launch if nonexistent."
+  (interactive)
+  (if (get-buffer "*ansi-term*")
+      (switch-to-buffer "*ansi-term*")
+    (ansi-term "/bin/bash"))
+  (get-buffer-process "*ansi-term*"))
+(defalias 'tt 'lch-term)
+
+(define-key global-map (kbd "M-2") 'lch-term)
+
 
 (defun lch-matlab ()
   (interactive)
       (if (get-buffer "*MATLAB*")
           (switch-to-buffer "*MATLAB*")
         (if (yes-or-no-p "Start Matlab?") (matlab-shell))))
-(define-key global-map (kbd "M-2") 'lch-matlab)
-
-(defun lch-mathematica ()
-  (interactive)
-      (if (get-buffer "*Mathematica*")
-          (switch-to-buffer "*Mathematica*")
-        (if (yes-or-no-p "Start Mathematica?")
-            (mathematica))))
-(define-key global-map (kbd "M-5") 'lch-mathematica)
+(define-key global-map (kbd "M-3") 'lch-matlab)
 
 (defun lch-python ()
   (interactive)
@@ -42,15 +115,41 @@
       (ipython)
       (switch-to-buffer "*IPython*")
       (delete-other-windows))))
-(define-key global-map (kbd "M-3") 'lch-python)
+(define-key global-map (kbd "M-4") 'lch-python)
 
-
+;; M-5 Ruby
 (defun lch-R ()
   (interactive)
   (if (get-buffer "*R*")
       (switch-to-buffer "*R*")
     (R)))
-(define-key global-map (kbd "M-4") 'lch-R)
+(define-key global-map (kbd "M-6") 'lch-R)
+
+(defun lch-mathematica ()
+  (interactive)
+      (if (get-buffer "*Mathematica*")
+          (switch-to-buffer "*Mathematica*")
+        (if (yes-or-no-p "Start Mathematica?")
+            (mathematica))))
+(define-key global-map (kbd "M-7") 'lch-mathematica)
+
+;; Named-term
+;; What I do when I need more than one terminal Then I just name one: since the
+;; default one is supposed to be named *ansi-term*, if I create one named
+;; e.g. *jekyll*, it will be ignored by dired-open-term. This is exactly what I
+;; want, since I just create named terminals for long running processes like
+;; jekyll serve. And I can switch to the named terminals with just
+;; ido-switch-buffer. Here is the very simple code:
+(defun lch-named-term (name)
+  (interactive "sName: ")
+  (ansi-term "/bin/bash" name))
+
+;; (defun lch-create-switch-term ()
+;;   (interactive)
+;;   (if (not (get-buffer "*ansi-term*"))
+;;       (ansi-term "/usr/texbin/bash")
+;;     (switch-to-buffer "*ansi-term*")))
+;; (define-key global-map (kbd "M-2") 'lch-create-switch-term)
 
 ;;; View-clipboard
 (defun view-clipboard ()
@@ -76,7 +175,7 @@
     ("“" "\"") ("”" "\"") ("（" "(") ("）" ")")
     ("【" "[") ("】" "]") ("《" "<") ("》" ">")
     ("…" "...") ("～" "~") ("——" "--")
-    ("：" ":") ("！" "!") ("？" "?") ("　" " ") 
+    ("：" ":") ("！" "!") ("？" "?") ("　" " ")
     ("〈" "<") ("〉" ">") ("「" "'") ("」" "'")
     ("１" "1") ("２" "2") ("３" "3") ("４" "4") ("５" "5")
     ("６" "6") ("７" "7") ("８" "8") ("９" "9") ("０" "0")
@@ -87,25 +186,55 @@
   (interactive)
   (mapc 'lch-punctuate lch-punctuate-list))
 (define-key global-map (kbd "<f4> p") 'lch-punctuate-buffer)
+
 ;;; Interaction-with-macosx
+(defun lch-open-ppt-icon ()
+   (interactive)
+   (setq apscript
+         "
+          tell app \"Microsoft Powerpoint\"
+            open \"~/Dropbox/PPTNotes/iCon.pptx\"
+            activate
+          end tell
+         "
+         )
+   (do-applescript apscript)
+   )
+
 ;; Open-remotes-with-finder
 (defun lch-open-libns-finder ()
   "Make iTunes either pause or play"
   (interactive)
-  (setq apscript "
-tell app \"Finder\" to open location \"afp://loochao@loochao.synology.me:/LIBNS/\"
-"
+  (setq apscript
+        "
+         tell app \"Finder\" to open location \"afp://loochao@loochao.synology.me:/LIBNS/\"
+         activate
+        "
         )
   (do-applescript apscript)
   )
 
+(defun lch-open-libns-web-finder ()
+  "Make iTunes either pause or play"
+  (interactive)
+  (setq apscript
+        "
+         tell app \"Finder\" to open location \"afp://loochao@loochao.synology.me:/web/\"
+         activate
+        "
+        )
+  (do-applescript apscript)
+  )
+
+
 (defun lch-open-pu-finder ()
   "Make iTunes either pause or play"
   (interactive)
-  (setq apscript "
-tell app \"Finder\" to open location \"smb://chaol@files.princeton.edu:/chaol/Scan\"
-activate
-"
+  (setq apscript
+        "
+         tell app \"Finder\" to open location \"smb://chaol@files.princeton.edu:/chaol/Scan\"
+         activate
+        "
         )
   (do-applescript apscript)
   )
@@ -154,6 +283,12 @@ end tell" mydir)))
   "Indent the currently visited buffer."
   (interactive)
   (indent-region (point-min) (point-max)))
+
+(defun lch-clear-empty-lines ()
+  (interactive)
+  (let ((line (buffer-substring (point-at-bol) (point-at-eol))))
+    (when (string-match "^ +$" line)
+      (delete-region (point-at-bol) (point-at-eol)))))
 
 (defun lch-indent-region-or-buffer ()
   "Indent a region if selected, otherwise the whole buffer."
@@ -388,13 +523,6 @@ Argument STRING the string that need pretty."
   (switch-to-buffer (get-buffer "*Messages*")))
 ;; "/" means system output.
 (define-key global-map (kbd "C-c /") 'lch-switch-to-message)
-;;; Create-switch-term
-(defun lch-create-switch-term ()
-  (interactive)
-  (if (not (get-buffer "*ansi-term*"))
-      (ansi-term "/usr/texbin/bash")
-    (switch-to-buffer "*ansi-term*")))
-;; (define-key global-map (kbd "M-2") 'lch-create-switch-term)
 ;;; Face-at-point
 (defun lch-face-at-point (pos)
   "Return the name of the face at point"

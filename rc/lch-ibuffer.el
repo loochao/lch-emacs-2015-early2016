@@ -34,7 +34,19 @@
 
      (setq ibuffer-saved-filter-groups
            (quote (("default"
-                    ("code" (or (mode . emacs-lisp-mode)
+                    ("Writing" (or
+                                (mode . tex-mode)
+                                (mode . plain-tex-mode)
+                                (mode . latex-mode)
+                                ;(mode . rst-mode)
+                                (mode . html-mode)
+                                (mode . nxhtml-mode)
+                                (mode . css-mode)
+                                (mode . nxml-mode)))
+                    ("Dired" (or (mode . dired-mode)
+                                 (mode . sr-mode)
+                                 ))
+                    ("Code" (or (mode . emacs-lisp-mode)
                                 (mode . cperl-mode)
                                 (mode . c-mode)
                                 (mode . java-mode)
@@ -59,21 +71,21 @@
                                 (mode . scala-mode)
                                 (mode . go-mode)
                                 (mode . erlang-mode)
+                                (name . "\\*Python.*\\*")
+                                (name . "\\*haskell.*\\*")
                                 ))
-                    ("dired" (or (mode . dired-mode)
-                                 (mode . sr-mode)
-                                 ))
-                    ("erc" (mode . erc-mode))
-                    ("org" (or
+                    ("ERC" (or (mode . erc-mode)
+                               (name . "ERC .*")))
+                    ("Org" (or
                                 (name . "^\\*Calendar\\*$")
                                 (name . "^diary$")
                                 (mode . org-mode)
                                 (mode . org-agenda-mode)
                                 ))
-                    ("emacs" (or
+                    ("Emacs" (or
                               (name . "^\\*scratch\\*$")
                               (name . "^\\*Messages\\*$")))
-                    ("gnus" (or
+                    ("Gnus" (or
                              (mode . message-mode)
                              (mode . bbdb-mode)
                              (mode . mail-mode)
@@ -89,6 +101,15 @@
                                     (ibuffer-switch-to-saved-filter-groups "default")
                                     ))
      ))
+
+(defun ibuffer-ediff-marked-buffers (end)
+  "Ediff marked buffers based on prefix.
+Diffs prefix-1 marked buffer with prefix buffer."
+  (interactive "p")
+  (let ((marked-buffers (ibuffer-get-marked-buffers)))
+    (ediff-buffers (nth (1- end) marked-buffers) (nth end marked-buffers))))
+
+;; (define-key ibuffer-mode-map (kbd "<") 'ibuffer-ediff-marked-buffers)
 
 
 ;; Modify the default ibuffer-formats

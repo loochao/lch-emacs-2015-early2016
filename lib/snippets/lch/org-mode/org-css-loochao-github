@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: org-css-loochao-github
+# key: cssg
+# --
+
+#+HTML_HEAD: <link href="https://raw.githubusercontent.com/loochao/web-theme/master/loochao.css" rel="stylesheet">
+$0

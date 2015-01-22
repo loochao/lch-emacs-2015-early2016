@@ -1,3 +1,20 @@
+*** mac-print-buffer
+[2014-12-26 Fri]
+Get mac-print-mode.el and put it on your LoadPath.
+Get htmlize.el and put it in your LoadPath or download the package.
+Get coral 1.3
+copy bin/coral.app into /Applications
+copy bin/coral into /usr/local/bin and edit it so that it calls
+/Applications/coral.app/Contents/MacOS/coral
+ 
+Add the following to your .emacs:
+(when (require 'mac-print-mode nil t)
+  (mac-print-mode 1)
+  (global-set-key (kbd "<f1> p") 'mac-print-buffer))
+
+Now M-p should automatically export the current page as HTML and produce a nice
+Mac OS print dialog that prints it. 
+
 *** tabbar-ruler and textmate-yas => inbox
 [2014-04-17 Thu]
 tabbar-ruler provide useful keystroke and functionality for the tabbar

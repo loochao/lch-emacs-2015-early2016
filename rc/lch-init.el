@@ -116,7 +116,19 @@
 ;; Turn on auto-fill mode for all major modes
 ;; (setq-default auto-fill-function 'do-auto-fill)
 ;; Lines should be 80 characters wide, not 72
-(setq-default fill-column 80)
+
+;; There are a lot of opinions on this subject, many people think that this is a
+;; vestige of our past, that it's no longer a relevant limitation to impose on
+;; ourselves in a world where we regularly have 40" 4K displays to render our
+;; text on to. My eyes disagree, though, narrow columns of text are almost
+;; always more legible, and certainly working within that constraint makes it
+;; much more obvious when you are fucking up asyncronous JavaScript and building
+;; callback pyramids. Restructure your code to be longer, not wider, and you're
+;; going to make your future self and the future selves of your coworkers much 
+;; more happy.
+(setq-default fill-column 80
+              whitespace-line-column 80)
+
 ;; Automatically turn on auto-fill-mode when editing text files
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'tex-mode-hook 'turn-on-auto-fill)
