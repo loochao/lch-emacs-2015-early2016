@@ -1,16 +1,16 @@
 
 ;; ----- smex-history -----
 (
- helm-dash-install-docset
  R
  cd
  tt
  5x5
  arp
  dbx
+ dig
 )
 
 ;; ----- smex-data -----
 (
- (helm-dash-install-docset . 3)
+ 
 )

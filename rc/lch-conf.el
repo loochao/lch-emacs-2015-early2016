@@ -19,6 +19,7 @@
 (require 'lch-init)
 (require 'lch-coding)
 (require 'lch-ui)
+(require 'lch-powerline-theme)
 (require 'lch-util)
 (require 'lch-elisp)
 (require 'lch-helm)

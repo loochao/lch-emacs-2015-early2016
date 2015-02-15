@@ -1,2 +1,0 @@
-(setq lch-dash '("Android" "AppleScript" "Arduino" "Bash" "C" "C++" "C.docset" "CSS" "CoffeeScript" "Emacs_Lisp" "JavaScript" "Java_SE7" "LaTeX" "MATLAB" "MongoDB" "MySQL" "NumPy" "PHP" "Perl" "Python_2" "Ruby" "Ruby_on_Rails_3" "SQLite" "SciPy" "Vagrant" "Vim" "jQuery"))
-(mapc 'helm-dash-install-docset lch-dash)

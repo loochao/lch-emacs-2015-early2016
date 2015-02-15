@@ -16,6 +16,7 @@
 
 (require 'auto-complete-config)
 (require 'shell-command-extension)
+(lch-diminish auto-complete-mode " Ⓐ" " A")
 
 (defface popup-mouse-face
   '((t (nil)))

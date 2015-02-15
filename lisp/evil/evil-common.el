@@ -997,6 +997,7 @@ Like `move-beginning-of-line', but retains the goal column."
 (defun evil-move-end-of-line (&optional arg)
   "Move to the end of the line as displayed.
 Like `move-end-of-line', but retains the goal column."
+  (interactive)
   (evil-save-goal-column
     (move-end-of-line arg)
     (end-of-line)))

@@ -2,24 +2,24 @@
 ;; This file is generated automatically by emacs-w3m v1.4.517.
 
 (("Automatic saved sessions-1"
-  (21654 11197 717506 0)
-  (("http://bbs.tianya.cn/post-no05-357700-1.shtml" nil nil "post-no05-357700-1.shtml") ("http://www.princeton.edu/~chaol/" nil nil "~chaol") ("http://www.google.com/search?btnI=I%%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8&q=i%27d+rather+be+a+hammer+than+a+nail" (1) (("http://www.princeton.edu/~chaol/" (:title "~chaol") (0) :window-start 1 :position (23 . 12) :window-hscroll 0) ("http://ab-initio.mit.edu/wiki/index.php/Meep_Tutorial" (:title "Meep Tutorial - AbInitio") (1) :window-start 1 :position (1 . 0) :window-hscroll 0 :forms ([w3m-form-object get "http://ab-initio.mit.edu/wiki/index.php/Special:Search" nil application/x-www-form-urlencoded (1 (:value ("search" . "")) 2 (:value ("go")) 3 (:value ("fulltext")))]))) "search?btnI=I%%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8&q=i%27d+rather+be+a+hammer+than+a+nail"))
+  (21720 27415 246347 0)
+  (("http://dict.cn/bride" nil nil "bride是什么意思_bride在线翻译_英语_读音_用法_例句_海词词典"))
   0)
  ("Automatic saved sessions-2"
+  (21654 11197 717506 0)
+  (("http://bbs.tianya.cn/post-no05-357700-1.shtml" nil nil "post-no05-357700-1.shtml") ("http://www.princeton.edu/~chaol/" nil nil "~chaol") ("http://www.google.com/search?btnI=I%%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8&q=i%27d+rather+be+a+hammer+than+a+nail" (1) (("http://www.princeton.edu/~chaol/" (:title "~chaol") (0) :window-start 1 :position (23 . 12) :window-hscroll 0) ("http://ab-initio.mit.edu/wiki/index.php/Meep_Tutorial" (:title "Meep Tutorial - AbInitio") (1) :window-start 1 :position (1 . 0) :window-hscroll 0 :forms ([w3m-form-object get "http://ab-initio.mit.edu/wiki/index.php/Special:Search" nil application/x-www-form-urlencoded (1 (:value ("search" . "")) 2 (:value ("go")) 3 (:value ("fulltext")))]))) "search?btnI=I%%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8&q=i%27d+rather+be+a+hammer+than+a+nail"))
+  nil)
+ ("Automatic saved sessions-3"
   (21474 36599 971024 0)
   (("http://www.princeton.edu/~chaol/" nil nil "LooChao' Notes"))
   nil)
- ("Automatic saved sessions-3"
+ ("Automatic saved sessions-4"
   (21470 21513 331187 0)
   (("http://www.google.com/search?btnI=I%%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8&q=www.google.com" (0) (("http://www.princeton.edu/~chaol/" (:title "LooChao' Notes") (0) :window-start 1 :position (1 . 0) :window-hscroll 0)) "www.google.com - Google Search"))
   nil)
- ("Automatic saved sessions-4"
+ ("Automatic saved sessions-5"
   (21465 62022 120534 0)
   (("http://www.princeton.edu/~chaol/" nil nil "LooChao' Notes") ("http://dict.cn/prevail" nil nil "prevail是什么意思_prevail在线翻译_英语_读音_用法_例句_海词词典") ("http://dict.cn/ejecta" nil nil "ejecta是什么意思_ejecta在线翻译_英语_读音_用法_例句_海词词典") ("http://www.wolfram.com/mathematica/new-in-10/" (0) (("http://dict.cn/ejecta" (:title "ejecta是什么意思_ejecta在线翻译_英语_读音_用法_例句_海词词典") (0) :window-start 1 :position (0 . 0) :window-hscroll 0 :forms ([w3m-form-object internal "http://dict.cn/none" nil application/x-www-form-urlencoded (1 (:value ("" . "单词 ejecta 的词典定义。@海词词典-最好的学习型词典")))] [w3m-form-object get "http://dict.cn/search.php" nil application/x-www-form-urlencoded (2 (:value ("q" . "")) 3 (:value ("")))]))) "What,F"s New in Mathematica 10"))
-  nil)
- ("Automatic saved sessions-5"
-  (21429 22020 469466 0)
-  (("http://www.princeton.edu/~chaol/" nil nil "LooChao' Notes"))
   nil)
  ("abstruse是什么意思_abstruse在线翻译_英语_读音_用法_例句_海词词典"
   (20931 20614 577818 0)

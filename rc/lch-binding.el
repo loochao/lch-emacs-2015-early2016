@@ -26,10 +26,11 @@
 ;;; Guide-key
 (require 'guide-key)
 (setq guide-key/guide-key-sequence
-      '("," "g" "C-x" "C-c" "C-z" "C-x r"
+      '("," "SPC" "g" "C-x" "C-c" "C-z" "C-x r"
         "<f1>" "<f2>" "<f3>" "<f4>" "<f5>" "<f6>"
         "<f7>" "<f8>" "<f9>" "<f10>" "<f11>" "<f12>"))
 (guide-key-mode 1)
+(lch-diminish guide-key-mode " Ⓚ" " K")
 ;;; Mouse
 (define-key global-map (kbd "<C-wheel-up>") 'text-scale-increase)
 (define-key global-map (kbd "<C-wheel-down>") 'text-scale-decrease)
@@ -468,6 +469,7 @@
         (("k" . "kill-all-buffers") . kill-all-buffers)                    ;; => lch-util.el
         (("p" . "punctuate-buffer") . lch-punctuate-buffer)                ;; => lch-util.el
         (("r" . "rename-buffer-n-file") . lch-rename-file-and-buffer)      ;; => lch-util.el
+        (("s" . "strip-blank-lines") . strip-blank-lines)                  ;; => lch-util.el
         (("t" . "insert-template") . template-expand-template)             ;; => lch-elisp.el
         ))
 
@@ -606,6 +608,7 @@
 (define-key global-map (kbd "<f10> e") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-elisp.el"))))
 (define-key global-map (kbd "<f10> E") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-evil.el"))))
 (define-key global-map (kbd "<f10> C-e") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-env.el"))))
+(define-key global-map (kbd "<f10> h") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-helm.el"))))
 (define-key global-map (kbd "<f10> i") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-init.el"))))
 (define-key global-map (kbd "<f10> n") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-network.el"))))
 (define-key global-map (kbd "<f10> o") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-org.el"))))
@@ -643,7 +646,7 @@
 (defvar one-key-menu-rmt-alist nil "")
 (setq one-key-menu-rmt-alist
       '(
-        (("m" . "mit") . (lambda () (interactive) (dired-x-find-file (concat remote-mit "/milos/"))))
+        (("m" . "mit") . (lambda () (interactive) (dired-x-find-file (concat remote-mit "/chao/"))))
         (("c" . "chili") . (lambda () (interactive) (dired-x-find-file (concat remote-chili "/Downloads/"))))
         (("C" . "chili-su") . (lambda () (interactive) (dired-x-find-file (concat remote-chili "/Downloads/"))))
         (("e" . "emacs-rmt") . (lambda () (interactive) (dired-x-find-file (concat remote-notes "/ComputerSE/Emacs/"))))
@@ -664,6 +667,7 @@
       '(
         (("<f10>" . "remote-notes-menu") . one-key-menu-rmt)
         (("c" . "code") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Programming")))
+        (("C" . "code2") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Programming_INBOX")))
         (("d" . "downloads") . (lambda () (interactive) (dired-x-find-file "~/Downloads")))
         (("e" . ".emacs.lib") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/.emacs.lib/")))
         (("f" . "flv") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Flv/")))
@@ -695,7 +699,6 @@
    ("<f11> b" . eyedropper-background)
    ("<f11> h" . global-hl-line-mode)
    ("<f11> l" . linum-mode)
-   ("<f11> L" . toggle-truncate-lines)
    ("<f11> t" . tool-bar-mode)
    ))
 
@@ -719,7 +722,7 @@
         (("F" . "pick-face") . lch-face-at-point)                               ;; => lch-ui.el
         (("h" . "highlight-line") . global-hl-line-mode)                        ;; => lch-binding.el
         (("l" . "setnu-mode") . linum-mode)                                     ;; => lch-binding.el
-        (("L" . "line-truncate") . toggle-truncate-lines)                       ;; => lch-binding.el
+        (("L" . "line-relative") . linum-relative-toggle)                       ;; => lch-binding.el
         (("r" . "rainbow-mode") . rainbow-mode)                                 ;; => lch-ui.el
         (("t" . "tool-bar-mode") . tool-bar-mode)                               ;; => lch-binding.el
         ))

@@ -210,4 +210,6 @@ elif  [ -f /etc/profile.d/bash_completion ]; then
   . /etc/profile.d/bash_completion
 fi
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# export PATH="$PATH:$HOME/.rvm/bin:$HOME/.rvm/rubies/default/bin" # Add RVM to PATH for scripting
+export PYTHONPATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages"
+# source "$HOME/.rvm/scripts/rvm"

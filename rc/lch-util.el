@@ -15,6 +15,29 @@
 
 ;;; CODE
 (message "=> lch-util: loading...")
+;;; Strip-blank-lines
+(defun strip-blank-lines()
+  "Strip all blank lines in select area of buffer,
+if not select any area, then strip all blank lines of buffer."
+  (interactive)
+  (strip-regular-expression-string "^[ \t]*\n")
+  (message "Have strip blanks line. Wakaka."))
+(define-key global-map (kbd "<f4> s") 'strip-blank-lines)
+
+(defun strip-regular-expression-string (regular-expression)
+  "Strip all string that match REGULAR-EXPRESSION in select area of buffer.
+If not select any area, then strip current buffer"
+  (interactive)
+  (let ((begin (point-min))             ;initialization make select all buffer
+        (end (point-max)))
+    (if mark-active                     ;if have select some area of buffer, then strip this area
+        (setq begin (region-beginning)
+              end (region-end)))
+    (save-excursion                                              ;save position
+      (goto-char end)                                            ;goto end position
+      (while (and (> (point) begin)                              ;when above beginning position
+                  (re-search-backward regular-expression nil t)) ;and find string that match regular expression
+        (replace-match "" t t)))))                               ;replace target string with null
 ;;; Smart-beginning-of-line
 (defun lch-smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
@@ -98,7 +121,6 @@ point reaches the beginning or end of the buffer, stop there."
 (defalias 'tt 'lch-term)
 
 (define-key global-map (kbd "M-2") 'lch-term)
-
 
 (defun lch-matlab ()
   (interactive)
@@ -552,7 +574,6 @@ Argument STRING the string that need pretty."
   (message (shell-command-to-string "fortune")))
 (define-key global-map (kbd "C-z f") 'lch-echo-fortune)
 ;;  (run-with-timer 3 nil (message "")))
-
 ;;; PROVIDE
 (provide 'lch-util)
 (message "~~ lch-util: done.")

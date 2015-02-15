@@ -154,6 +154,9 @@
 ;; line number
 ;; NOT as good as linum-mode
 ;; (require 'setnu)
+;;; Linum-relative
+(autoload 'linum-relative "linum-relative" t)
+(define-key global-map (kbd "<f11> L") 'linum-relative-toggle)
 ;;; Cycle-color
 (defun lch-cycle-fg-color (num)
   ""
@@ -330,12 +333,23 @@ See `cycle-color'."
 ;; (mode-line-setting)
 
 ;;; Powerline
-;; (when (and (>= emacs-major-version 24) (>= emacs-minor-version 3))
-;;     (require 'powerline)
-;;     (powerline-evil-theme))
+;; (setq powerline-default-separator 'wave)
+;; (powerline-evil-theme)
+(when (and (>= emacs-major-version 24) (>= emacs-minor-version 3))
+    (require 'powerline)
+    )
+(custom-set-faces
+ `(powerline-evil-normal-face ((t (:foreground "White"  :background "Darkred"))))
+ `(powerline-evil-insert-face ((t (:foreground "Black" :background "Darkred"))))
+ )
 
-;;    (powerline-default-theme))
+;;; Golden-ratio
+(require 'golden-ratio)
+(golden-ratio-mode 1)
+(lch-diminish golden-ratio-mode " ⊞" " G")
 
+(setq golden-ratio-exclude-modes '("one-key-mode"))
+(setq golden-ratio-exclude-buffer-names '("*Backtrace*" "*One-Key*"))
 ;;; PROVIDE
 (provide 'lch-ui)
 

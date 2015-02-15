@@ -56,35 +56,39 @@
   (next-line)
   )
 
-(setq evil-leader/leader ","
+(setq evil-leader/leader "SPC"
       evil-leader/in-all-states t)
 
 (evil-leader/set-key "o" 'helm-swoop)         ;; Swoop works like occur.
-(evil-leader/set-key "p" 'print-buffer)
+;; (evil-leader/set-key "p" 'print-buffer)
 (evil-leader/set-key "w" 'save-buffer)
 (evil-leader/set-key "q" 'kill-buffer-and-window)
 (evil-leader/set-key "h" 'dired-jump)
-(evil-leader/set-key "v" 'split-window-right)
+(evil-leader/set-key "2" 'split-window-right)
 (evil-leader/set-key "1" 'delete-other-windows)
 (evil-leader/set-key "e" 'find-file)
 ;; (evil-leader/set-key "," 'other-window)
-(evil-leader/set-key ";" 'lch-toggle-comment-on-line)
+(evil-leader/set-key "c" 'lch-toggle-comment-on-line)
+(evil-leader/set-key "s" 'save-buffer)
 (evil-leader/set-key "B" 'ibuffer)
 ;; (evil-leader/set-key "x" 'helm-M-x)
 (evil-leader/set-key "e" 'eval-buffer)
 (evil-leader/set-key "b" 'switch-to-buffer)
 (evil-leader/set-key "d" 'helm-dash)
-(evil-leader/set-key "k" 'kill-buffer)
-(evil-leader/set-key "K" 'kill-current-buffer)
+(evil-leader/set-key "K" 'kill-buffer)
+(evil-leader/set-key "k" 'kill-this-buffer)
 (evil-leader/set-key "t" 'transpose-lines)
 (evil-leader/set-key "m" 'evil-motion-state)       ;; ESC back to normal state
-(evil-leader/set-key "," 'ace-jump-mode)
+(evil-leader/set-key "j" 'ace-jump-mode)
 (evil-leader/set-key "/" 'lch-switch-to-message)   ;; Defined in lch-util.el
 ;; (evil-leader/set-key "," 'evil-ace-jump-word-mode) ; ,, for Ace Jump (word)
 ;; (evil-leader/set-key "l" 'evil-ace-jump-line-mode) ; ,l for Ace Jump (line)
 ;; (evil-leader/set-key "x" 'evil-ace-jump-char-mode) ; ,x for Ace Jump (char)
 (evil-leader/set-key "u" 'undo-tree-visualize)
 (evil-leader/set-key "z" 'zap-to-char)
+
+;; (if (featurep 'er/expand-region)
+(evil-leader/set-key "v" 'er/expand-region)
 
 ;;; State indicator
 ;; Cursor
@@ -107,15 +111,17 @@
 
 ;; (define-key evil-normal-state-map (kbd "SPC") 'evil-emacs-state)
 
-(define-key evil-insert-state-map (kbd "C-e") 'end-of-line)
-(define-key evil-normal-state-map (kbd "C-e") 'end-of-line)
-(define-key evil-visual-state-map (kbd "C-e") 'end-of-line)
-(define-key evil-motion-state-map (kbd "C-e") 'end-of-line)
+
+(define-key evil-insert-state-map (kbd "C-e") 'evil-move-end-of-line)
+(define-key evil-normal-state-map (kbd "C-e") 'evil-move-end-of-line)
+(define-key evil-visual-state-map (kbd "C-e") 'evil-move-end-of-line)
+(define-key evil-motion-state-map (kbd "C-e") 'evil-move-end-of-line)
 
 (define-key evil-normal-state-map (kbd "C-f") 'evil-forward-char)
 (define-key evil-insert-state-map (kbd "C-f") 'evil-forward-char)
-(define-key evil-insert-state-map (kbd "C-f") 'evil-forward-char)
+(define-key evil-visual-state-map (kbd "C-f") 'evil-forward-char)
 
+(define-key evil-normal-state-map (kbd "C-f") 'evil-forward-char)
 (define-key evil-normal-state-map (kbd "C-b") 'evil-backward-char)
 (define-key evil-insert-state-map (kbd "C-b") 'evil-backward-char)
 (define-key evil-visual-state-map (kbd "C-b") 'evil-backward-char)
@@ -187,11 +193,15 @@
   (evil-scroll-line-down 10))
 
 (define-key evil-normal-state-map (kbd "DEL") 'backward-delete-char-untabify)
-(define-key evil-normal-state-map (kbd "RET") 'newline-and-indent)
+;; (define-key evil-normal-state-map (kbd "ESC") 'save-buffer)
 
 ;; (define-key evil-normal-state-map (kbd "SPC") 'evil-ace-jump-char-mode)
-(define-key evil-normal-state-map (kbd "SPC") 'scroll-up-command)
+;; (define-key evil-normal-state-map (kbd "SPC") 'scroll-up-command)
+(evil-leader/set-key "SPC" 'scroll-up-command)
+(evil-leader/set-key "n" 'scroll-up-command)
+(evil-leader/set-key "p" 'scroll-down-command)
 (define-key evil-normal-state-map (kbd "S-SPC") 'scroll-down-command)
+(define-key evil-normal-state-map (kbd "RET") 'newline)
 
 (define-key evil-normal-state-map (kbd "C-v") 'scroll-up-command)
 (define-key evil-normal-state-map (kbd "M-v") 'scroll-down-command)
@@ -215,7 +225,7 @@
 
 ;; By default, a new buffer comes up in Normal state. This can be changed with the
 ;; function ‘evil-set-initial-state’.
-
+;; (define-key evil-normal-state-map [escape] 'save-bufer)
 (define-key evil-motion-state-map (kbd "ESC") 'evil-force-normal-state)
 ;; Esc quits
 ;; (define-key evil-normal-state-map [escape] 'keyboard-quit)
@@ -230,8 +240,9 @@
 ;; Mode X should start in normal state, but mode Y should start in insert state
 ;(evil-set-initial-state mode-x 'normal)
 ;(evil-set-initial-state mode-y 'insert)
-
+;;; Initial-state
 (loop for (mode . state) in '((inferior-emacs-lisp-mode . emacs)
+                              (matlab-mode . normal)
                               (nrepl-mode . insert)
                               (pylookup-mode . emacs)
                               (comint-mode . normal)
@@ -250,7 +261,6 @@
                               (moccur-grep-mode . emacs)
                               (wdired-mode . emacs))
       do (evil-set-initial-state mode state))
-
 
 ;; (add-hook 'evil-insert-state-exit-hook 'lch-clear-empty-lines)
 

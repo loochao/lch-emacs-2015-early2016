@@ -1,0 +1,329 @@
+;; -*- mode: emacs-lisp -*-
+
+;;; maximize-frame
+(defun maybe-maximize-frame (&optional frame)
+  (with-selected-frame frame
+    (when (and window-system
+               (maximized-p frame))
+      (maximize-frame))))
+
+(defun within-p (a b delta)
+  (<= (abs (- b a)) delta))
+
+(defun maximized-p (&optional frame)
+  (or (not (with-selected-frame frame window-system))
+      (and (within-p (mf-max-display-pixel-width)
+                     (frame-pixel-width frame)
+                     (frame-char-width frame))
+           (within-p (mf-max-display-pixel-height)
+                     (+ mf-display-padding-height (frame-pixel-height frame))
+                     (frame-char-height frame)))))
+
+;;; Cyberpunk Cursor
+
+(blink-cursor-mode 0)
+
+(defvar blink-cursor-colors (list  "#92c48f" "#6785c5" "#be369c" "#d9ca65")
+  "On each blink the cursor will cycle to the next color in this list.")
+
+(setq blink-cursor-count 0)
+
+(defun blink-cursor-timer-function ()
+  "Cyberpunk variant of timer `blink-cursor-timer'. OVERWRITES original version in `frame.el'.
+
+This one changes the cursor color on each blink. Define colors in `blink-cursor-colors'."
+  (when (not (internal-show-cursor-p))
+    (when (>= blink-cursor-count (length blink-cursor-colors))
+      (setq blink-cursor-count 0))
+    (set-cursor-color (nth blink-cursor-count blink-cursor-colors))
+    (setq blink-cursor-count (+ 1 blink-cursor-count))
+    )
+  (internal-show-cursor nil (not (internal-show-cursor-p)))
+  )
+;;; Frame-size
+(defun lch-set-frame-size ()
+  (interactive)
+  (set-frame-parameter (selected-frame) 'top 26)
+  (set-frame-parameter (selected-frame) 'left 2)
+  (set-frame-parameter (selected-frame) 'width
+                       (floor (/ (float (x-display-pixel-width)) 9.15)))
+  (if (= 1050 (x-display-pixel-height))
+      (set-frame-parameter (selected-frame) 'height
+                           (if (>= emacs-major-version 24)
+                               66
+                             55))
+    (set-frame-parameter (selected-frame) 'height
+                         (if (>= emacs-major-version 24)
+                             75
+                           64))))
+
+(defun emacs-toggle-size ()
+  (interactive)
+  (if (eq (cdr (assq 'fullscreen (frame-parameters))) nil)
+      (set-frame-parameter (selected-frame) 'fullscreen 'fullboth)
+    (set-frame-parameter (selected-frame) 'fullscreen 'nil))
+  (lch-set-frame-size))
+
+;; Positioning of frame when starting Emacs
+(setq default-frame-alist '(
+                            (height . 61) (width . 98)
+                            (top . 72) (left . 36)
+                            ))
+(setq initial-frame-alist '((top . 72) (left . 775)))
+
+(when window-system
+  ;; list of frame parameters for creating the initial frame
+  (setq initial-frame-alist '((top . 0) (left . 0)))
+
+  (setq initial-frame-alist
+        (append (list
+                 '(internal-border-width . 2)
+                 '(line-spacing          . 1))
+                initial-frame-alist))
+
+  ;; list of default values for frame creation
+  (setq default-frame-alist
+        (cond ((= (x-display-pixel-height) 1200)
+               '((left . 0) (height . 74)))
+
+              ((= (x-display-pixel-height) 1080)
+               '((left . 0) (height . 63)))
+
+              ((= (x-display-pixel-height) 800)
+               (cond (lch-win32-p
+                      '((left . 0) (height . 55)))
+                     (lch-linux-p
+                      '((left . 0) (height . 47)
+                        (vertical-scroll-bars . right)))))
+
+              ((= (x-display-pixel-height) 768)
+               '((left . 0) (height . 46)))))
+)
+
+
+(defvar emacs-min-top 26)
+(defvar emacs-min-left (- (x-display-pixel-width) 918))
+(defvar emacs-min-height (if (= 1050 (x-display-pixel-height)) 55 64))
+(defvar emacs-min-width 100)
+
+(defun lch-emacs-min ()
+  (interactive)
+  (set-frame-parameter (selected-frame) 'fullscreen nil)
+  (set-frame-parameter (selected-frame) 'vertical-scroll-bars nil)
+  (set-frame-parameter (selected-frame) 'horizontal-scroll-bars nil)
+  (set-frame-parameter (selected-frame) 'top emacs-min-top)
+  (set-frame-parameter (selected-frame) 'left emacs-min-left)
+  (set-frame-parameter (selected-frame) 'height emacs-min-height)
+  (set-frame-parameter (selected-frame) 'width emacs-min-width)
+)
+
+(defun lch-emacs-max ()
+  (interactive)
+  (progn
+    (set-frame-parameter (selected-frame) 'fullscreen 'fullboth)
+    (set-frame-parameter (selected-frame) 'vertical-scroll-bars nil)
+    (set-frame-parameter (selected-frame) 'horizontal-scroll-bars nil))
+  ;;(lch-set-frame-max-size)
+)
+
+(defun lch-emacs-regular ()
+  (interactive)
+  (progn
+    (set-frame-parameter (selected-frame) 'fullscreen 'nil)
+    (set-frame-parameter (selected-frame) 'vertical-scroll-bars nil)
+    (set-frame-parameter (selected-frame) 'horizontal-scroll-bars nil))
+  (lch-set-frame-max-size)
+)
+
+(define-key global-map (kbd "<f11> <f10>") 'lch-emacs-min)
+(define-key global-map (kbd "<f11> <f11>") 'lch-emacs-max)
+(define-key global-map (kbd "<f11> <f12>") 'lch-emacs-regular)
+;; ;;; Frame parameters
+;; (setq default-frame-alist
+;;       (append
+;;        '((default-fringes-outside-margins . 1)
+;;          (default-left-fringe-width . 12)
+;;          (default-left-margin-width . 14)
+;;          (cursor-color . "sienna1")
+;;          (background-color . "Black")
+;;          (foreground-color . "MistyRose3")
+;;          ;; (top . 42)
+;;          ;; (left . 42)
+;;          ;; (height . 47)
+;;          ;; (width . 128)
+;;          ) default-frame-alist))
+;; 
+;;; Menu toolbar scroll-bar
+(if (not lch-mac-p)
+    (when (fboundp 'menu-bar-mode)
+      (menu-bar-mode -1)))
+
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
+
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
+
+;; (setq default-indicate-empty-lines t)
+(setq indicate-buffer-boundaries 'left)
+
+
+
+;;; Menu
+;; get rid of the Games in the Tools menu
+;; (define-key menu-bar-tools-menu [games] nil)
+
+
+
+(if lch-mac-p
+    (set-face-font 'modeline "-apple-Monaco-medium-normal-normal-*-18-*-*-*-m-0-fontset-startup")
+  (set-face-font 'modeline "-outline-Lucida Console-normal-normal-normal-mono-18-*-*-*-c-*-iso8859-1"))
+
+
+;;; Cursor
+
+
+;; bar-cursor-mode
+(require 'bar-cursor)
+(bar-cursor-mode 1)
+
+;; Change cursor color and type according to some minor modes.
+(defvar lch-read-only-color       "gray")
+;; valid values are t, nil, box, hollow, bar, (bar . WIDTH), hbar,
+;; (hbar . HEIGHT); see the docs for set-cursor-type
+(defvar lch-read-only-cursor-type 'hbar)
+(defvar lch-overwrite-color       "red")
+(defvar lch-overwrite-cursor-type 'bar)
+(defvar lch-normal-color          "sienna1")
+(defvar lch-normal-cursor-type    'box)
+
+(defun lch-set-cursor-according-to-mode ()
+  "change cursor color and type according to some minor modes."
+  (cond
+   (buffer-read-only
+    (set-cursor-color lch-read-only-color)
+    (setq cursor-type lch-read-only-cursor-type))
+   (overwrite-mode
+    (set-cursor-color lch-overwrite-color)
+    (setq cursor-type lch-overwrite-cursor-type))
+   (t
+    (set-cursor-color lch-normal-color)
+    (setq cursor-type lch-normal-cursor-type))))
+
+(defun aquamacs-cursor ()
+  (set-cursor-color lch-normal-color)
+  (setq cursor-type lch-normal-cursor-type))
+
+;; FIXME Does not work with Aquamacs
+(if (not lch-aquamacs-p) (add-hook 'post-command-hook 'lch-set-cursor-according-to-mode)
+  (add-hook 'after-init-hook 'aquamacs-cursor))
+
+;;; Titlebar
+;; %f: Full path of current file.
+;; %b: Buffer name.
+(setq frame-title-format "LooChao@%b")
+;; (setq frame-title-format "FIRST THING FIRST / DO IT NOW!!")
+(setq icon-title-format "Emacs - %b")
+
+;;; Menu-bar+
+;; (eval-after-load "menu-bar" '(require 'menu-bar+))
+
+
+;;; Pretty Control L
+;; FIXME: Doesn't go with Emacs24, always has an underline.
+(require 'pp-c-l)
+(setq pp^L-^L-string "----------------")
+(setq pp^L-^L-string "-")
+(set-face-attribute 'pp^L-highlight t :foreground "Black" :background "Orange")
+(pretty-control-l-mode 1)
+
+
+
+
+;; Comment this paragraph, so the highlight-parentheses will work.
+
+
+
+;; Highlight paren when inside (red)
+;; FIXME: This cause page down does not work correctly.
+;; (require 'highlight-parentheses)
+
+;; ;; Have to define global-highlight-parentheses-mode to enable it all the time
+;; (defun turn-on-highlight-parentheses-mode ()
+;;   (highlight-parentheses-mode t))
+;; (define-global-minor-mode global-highlight-parentheses-mode
+;;   highlight-parentheses-mode
+;;   turn-on-highlight-parentheses-mode)
+;; (global-highlight-parentheses-mode)
+
+;;; Line-num
+;; vi style set num
+(require 'setnu)
+
+
+
+;;; Cycle fonts
+(defun cycle-font (num)
+  "Change font in current frame.
+Each time this is called, font cycles thru a predefined set of fonts.
+If NUM is 1, cycle forward.
+If NUM is -1, cycle backward.
+Warning: tested on Windows Vista only."
+  (interactive "p")
+
+  ;; this function sets a property ¡°state¡±. It is a integer. Possible values are any index to the fontList.
+  (let (fontList fontToUse currentState nextState )
+    (setq fontList (list
+                    "-outline-Lucida Console-normal-normal-normal-mono-18-*-*-*-c-*-iso8859-1"
+                    "-outline-Lucida Console-normal-normal-normal-mono-21-*-*-*-c-*-iso8859-1"
+                    "-outline-Lucida Console-normal-normal-normal-mono-24-*-*-*-c-*-iso8859-1"
+                    "-outline-Monaco-normal-normal-normal-mono-18-*-*-*-c-*-iso8859-1"
+                    "-outline-Monaco-normal-normal-normal-mono-21-*-*-*-c-*-iso8859-1"
+                    "-outline-Monaco-normal-normal-normal-mono-24-*-*-*-c-*-iso8859-1"
+                    ;; "-*-Courier New-normal-r-*-*-24-112-96-96-c-*-iso8859-1"
+                    ;; "-outline-Lucida Sans Unicode-normal-normal-normal-sans-24-*-*-*-p-*-iso8859-1"
+                    ))
+    ;; fixed-width "Courier New" "Unifont"  "FixedsysTTF" "Miriam Fixed" "Lucida Console" "Lucida Sans Typewriter"
+    ;; variable-width "Code2000"
+    (setq currentState (if (get 'cycle-font 'state) (get 'cycle-font 'state) 0))
+    (setq nextState (% (+ currentState (length fontList) num) (length fontList)))
+
+    (setq fontToUse (nth nextState fontList))
+    (set-frame-parameter nil 'font fontToUse)
+    (redraw-frame (selected-frame))
+    (message "Current font is: %s" fontToUse )
+    (put 'cycle-font 'state nextState)))
+
+(defun cycle-font-forward ()
+  "Switch to the next font, in the current frame.
+See `cycle-font'."
+  (interactive)
+  (cycle-font 1))
+(define-key global-map (kbd "<f11> 5") 'cycle-font-forward)
+
+(defun cycle-font-backward ()
+  "Switch to the previous font, in the current frame.
+See `cycle-font'."
+  (interactive)
+  (cycle-font -1))
+(define-key global-map (kbd "<f11> 6") 'cycle-font-backward)
+
+;;; Toggle line space
+(defun toggle-line-spacing ()
+  "Toggle line spacing between no extra space to extra half line height."
+  (interactive)
+  (if (eq line-spacing nil)
+      (setq-default line-spacing 0.5) ; add 0.5 height between lines
+    (setq-default line-spacing nil)   ; no extra heigh between lines
+    ))
+
+(define-key global-map (kbd "<f11> L") 'toggle-line-spacing)
+
+;;; Provide
+(provide 'lch-ui)
+;;; Local Vars
+;; Local Variables:
+;; mode: emacs-lisp
+;; mode: outline-minor
+;; outline-regexp: ";;;;* "
+;; End:

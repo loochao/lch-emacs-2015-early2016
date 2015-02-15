@@ -33,14 +33,44 @@
 ;;
 ;; Has to be loaded in front part of this file.
 (require 'diminish)
+
+;;; Vi-tilde-fringe-mode
+;; (require 'vi-tilde-fringe)
+;; (add-hook 'prog-mode-hook 'vi-tilde-fringe-mode)
+;; (global-vi-tilde-fringe-mode)
+
+;;; Popwin
+(require 'popwin)
+(popwin-mode 1)
+;; (evil-leader/set-key "wpm" 'popwin:messages)
+;; (evil-leader/set-key "wpp" 'popwin:close-popup-window)
+(push '("*occur*"                      :dedicated t :position bottom :stick t :noselect t) popwin:special-display-config)
+(push '("*grep*"                     :dedicated t :position bottom :stick t :noselect t) popwin:special-display-config)
+(push '("*nosetests*"                :dedicated t :position bottom :stick t :noselect t) popwin:special-display-config)
+(push '("^\*Flycheck.+\*$" :regexp t :dedicated t :position bottom :stick t :noselect t) popwin:special-display-config)
+(push '("^\*WoMan.+\*$"    :regexp t              :position bottom                     ) popwin:special-display-config)
+(defun spacemacs/remove-popwin-display-config (str)
+  "Removes the popwin display configurations that matches the passed STR"
+  (setq popwin:special-display-config
+        (-remove (lambda (x) (if (and (listp x) (stringp (car x)))
+                                 (string-match str (car x))))
+                 popwin:special-display-config)))
+
+
+;;; Expand-region
+(require 'expand-region)
+
 ;;; Guide-key-mode
 ;; in lch-binding.el
 
 ;;; Evernote
+;; (setq evernote-ruby-command "/Users/LooChao/.rvm/rubies/default/bin/ruby")
+;; (setq enh-enclient-command "/Users/LooChao/.rvm/rubies/default/bin/enclient.rb")
 ;; (require 'evernote-mode)
 ;; (setq evernote-enml-formatter-command '("w3m" "-dump" "-I" "UTF8" "-O" "UTF8"))
-;; (setq enh-enclient-command "/opt/local/bin/enclient.rb")
 ;; (custom-set-variables '(evernote-developer-token ""))
+;; (add-to-list 'exec-path "~/.rvm/rubies/default/bin/")
+
 ;; (global-set-key "\C-cec" 'evernote-create-note)
 ;; (global-set-key "\C-ceo" 'evernote-open-note)
 ;; (global-set-key "\C-ces" 'evernote-search-notes)
@@ -49,13 +79,13 @@
 ;; (global-set-key "\C-cep" 'evernote-post-region)
 ;; (global-set-key "\C-ceb" 'evernote-browser)
 
-
 ;;; Whitespace-mode
 ;; Whitespace Mode lets you do a couple of neat things, reporting issues,
 ;; and fixing them.
 (require 'whitespace)
-(diminish 'whitespace-mode "ᗣ")
-(diminish 'global-whitespace-mode "ᗣ")
+;; (diminish 'whitespace-mode " ᗣ")
+(lch-diminish whitespace-mode " Ⓦ" " W")
+;; (diminish 'global-whitespace-mode " ᗣ")
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;;; Switch-window
@@ -145,20 +175,20 @@
 (require 'python-mode)
 
 ;;; Multi-term/scratch
-;; (require 'multi-term)
+(require 'multi-term)
 (require 'multi-scratch)
 
 (define-key global-map (kbd "M-s") 'multi-scratch-new)
 (define-key global-map (kbd "M-,") 'multi-scratch-prev)
 (define-key global-map (kbd "M-.") 'multi-scratch-next)
 
-;; (define-key global-map (kbd "M-n") 'multi-term)
-;; (define-key global-map (kbd "M-[") 'multi-term-prev)
-;; (define-key global-map (kbd "M-]") 'multi-term-next)
+(define-key global-map (kbd "M-n") 'multi-term)
+(define-key global-map (kbd "M-[") 'multi-term-prev)
+(define-key global-map (kbd "M-]") 'multi-term-next)
 
-;; (defun lch-multi-term-disable-yas-minor-mode ()
-;;   (yas-minor-mode -1))
-;; (add-hook 'term-mode-hook 'lch-multi-term-disable-yas-minor-mode)
+(defun lch-multi-term-disable-yas-minor-mode ()
+  (yas-minor-mode -1))
+(add-hook 'term-mode-hook 'lch-multi-term-disable-yas-minor-mode)
 
 ;; One-key-menu-term-scratch
 (defvar one-key-menu-term-scratch-alist nil "")
@@ -209,13 +239,14 @@
 (define-key global-map (kbd "<f1> c") 'smart-compile)
 ;;; Skeleton
 ;; Skeleton pair works with paredit, and more generally.
-(setq skeleton-pair t)
-(define-key global-map (kbd "(") 'skeleton-pair-insert-maybe)
-(define-key global-map (kbd "[") 'skeleton-pair-insert-maybe)
-(define-key global-map (kbd "{") 'skeleton-pair-insert-maybe)
-(define-key global-map (kbd "\"") 'skeleton-pair-insert-maybe)
+;; (setq skeleton-pair t)
+;; (define-key global-map (kbd "(") 'skeleton-pair-insert-maybe)
+;; (define-key global-map (kbd "[") 'skeleton-pair-insert-maybe)
+;; (define-key global-map (kbd "{") 'skeleton-pair-insert-maybe)
+;; (define-key global-map (kbd "\"") 'skeleton-pair-insert-maybe)
 ;; (define-key global-map (kbd "<") 'skeleton-pair-insert-maybe)
-;;; Weibo
+
+;; Weibo
 (defun weibo-setting ()
   "settings for weibo"
   (setq weibo-directory "~/.emacs.d/WeiBo"))
@@ -260,7 +291,7 @@
 ;; Feel better when you use C-v.
 (require 'smooth-scroll)
 (smooth-scroll-mode 1)
-
+(lch-diminish smooth-scroll-mode "")
 ;;; Unbound
 (autoload 'describe-unbound-keys "unbound.el"
   "Display a list of unbound keystrokes of complexity no greater than MAX." t)
@@ -393,21 +424,26 @@
 (when (eq (buffer-name) "*forture*")
   (setq buffer-read-only t))
 
-(run-with-idle-timer 300 t 'lch-cowsay-fortune)
+(defvar lch-cowsay-switch t "")
+(defun lch-toggle-cowsay ()
+  (interactive)
+  (when lch-cowsay-switch
+    (run-with-idle-timer 600 t 'lch-cowsay-fortune)))
+(lch-toggle-cowsay)
 ;;; Paredit
 ;; (autoload 'enable-paredit-mode "paredit"
 ;;   "Turn on pseudo-structural editing of Lisp code."
 ;;   t)
-;; (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
-;; (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-;; (add-hook 'ielm-mode-hook             #'enable-paredit-mode)
-;; (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
-;; (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
-;; (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
-;; (define-key global-map (kbd "<f2> p") 'paredit-mode)
-
-;; (eval-after-load "paredit"
-;;   (diminish 'paredit-mode " P"))
+(require 'paredit)
+(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
+(define-key global-map (kbd "<f2> p") 'paredit-mode)
+(eval-after-load 'paredit
+  '(lch-diminish paredit-mode " Ⓟ" " P"))
 
 ;;; Eye-dropper
 ;; To pick the fg and bg color at point
@@ -417,12 +453,14 @@
 ;; An one key menu defined in lch-one-key.el
 (require 'thing-edit)
 ;;; Flyspell
-;; Part of GNU Emacs
-(require 'flyspell)
-(diminish 'flyspell-mode " ✓")
 
-(setq ispell-program-name "aspell" ; use aspell instead of ispell
-      ispell-extra-args '("--sug-mode=ultra"))
+(require 'flyspell)
+;; (diminish 'flyspell-mode " ✓")
+(lch-diminish flyspell-mode " Ⓢ" " S")
+;; (lch-diminish flyspell-mode " Ⓕ" " F")
+(setq ispell-extra-args '("--sug-mode=ultra"))
+(setq-default ispell-program-name "aspell") ;; use aspell instead of ispell
+(setq-default ispell-dictionary "english")
 
 (defun lch-enable-flyspell ()
   (when (executable-find ispell-program-name)
@@ -456,9 +494,13 @@
 
 ;; Add hook to the following major modes so that the outline minor mode starts automatically.
 ;; Outline mode is better to be enabled only in document modes.
+(defun lch-outline-mode ()
+  (outline-minor-mode)
+  (lch-diminish outline-minor-mode " Θ" " O"))
+
 (dolist (hook
          '(emacs-lisp-mode-hook latex-mode-hook text-mode-hook change-log-mode-hook makefile-mode-hook))
-  (add-hook hook 'outline-minor-mode))
+  (add-hook hook 'lch-outline-mode))
 
 (define-key global-map (kbd "M-<left>") 'hide-body)
 (define-key global-map (kbd "M-<right>") 'show-all)
@@ -466,9 +508,6 @@
 (define-key global-map (kbd "<right>") 'show-entry)
 (define-key global-map (kbd "M-<up>") 'outline-previous-heading)
 (define-key global-map (kbd "M-<down>") 'outline-next-heading)
-
-(when (featurep 'outline-minor-mode)
-  (diminish 'outline-minor-mode " O"))
 
 ;;; Browse-kill-ring
 ;; (info "(emacs)Kill Ring")
@@ -494,6 +533,15 @@
       recentf-max-menu-items 30
       recentf-exclude '("/tmp/" "/ssh:"))
 
+(add-to-list 'recentf-exclude "COMMIT_EDITMSG\\'")
+
+(setq recentf-auto-cleanup 'never)
+(setq recentf-auto-save-timer (run-with-idle-timer 600 t 'recentf-save-list))
+
+;; lazy load recentf
+(add-hook 'find-file-hook (lambda () (unless recentf-mode
+                                           (recentf-mode)
+                                           (recentf-track-opened-file))))
 ;; Key bindings
 (define-key global-map (kbd "C-x C-r") 'recentf-open-files)
 
@@ -503,6 +551,8 @@
 (global-undo-tree-mode 1)
 (define-key global-map (kbd "C-x u") 'undo-tree-visualize)
 (diminish 'undo-tree-mode)
+(setq undo-tree-visualizer-timestamps t)
+(setq undo-tree-visualizer-diff t)
 (setq undo-tree-save-history t
       undo-tree-history-directory-alist `(("." . ,(concat emacs-var-dir "undo-tree-history"))))
 
@@ -577,7 +627,7 @@
 (add-hook 'after-init-hook 'desktop-settings-setup)
 ;;; Yasnippet
 (require 'yasnippet)
-(diminish 'yas-minor-mode " Y")
+(lch-diminish yas-minor-mode " Ⓨ" " Y")
 (defvar snippet-root-dir (concat emacs-lib-dir "/snippets") "")
 
 ;; Order matters, put lch at last to overwrite others' conf if there's name
@@ -593,7 +643,13 @@
 (add-to-list 'yas-snippet-dirs ocodo-snippet-dir)
 
 (yas-global-mode 1)
-
+;; has to disable under term-mode to make <tab> work.
+(defun lch-force-yasnippet-off ()
+  (yas-minor-mode -1)
+  (setq yas-dont-activate t))
+(add-hook 'lch-force-yasnippet-off
+              '(term-mode-hook shell-mode-hook))
+;; (add-hook 'term-mode-hook (lambda () (yas-minor-mode -1)))
 
 (defun lch-reload-snippets ()
   (interactive)

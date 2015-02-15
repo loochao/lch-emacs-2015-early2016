@@ -47,6 +47,9 @@
 (autoload 'helm-back-to-last-point "helm-swoop" nil t)
 (push "When doing isearch, hand the word over to helm-swoop." lch-tips)
 (define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
+(setq helm-swoop-split-with-multiple-windows t
+      helm-swoop-split-direction 'split-window-vertically
+      helm-swoop-split-window-function 'helm-default-display-buffer)
 
 (defun helm-dwim ()
   (interactive)
@@ -106,7 +109,7 @@
 (require 'helm-dash)
 (setq helm-dash-docsets-path "/Volumes/DATA/Applications/Library/Dash/DocSets")
 (define-key global-map (kbd "C-c d") 'helm-dash)
-(setq helm-dash-common-docsets
+(setq helm-dash-common-docset
       '("SciPy" "Ruby" "Perl" "NumPy"
         "MATLAB" "LaTeX" "C++" "R" "Python_2"))
 ;; Installed but not activated: ("Android")

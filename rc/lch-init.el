@@ -1,5 +1,4 @@
 ;; -*- coding:utf-8; -*-
-
 ;;; INIT.EL
 ;;
 ;; Copyright (c)  Chao LU 2005 2006-2011
@@ -7,7 +6,7 @@
 ;; Author:  Chao Lu <loochao@gmail.com>
 ;; URL:     http://www.princeton.edu/~chaol
 ;; License: GNU
-;; 
+;;
 ;; This file is not part of GNU Emacs.
 ;;
 ;; Commentary:
@@ -20,8 +19,8 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; Show lots of *message*.
-(setq message-log-max 16384)               
-      
+(setq message-log-max 16384)
+
 ;; Parentheses
 ;; Paren color set in color-theme-lch.el
 (when (fboundp 'show-paren-mode)
@@ -56,7 +55,7 @@
 (setq visible-bell t)
 
 ;; Don't blink cursor
-(when (fboundp 'blink-cursor-mode) 
+(when (fboundp 'blink-cursor-mode)
   (blink-cursor-mode (- (*) (*) (*))))
 
 ;; Display column & line number
@@ -101,7 +100,7 @@
 ;; If we don't want backup files
 ;; (setq make-backup-files nil backup-inhibited t)
 
-;; File local variables specifications 
+;; File local variables specifications
 ;; are obeyed, without query -- RISKY!
 (setq enable-local-variables t)
 
@@ -124,7 +123,7 @@
 ;; always more legible, and certainly working within that constraint makes it
 ;; much more obvious when you are fucking up asyncronous JavaScript and building
 ;; callback pyramids. Restructure your code to be longer, not wider, and you're
-;; going to make your future self and the future selves of your coworkers much 
+;; going to make your future self and the future selves of your coworkers much
 ;; more happy.
 (setq-default fill-column 80
               whitespace-line-column 80)
@@ -147,7 +146,7 @@
 ;; indentation width -- eg. c-basic-offset: use that to adjust your
 ;; personal indentation width, while maintaining the style (and
 ;; meaning) of any files you load.
-;; 
+;;
 ;; The settings below can be tested by enable whitespace mode
 ;; And see what <tab> does. Under the settings below, tab will insert
 ;; 8 whitespaces instead of a tab, which is nice.
@@ -192,6 +191,16 @@
 (defvar autosave-dir
   (concat "~/.emacs.var/auto-save-list/" (user-login-name) "/"))
 (make-directory autosave-dir t)
+
+(defmacro lch-diminish (mode unicode &optional ascii)
+  "Diminish MODE name in mode line to UNICODE or ASCII depending on the value
+`dotspacemacs-mode-line-unicode-symbols'.
+
+If ASCII si not provided then UNICODE is used instead."
+  (let ((dim (if t
+                 unicode
+               (if ascii ascii unicode))))
+    `(eval-after-load 'diminish '(diminish ',mode ,dim))))
 
 ;;; PROVIDE
 (provide 'lch-init)
