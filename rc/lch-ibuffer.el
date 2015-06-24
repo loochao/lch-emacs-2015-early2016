@@ -38,7 +38,7 @@
                                 (mode . tex-mode)
                                 (mode . plain-tex-mode)
                                 (mode . latex-mode)
-                                ;(mode . rst-mode)
+                                ;; (mode . rst-mode)
                                 (mode . html-mode)
                                 (mode . nxhtml-mode)
                                 (mode . css-mode)

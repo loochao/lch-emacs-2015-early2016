@@ -1,0 +1,140 @@
+;;; Hydra
+(require 'hydra)
+(require 'evil)
+(require 'evil-leader)
+(defun hydra-vi/pre ()
+  (set-cursor-color "MistyRose"))
+(defun hydra-vi/post ()
+  (set-cursor-color "Cornsilk"))
+;;; hydra-vi
+(defhydra hydra-vi (:pre hydra-vi/pre :post hydra-vi/post :color amaranth)
+     "vi"
+     ("l" forward-char)
+     ("h" backward-char)
+     ("j" next-line)
+     ("k" previous-line)
+     ("m" set-mark-command "mark")
+     ("a" move-beginning-of-line "beg")
+     ("e" move-end-of-line "end")
+     ("d" delete-region "del" :color blue)
+     ("y" kill-ring-save "yank" :color blue)
+     ("q" nil "quit"))
+(define-key global-map (kbd "<f8> v") 'hydra-vi/body)
+
+;;; hydra-helm
+(defhydra hydra-helm (:color blue)
+  "helm"
+  ("f" projectile-find-file "file")
+  ("h" helm-google-suggest "google")
+  ("w" plain-org-wiki "wiki")
+  ("g" (lambda ()
+         (interactive)
+         (let ((current-prefix-arg 4))
+           (call-interactively #'magit-status)))
+       "git")
+  ("b" hydra-launcher/body "browse")
+  ("l" helm-locate "locate")
+  ("q" nil "quit"))
+(define-key global-map (kbd "<f8> h") 'hydra-helm/body)
+
+;;; hydra-window
+(require 'windmove)
+(defun hydra-universal-argument (arg)
+  (interactive "P")
+  (setq prefix-arg (if (consp arg)
+                       (list (* 4 (car arg)))
+                     (if (eq arg '-)
+                         (list -4)
+                       '(4)))))
+
+(defhydra hydra-window (:color red)
+  "window"
+  ("h" windmove-left)
+  ("j" windmove-down)
+  ("k" windmove-up)
+  ("l" windmove-right)
+  ("H" hydra-move-splitter-left)
+  ("J" hydra-move-splitter-down)
+  ("K" hydra-move-splitter-up)
+  ("L" hydra-move-splitter-right)
+  ("v" (lambda ()
+         (interactive)
+         (split-window-right)
+         (windmove-right))
+       "vert")
+  ("x" (lambda ()
+         (interactive)
+         (split-window-below)
+         (windmove-down))
+       "horz")
+  ("t" transpose-frame "'")
+  ("o" delete-other-windows "one" :exit t)
+  ("a" ace-window "ace")
+  ("s" ace-swap-window "swap")
+  ("d" ace-delete-window "del")
+  ("i" ace-maximize-window "ace-one" :exit t)
+  ("b" ido-switch-buffer "buf")
+  ("m" headlong-bookmark-jump "bmk")
+  ("q" nil "cancel")
+  ("u" (progn (winner-undo) (setq this-command 'winner-undo)) "undo")
+  ;; ("r" (winner-redo) "redo")
+  ("f" nil))
+;(define-key evil-normal-state-map "2" 'hydra-window/body)
+(define-key global-map (kbd "<f8> w") 'hydra-window/body)
+;; hydra-splitter
+(defhydra hydra-splitter nil
+  "splitter"
+  ("h" hydra-move-splitter-left "split-left")
+  ("j" hydra-move-splitter-down "split-down")
+  ("k" hydra-move-splitter-up "split-up")
+  ("l" hydra-move-splitter-right "split-right")
+  ("=" balance-windows "balance")
+  )
+(define-key global-map (kbd "<f8> 2") 'hydra-splitter/body)
+
+(defun hydra-move-splitter-left (arg)
+  "Move window splitter left."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+        (windmove-find-other-window 'right))
+      (shrink-window-horizontally arg)
+    (enlarge-window-horizontally arg)))
+(defun hydra-move-splitter-right (arg)
+  "Move window splitter right."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+        (windmove-find-other-window 'right))
+      (enlarge-window-horizontally arg)
+    (shrink-window-horizontally arg)))
+(defun hydra-move-splitter-up (arg)
+  "Move window splitter up."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+        (windmove-find-other-window 'up))
+      (enlarge-window arg)
+    (shrink-window arg)))
+(defun hydra-move-splitter-down (arg)
+  "Move window splitter down."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+        (windmove-find-other-window 'up))
+      (shrink-window arg)
+    (enlarge-window arg)))
+
+;;; hydra-launcher
+(defhydra hydra-launcher (:color blue)
+   "Launch"
+   ("h" man "man")
+   ("r" (browse-url "http://www.reddit.com/r/emacs/") "reddit")
+   ("w" (browse-url "http://www.emacswiki.org/") "emacswiki")
+   ("t" (browse-url "http://www.stackoverflow.com/") "stackoverflow")
+   ("s" shell "shell")
+   ("q" nil "cancel"))
+(define-key global-map (kbd "<f8> l") 'hydra-launcher/body)
+;;; PROVIDE
+(provide 'lch-hydra)
+;; Local Variables:
+;; mode: emacs-lisp
+;; mode: outline-minor
+;; outline-regexp: ";;;;* "
+;; End:

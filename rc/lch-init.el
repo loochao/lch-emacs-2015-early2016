@@ -202,11 +202,18 @@ If ASCII si not provided then UNICODE is used instead."
                (if ascii ascii unicode))))
     `(eval-after-load 'diminish '(diminish ',mode ,dim))))
 
+;; I copy something outside of emacs to the clipboard, I switch to emacs, remove
+;; the text that I was going to replace with the contents of the clipboard, and
+;; then paste the same text that I just removed because removing the text replaced
+;; the original clipboard contents.
+;; ----
+;; However, this seem to create issues like 'Quit, unsupported clipboard-yank'.
+;; So disable.
+(setq save-interprogram-paste-before-kill nil)
 ;;; PROVIDE
 (provide 'lch-init)
 (message "~~ lch-init: done.")
 
-
 ;; Local Variables:
 ;; mode: emacs-lisp
 ;; mode: outline-minor

@@ -17,13 +17,44 @@
 ;;; Emacs-package
 (require 'package)
 
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("ELPA" . "http://tromey.com/elpa/"))
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 
 (setq package-user-dir (concat emacs-dir "/elpa"))
 (package-initialize)
+
+;;; Projectile
+;; Projectile is useful. Especially, projectile-replace and projectile-find-file.
+;; Projectile commands are bound with the default C-c p prefix. So I can type C-c p C-h to list all of them.
+(require 'projectile)
+(projectile-global-mode +1)
+(require 'diminish)
+(diminish 'projectile-mode " ⅋")
+;;; Elfeed
+;; Do not like the way it displays all the items, could not specify a certain newsfeed.
+;;(require 'elfeed)
+;;; Spray
+;; (autoload 'spray "spray.el")
+(require 'spray)
+;; (setq spray-wpm 320)
+(defun lch-init-spray ()
+  (interactive)
+  (evil-insert-state)
+  (spray-mode t)
+  ;; (evil-insert-state-cursor-hide)
+  )
+
+(define-key spray-mode-map (kbd "h") 'spray-backward-word)
+(define-key spray-mode-map (kbd "l") 'spray-forward-word)
+(define-key spray-mode-map (kbd "q")
+        (lambda ()
+          (interactive)
+          (spray-quit)
+          ;; (set-default-evil-insert-state-cursor)
+          (evil-normal-state)))
+(define-key global-map (kbd "C-z s") 'lch-init-spray)
 
 ;;; Diminish
 ;; Diminish some common modes; Diminishing a mode makes it eat less space in the
@@ -33,6 +64,14 @@
 ;;
 ;; Has to be loaded in front part of this file.
 (require 'diminish)
+(lch-diminish auto-fill-function " Ⓕ" " F")
+
+;;; Ace-window
+(require 'ace-window)
+;;; Zop-to-char
+(require 'zop-to-char)
+;; To replace `zap-to-char':
+(define-key global-map (kbd "M-z") 'zop-to-char)
 
 ;;; Vi-tilde-fringe-mode
 ;; (require 'vi-tilde-fringe)
@@ -44,7 +83,7 @@
 (popwin-mode 1)
 ;; (evil-leader/set-key "wpm" 'popwin:messages)
 ;; (evil-leader/set-key "wpp" 'popwin:close-popup-window)
-(push '("*occur*"                      :dedicated t :position bottom :stick t :noselect t) popwin:special-display-config)
+(push '("*occur*"                    :dedicated t :position bottom :stick t :noselect t) popwin:special-display-config)
 (push '("*grep*"                     :dedicated t :position bottom :stick t :noselect t) popwin:special-display-config)
 (push '("*nosetests*"                :dedicated t :position bottom :stick t :noselect t) popwin:special-display-config)
 (push '("^\*Flycheck.+\*$" :regexp t :dedicated t :position bottom :stick t :noselect t) popwin:special-display-config)
@@ -55,8 +94,6 @@
         (-remove (lambda (x) (if (and (listp x) (stringp (car x)))
                                  (string-match str (car x))))
                  popwin:special-display-config)))
-
-
 ;;; Expand-region
 (require 'expand-region)
 
@@ -64,6 +101,11 @@
 ;; in lch-binding.el
 
 ;;; Evernote
+;; (require 'evernote-mode)
+;; (setq evernote-enml-formatter-command '("w3m" "-dump" "-I" "UTF8" "-O" "UTF8"))
+;; (defvar enh-enclient-command "/usr/texbin/enclient.rb" "Name of the enclient.rb command")
+;; (setq evernote-developer-token "S=s1:U=baf7:E=1555c4f811b:C=14e049e5450:P=1cd:A=en-devtoken:V=2:H=7c434f23546a375d66c24668cf7a43e1")
+
 ;; (setq evernote-ruby-command "/Users/LooChao/.rvm/rubies/default/bin/ruby")
 ;; (setq enh-enclient-command "/Users/LooChao/.rvm/rubies/default/bin/enclient.rb")
 ;; (require 'evernote-mode)
@@ -86,7 +128,7 @@
 ;; (diminish 'whitespace-mode " ᗣ")
 (lch-diminish whitespace-mode " Ⓦ" " W")
 ;; (diminish 'global-whitespace-mode " ᗣ")
-(add-hook 'before-save-hook 'whitespace-cleanup)
+;; (add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;;; Switch-window
 (require 'switch-window)
@@ -141,13 +183,17 @@
   (interactive)
   (inf-ruby)
   (delete-other-windows))
-(define-key global-map (kbd "M-5") 'lch-ruby)
+;; (define-key global-map (kbd "M-5") 'lch-ruby)
 ;;; Coffee-mode
 ;; (require 'coffee-mode)
 ;; (add-to-list 'auto-mode-alist '("\\.coffee\\'" . coffee-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.iced\\'" . coffee-mode))
 ;; (add-to-list 'auto-mode-alist '("Cakefile\\'" . coffee-mode))
 ;; (add-to-list 'interpreter-mode-alist '("coffee" . coffee-mode))
+;;; iflipb
+(require 'iflipb)
+(define-key global-map (kbd "C-<f8>") 'iflipb-previous-buffer)
+(define-key global-map (kbd "C-<f9>") 'iflipb-next-buffer)
 
 ;;; Multiple-cursor
 (require 'multiple-cursors)
@@ -162,6 +208,7 @@
 ;; (keyfreq-autosave-mode 1)
 ;;; js2-mode
 ;; Said to be the best javascript mode
+(require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-hook 'js-mode-hook 'js2-minor-mode)
 ;;; Emmet-mode
@@ -303,7 +350,7 @@
 ;;; Mathematica
 (require 'mathematica)
 (setq mathematica-command-line "/Applications/Mathematics/Mathematica.app/Contents/MacOS/MathKernel")
-(define-key global-map (kbd "M-5") 'mathematica)
+(define-key global-map (kbd "M-7") 'mathematica)
 ;;; ESS
 (autoload 'ess-mode "ess-site" "Emacs Speaks Statistics" t)
 (autoload 'R-mode "ess-site" "Emacs Speaks Statistics" t)
@@ -427,9 +474,10 @@
 (defvar lch-cowsay-switch t "")
 (defun lch-toggle-cowsay ()
   (interactive)
-  (when lch-cowsay-switch
+  (when (and lch-cowsay-switch
+             (file-exists-p "/usr/texbin/cowsay"))
     (run-with-idle-timer 600 t 'lch-cowsay-fortune)))
-(lch-toggle-cowsay)
+;; (lch-toggle-cowsay)
 ;;; Paredit
 ;; (autoload 'enable-paredit-mode "paredit"
 ;;   "Turn on pseudo-structural editing of Lisp code."
@@ -466,7 +514,7 @@
   (when (executable-find ispell-program-name)
     (flyspell-mode +1)))
 (add-hook 'text-mode-hook 'lch-enable-flyspell)
-
+(setq ispell-personal-dictionary (concat emacs-var-dir "/ispell_dict"))
 ;;; AucTeX
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
@@ -551,8 +599,8 @@
 (global-undo-tree-mode 1)
 (define-key global-map (kbd "C-x u") 'undo-tree-visualize)
 (diminish 'undo-tree-mode)
-(setq undo-tree-visualizer-timestamps t)
-(setq undo-tree-visualizer-diff t)
+;; (setq undo-tree-visualizer-timestamps t)
+;; (setq undo-tree-visualizer-diff t)
 (setq undo-tree-save-history t
       undo-tree-history-directory-alist `(("." . ,(concat emacs-var-dir "undo-tree-history"))))
 
@@ -608,9 +656,10 @@
 (add-to-list 'ido-ignore-files "\\.DS_Store")
 
 ;;; Goto-last-change
-(require 'goto-last-change)
+(require 'goto-chg)
 (define-key global-map (kbd "C-x C-\\") 'goto-last-change)
 (define-key global-map (kbd "<f4> <f4>") 'goto-last-change)
+(define-key global-map (kbd "<f4> <f5>") 'goto-last-change-reverse)
 ;;; Desktop
 ;; Part of GNU Emacs
 (require 'desktop)
@@ -704,7 +753,7 @@
 ;;; PROVIDE
 (provide 'lch-elisp)
 (message "~~ lch-elisp: done.")
-
+
 ;; Local Variables:
 ;; mode: emacs-lisp
 ;; mode: outline-minor

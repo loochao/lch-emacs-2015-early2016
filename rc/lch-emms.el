@@ -158,7 +158,6 @@
       (goto-char original-point)
       (message "No previous mark track."))))
 
-
 (defun lch-emms-toggle-playing ()
   (interactive)
   (if emms-player-playing-p (emms-pause) (emms-start)))

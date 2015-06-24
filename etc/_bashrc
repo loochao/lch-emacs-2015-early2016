@@ -210,6 +210,36 @@ elif  [ -f /etc/profile.d/bash_completion ]; then
   . /etc/profile.d/bash_completion
 fi
 
-# export PATH="$PATH:$HOME/.rvm/bin:$HOME/.rvm/rubies/default/bin" # Add RVM to PATH for scripting
-export PYTHONPATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages"
+# turn hidden files on/off in Finder
+function hiddenOn() { defaults write com.apple.Finder AppleShowAllFiles YES ; }
+function hiddenOff() { defaults write com.apple.Finder AppleShowAllFiles NO ; }
+
+function ip() {
+ifconfig lo0 | grep 'inet ' | sed -e 's/:/ /' | awk '{print "lo0 : " $2}'
+ifconfig en0 | grep 'inet ' | sed -e 's/:/ /' | awk '{print "en0 (IPv4): " $2 " " $3 " " $4 " " $5 " " $6}'
+ifconfig en0 | grep 'inet6 ' | sed -e 's/ / /' | awk '{print "en0 (IPv6): " $2 " " $3 " " $4 " " $5 " " $6}'
+ifconfig en1 | grep 'inet ' | sed -e 's/:/ /' | awk '{print "en1 (IPv4): " $2 " " $3 " " $4 " " $5 " " $6}'
+ifconfig en1 | grep 'inet6 ' | sed -e 's/ / /' | awk '{print "en1 (IPv6): " $2 " " $3 " " $4 " " $5 " " $6}'
+}
+
+function kd() {
+/usr/bin/osascript -e 'tell application "Dock" to quit'
+}
+
+alias e='/Applications/Documents/Emacs.app/Contents/MacOS/Emacs'
+alias e24='/Applications/Documents/Emacs24.app/Contents/MacOS/Emacs'
+# no init configuration files
+alias eq='/Applications/Documents/Emacs.app/Contents/MacOS/Emacs -q'
+alias ed='/Applications/Documents/Emacs.app/Contents/MacOS/Emacs --debug-init'
+
+alias esp='/Applications/Documents/Emacs.app/Contents/MacOS/Emacs -q --load ~/Dropbox/.emacs.dz/lch-spacemacs.el'
+alias esp24='/Applications/Documents/Emacs24.app/Contents/MacOS/Emacs -q --load ~/Dropbox/.emacs.dz/lch-spacemacs.el'
+
+alias edp='/Applications/Documents/Emacs.app/Contents/MacOS/Emacs -q --load ~/Dropbox/.emacs.dz/lch-deepin.el'
+alias edp24='/Applications/Documents/Emacs24.app/Contents/MacOS/Emacs -q --load ~/Dropbox/.emacs.dz/lch-deepin.el'
+
+alias elv24='/Applications/Documents/Emacs24.app/Contents/MacOS/Emacs -q --load ~/Dropbox/.emacs.dz/lch-live.el'
+# export PATH="$HOME/.rvm/bin:$HOME/.rvm/rubies/default/bin:$PATH" # Add RVM to PATH for scripting
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# export PYTHONPATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages"
 # source "$HOME/.rvm/scripts/rvm"

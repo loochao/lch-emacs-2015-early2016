@@ -38,7 +38,6 @@
 (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
 (add-to-list 'auto-mode-alist '("README$" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-
 (setq org-tags-column -90)
 
 ;; (define-key global-map (kbd "C-c l") 'org-store-link)
@@ -204,6 +203,7 @@
 ;; %t          timestamp, date only
 ;; %T          timestamp with date and time
 ;; %u, %U      like the above, but inactive timestamps
+;; (require 'org-download)
 
 (define-key global-map (kbd "M-0") 'org-capture)
 
@@ -242,10 +242,35 @@
 (setq org-agenda-time-grid '((daily require-timed)
                              "________"
                              (0800 1000 1200 1400 1600 1800 2000 2200)))
+(require 'evil)
+(require 'evil-leader)
+(defun lch-todo-a () (interactive) (org-agenda "" "1"))
+(defun lch-todo-a-idle ()
+  (interactive)
+  (if (yes-or-no-p "Agenda?") (lch-todo-a)))
+
+(evil-leader/set-key "a" 'lch-todo-a)
+(defun lch-todo-b () (interactive) (org-agenda "" "2"))
+(evil-leader/set-key "b" 'lch-todo-b)
+(defun lch-todo-r () (interactive) (org-agenda "" "3"))
+(evil-leader/set-key "r" 'lch-todo-b)
+
+(defun lch-todo-f () (interactive) (org-agenda "" "4"))
+(evil-leader/set-key "f" 'lch-todo-f)
+
+(run-with-idle-timer 300 t 'lch-todo-a)
+;; (run-with-idle-timer 600 t  'lch-todo-b)
 
 (define-key global-map (kbd "M-8") 'org-agenda)
+
+(setq lch-agenda-path (concat dropbox-path "/Org/org/Agenda"))
+(setq TODO-A-txt (concat lch-agenda-path "/TODO-A.txt"))
+(setq TODO-B-txt (concat lch-agenda-path "/TODO-B.txt"))
+(setq TODO-R-txt (concat lch-agenda-path "/TODO-R.txt"))
+(setq TODO-ALL-txt (concat lch-agenda-path "/TODO-ALL.txt"))
+
 (setq org-agenda-custom-commands
-      '(
+      `(
         ("=" "ALL" tags "#A|DAILY|DUALLY|WEEKLY|RECUR|AUDIO|CAR|MOBILE|#B|#C|IDEA")
         ("-" agenda "DAY/FOCUS" ((org-agenda-ndays 1)))
          ;; ("1m" "MOBILE" tags "MOBILE/ACTIVE")
@@ -262,7 +287,7 @@
           (tags "DAILY&T|DUALLY&T|WEEKLY/ACTIVE")
           (tags "MOBILE|AUDIO|CAR/ACTIVE")
           (tags "DAILY|DUALLY/ACTIVE")
-          ))
+          ) nil (,TODO-ALL-txt))
         ("1" "ACTIVE TODO-#A"
          (
           ;; (tags "PLAN/ACTIVE" ((org-agenda-overriding-header
@@ -278,14 +303,14 @@
                                   "\n;>--------AGENDA--------<;")))
           (tags "#A/PENDING" ((org-agenda-overriding-header
                                ";>--------PENDING #A TASKs--------<;")))
-          ))
+          ) nil (,TODO-A-txt))
          ("2" "ACTIVE BLOCKS"
           (
            (tags "MOBILE|AUDIO|CAR/ACTIVE")
            (tags "DAILY&T|DUALLY&T|WEEKLY/ACTIVE")
            (tags "#B|OBTAIN/ACTIVE")
            ;; (tags "#C/ACTIVE")
-           )
+           ) nil (,TODO-B-txt)
           )
          ("3" "RECUR ACTIVE"
           (
@@ -293,11 +318,15 @@
            (tags "DUALLY/ACTIVE")
            (tags "WEEKLY/ACTIVE")
            ;; (tags "RECUR/ACTIVE")
-           ))
-         ;; ("4" "RECUR TOFNSH"
-         ;;  (
-         ;;   (tags "DAILY|DUALLY|WEEKLY/TOFNSH")
-         ;;   ))
+           )
+          nil (,TODO-R-txt)
+          )
+         ("4" "RECUR TOFNSH"
+          (
+           (tags "DAILY|DUALLY|WEEKLY/ACTIVE" ""
+	    ((org-agenda-skip-function
+		'(org-agenda-skip-entry-if 'regexp "ACTIVE")))
+           )))
          ;; ("5" "FUN ITEMS" tags "FUN")
          ("0" .  "MISCITEMS")
          ("01" "TODO-#A QUEUE" tags "#A-ACTIVE")

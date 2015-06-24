@@ -1,3 +1,4 @@
+
 ;;-*- coding:utf-8; mode:emacs-lisp; -*-
 
 ;;; UI
@@ -72,7 +73,10 @@
 
 (require 'color-theme)
 (require 'color-theme-loochao)
+(require 'color-theme-lazycat)
+(color-theme-lazycat)
 (color-theme-loochao)
+
 (define-key global-map (kbd "<f11> <f2>")
   (lambda () (interactive) "" (color-theme-loochao) (message "Color-theme-loochao loaded.")))
 
@@ -85,8 +89,7 @@
 (when lch-win32-p
   ;; (set-face-attribute 'default nil :height 160)
   (set-default-font "Courier New:pixelsize=24"))
-
-
+(if lch-mac-p (set-default-font "Monaco New:pixelsize=18"))
 ;;; Tabbar
 (require 'tabbar)
 (tabbar-mode 1)
@@ -113,42 +116,45 @@
  tabbar-mode-map)
 
 ;;; Linum
-(dolist (hook (list
-               'c-mode-hook
-               'emacs-lisp-mode-hook
-               'lisp-interaction-mode-hook
-               'lisp-mode-hook
-               'emms-playlist-mode-hook
-               'java-mode-hook
-               'asm-mode-hook
-               'haskell-mode-hook
-               'rcirc-mode-hook
-               'emms-lyrics-mode-hook
-               'erc-mode-hook
-               'sh-mode-hook
-               'makefile-gmake-mode-hook
-               'python-mode-hook
-               'js2-mode-hook
-               'js-mode-hook
-               'html-mode-hook
-               'css-mode-hook
-               'apt-utils-mode-hook
-               'tuareg-mode-hook
-               'go-mode-hook
-               'coffee-mode-hook
-               'qml-mode-hook
-               'markdown-mode-hook
-               'slime-repl-mode-hook
-               'package-menu-mode-hook
-               'cmake-mode-hook
-               'php-mode-hook
-               'web-mode-hook
-               'coffee-mode-hook
-               'sws-mode-hook
-               'jade-mode-hook
-               'enh-ruby-mode-hook
-               ))
-  (add-hook hook (lambda () (linum-mode 1))))
+;; Have you enabled linum-mode for example? That's famous for slowing everything
+;; to a crawl, nlinum-mode is better.
+
+;; (dolist (hook (list
+;;                'c-mode-hook
+;;                'emacs-lisp-mode-hook
+;;                'lisp-interaction-mode-hook
+;;                'lisp-mode-hook
+;;                'emms-playlist-mode-hook
+;;                'java-mode-hook
+;;                'asm-mode-hook
+;;                'haskell-mode-hook
+;;                'rcirc-mode-hook
+;;                'emms-lyrics-mode-hook
+;;                'erc-mode-hook
+;;                'sh-mode-hook
+;;                'makefile-gmake-mode-hook
+;;                'python-mode-hook
+;;                'js2-mode-hook
+;;                'js-mode-hook
+;;                'html-mode-hook
+;;                'css-mode-hook
+;;                'apt-utils-mode-hook
+;;                'tuareg-mode-hook
+;;                'go-mode-hook
+;;                'coffee-mode-hook
+;;                'qml-mode-hook
+;;                'markdown-mode-hook
+;;                'slime-repl-mode-hook
+;;                'package-menu-mode-hook
+;;                'cmake-mode-hook
+;;                'php-mode-hook
+;;                'web-mode-hook
+;;                'coffee-mode-hook
+;;                'sws-mode-hook
+;;                'jade-mode-hook
+;;                'enh-ruby-mode-hook
+;;                ))
+;;   (add-hook hook (lambda () (linum-mode 1))))
 
 ;; Senu
 ;; line number
@@ -163,7 +169,7 @@
   (interactive "p")
   (let (colorList colorToUse currentState nextState)
     (setq colorList (list
-                     "MistyRose3"  "Wheat3" "Cornsilk"))
+                     "Black" "MistyRose3"  "Wheat3" "Cornsilk"))
     ;; "Wheat2" "OliveDrab" "YellowGreen"
     (setq currentState (if (get 'lch-cycle-fg-color 'state) (get 'lch-cycle-fg-color 'state) 0))
     (setq nextState (% (+ currentState (length colorList) num) (length colorList)))
@@ -192,7 +198,7 @@ See `cycle-color'."
   (interactive "p")
   (let (colorList colorToUse currentState nextState)
     (setq colorList (list
-                     "Black" "#454545" "DarkSeaGreen" "#dca3ac"))
+                     "Black" "#fdf6e3" "DarkSeaGreen" "#dca3ac"))
     ;; "DarkSlateGray"
     (setq currentState (if (get 'lch-cycle-bg-color 'state) (get 'lch-cycle-bg-color 'state) 0))
     (setq nextState (% (+ currentState (length colorList) num) (length colorList)))
@@ -230,7 +236,6 @@ See `cycle-color'."
   (redraw-frame (selected-frame)))
 (define-key global-map (kbd "<f11> 4") 'lch-frame-pink)
 
-
 ;;; Winner
 (autoload 'winner-mode "winner" t)
 (winner-mode 1)
@@ -338,18 +343,33 @@ See `cycle-color'."
 (when (and (>= emacs-major-version 24) (>= emacs-minor-version 3))
     (require 'powerline)
     )
-(custom-set-faces
- `(powerline-evil-normal-face ((t (:foreground "White"  :background "Darkred"))))
- `(powerline-evil-insert-face ((t (:foreground "Black" :background "Darkred"))))
- )
+;; (custom-set-faces
+;;  `(powerline-evil-normal-face ((t (:foreground "White"  :background "Darkred"))))
+;;  `(powerline-evil-insert-face ((t (:foreground "White" :background "#f8b78e"))))
+;;  )
+
+(defun lch-evil-modeline-change (default-color)
+  "changes the modeline color when the evil mode changes"
+  (let ((color (cond ((evil-insert-state-p) '("Darkred" . "#000000"))
+                     ((evil-insert-state-p) '("#252525" . "#ffffff"))
+                     ;; ((evil-visual-state-p) '("#282828" . "#ffffff"))
+                     ;; ((evil-visual-state-p) '("#f8b78e" . "black"))
+                     ((evil-normal-state-p) default-color)
+                     (t '("Darkred" . "#ffffff")))))
+    (set-face-background 'mode-line (car color))
+    (set-face-foreground 'mode-line (cdr color))))
+
+(lexical-let ((default-color (cons (face-background 'mode-line)
+                                   (face-foreground 'mode-line))))
+  (add-hook 'post-command-hook (lambda () (lch-evil-modeline-change default-color))))
 
 ;;; Golden-ratio
-(require 'golden-ratio)
-(golden-ratio-mode 1)
-(lch-diminish golden-ratio-mode " ⊞" " G")
+;; (require 'golden-ratio)
+;; (golden-ratio-mode 1)
+;; (lch-diminish golden-ratio-mode " ⊞" " G")
 
-(setq golden-ratio-exclude-modes '("one-key-mode"))
-(setq golden-ratio-exclude-buffer-names '("*Backtrace*" "*One-Key*"))
+;; (setq golden-ratio-exclude-modes '("one-key-mode"))
+;; (setq golden-ratio-exclude-buffer-names '("*Backtrace*" "*One-Key*" "*guide-key*"))
 ;;; PROVIDE
 (provide 'lch-ui)
 

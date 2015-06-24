@@ -2,11 +2,12 @@
 ;; Automatically generated file!!! DO NOT EDIT!!!
 
 (setq url-cookie-storage
- '(("music.163.com"
-  [url-cookie "usertrack" "ezq0alSvSDWiwjosRsKCAg==" "09 Jan 16 03:17:09 [GMT]" "/" "music.163.com" nil])
- (".xiami.com"
-  [url-cookie "httponly" nil "09-Feb-2015 21:00:00.00 GMT" "/" ".xiami.com" nil]
-  [url-cookie "_unsign_token" "a7c49bbc4f3ee936ea7e1fecc194a87f" "09-Feb-2015 21:00:00.00 GMT" "/" ".xiami.com" nil]))
+ '((".google.com"
+  [url-cookie "PREF" "ID=76df94fb4705c450:FF=0:TM=1432095574:LM=1432095574:S=Io40KKXn0_GFynxN" "19-May-2017 04:19:34.00 GMT" "/" ".google.com" nil]
+  [url-cookie "NID" "67=Hx-rn1qtS7Vfmw5sizNDH6EIcs7RmfyxvwDsS4OXpoXzbJQys_wd_FFDkCf0fSJvwL9fjwPz9GHzGqUJBxAr7k0-JEeYKHcqg4V3fCJgvJ-Eis19__ujsxQJHRAQlYHZ" "19-Nov-2015 04:19:34.00 GMT" "/" ".google.com" nil]
+  [url-cookie "HttpOnly" nil "19-Nov-2015 04:19:34.00 GMT" "/" ".google.com" nil])
+ ("music.163.com"
+  [url-cookie "usertrack" "ezq0alSvSDWiwjosRsKCAg==" "09 Jan 16 03:17:09 [GMT]" "/" "music.163.com" nil]))
 )
 (setq url-cookie-secure-storage
  'nil)

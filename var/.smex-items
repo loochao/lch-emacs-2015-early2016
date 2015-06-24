@@ -1,9 +1,9 @@
 
 ;; ----- smex-history -----
 (
- R
+ eval-buffer
+ load-theme
  cd
- tt
  5x5
  arp
  dbx
@@ -12,5 +12,6 @@
 
 ;; ----- smex-data -----
 (
- 
+ (load-theme . 1)
+ (eval-buffer . 3)
 )

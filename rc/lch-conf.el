@@ -24,6 +24,7 @@
 (require 'lch-elisp)
 (require 'lch-helm)
 (require 'lch-evil)
+(require 'lch-hydra)        ;; hydra after evil since it called evil-leader
 (require 'lch-ibuffer)
 (require 'lch-auto-complete)
 (require 'lch-dired)

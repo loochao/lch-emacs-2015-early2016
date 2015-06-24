@@ -69,7 +69,7 @@
 ;; (helm-mode 1)
 (define-key global-map (kbd "M-SPC") 'helm-dwim)
 (define-key global-map (kbd "C-c y") 'helm-c-yas-complete)
-
+;; (define-key global-map (kbd "M-x") 'helm-M-x)
 (eval-after-load 'helm
   '(progn
          (define-key helm-map (kbd "M-i")			'helm-previous-line)

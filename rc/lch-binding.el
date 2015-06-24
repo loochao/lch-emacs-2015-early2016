@@ -26,9 +26,9 @@
 ;;; Guide-key
 (require 'guide-key)
 (setq guide-key/guide-key-sequence
-      '("," "SPC" "g" "C-x" "C-c" "C-z" "C-x r"
+      '("," "SPC" "g" "C-c" "C-z" "C-x r"
         "<f1>" "<f2>" "<f3>" "<f4>" "<f5>" "<f6>"
-        "<f7>" "<f8>" "<f9>" "<f10>" "<f11>" "<f12>"))
+        "<f7>" "<f8>" "<f11>" "<f12>"))
 (guide-key-mode 1)
 (lch-diminish guide-key-mode " Ⓚ" " K")
 ;;; Mouse
@@ -116,9 +116,9 @@
         ;; (("`" . "menu-bar") . menu-bar)                                      ;; => emacs-defaults
         (("1" . "shell") . shell)                                               ;; => lch-binding.el
         (("2" . "lch-term") . lch-term)                                         ;; => lch-util.el
-        (("3" . "lch-matlab") . lch-matlab)                                     ;; => lch-util.el
-        (("4" . "lch-python") . lch-python)                                     ;; => lch-util.el
-        (("5" . "lch-ruby") . lch-ruby)                                         ;; => lch-elisp.el
+        (("3" . "lch-python") . lch-python)                                     ;; => lch-util.el
+        (("4" . "lch-ruby") . lch-ruby)                                         ;; => lch-elisp.el
+        (("5" . "lch-matlab") . lch-matlab)                                     ;; => lch-util.el
         (("6" . "lch-R") . lch-R)                                               ;; => lch-util.el
         (("7" . "lch-mathematica") . lch-mathematica)                           ;; => lch-util.el
         ;; (("2" . "multi-term") . multi-term-try-create)                       ;; => lch-binding.el
@@ -559,8 +559,8 @@
 (define-key global-map (kbd "<f9> i s") (lambda() (interactive) (find-file (concat org-private-dir "/iStuff.org"))))
 (define-key global-map (kbd "<f9> i p") (lambda() (interactive) (find-file (concat org-private-dir "/iPrv.org"))))
 
-(define-key global-map (kbd "<f9> l") (lambda() (interactive) (find-file (concat org-source-dir "/Life.org"))))
-(define-key global-map (kbd "<f9> L") (lambda() (interactive) (find-file (concat dropbox-path "/Library/Library.bib"))))
+(define-key global-map (kbd "<f9> l") (lambda() (interactive) (find-file (concat dropbox-path "/Library/Library.bib"))))
+(define-key global-map (kbd "<f9> L") (lambda() (interactive) (find-file (concat org-source-dir "/Life.org"))))
 (define-key global-map (kbd "<f9> C-l") (lambda() (interactive) (find-file (concat org-source-dir "/Library.org"))))
 (define-key global-map (kbd "<f9> m") (lambda() (interactive) (find-file (concat org-source-dir "/Methodology.org"))))
 (define-key global-map (kbd "<f9> M") (lambda() (interactive) (find-file (concat org-source-dir "/Mathematics.org"))))
@@ -599,6 +599,9 @@
 (define-key global-map (kbd "<f10> 3") (lambda() (interactive) (dired "~/Downloads")))
 (define-key global-map (kbd "<f10> 4") (lambda() (interactive) (dired emacs-lisp-dir)))
 (define-key global-map (kbd "<f10> 5") (lambda() (interactive) (dired emacs-lib-dir)))
+;; various emacs.d from web
+(defvar emacs-dz-dir (concat dropbox-path "/.emacs.dz"))    
+(define-key global-map (kbd "<f10> 6") (lambda() (interactive) (dired emacs-dz-dir)))
 
 (define-key global-map (kbd "<f10> b") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-binding.el"))))
 (define-key global-map (kbd "<f10> B") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-bmk.el"))))
@@ -609,6 +612,7 @@
 (define-key global-map (kbd "<f10> E") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-evil.el"))))
 (define-key global-map (kbd "<f10> C-e") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-env.el"))))
 (define-key global-map (kbd "<f10> h") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-helm.el"))))
+(define-key global-map (kbd "<f10> H") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-hydra.el"))))
 (define-key global-map (kbd "<f10> i") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-init.el"))))
 (define-key global-map (kbd "<f10> n") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-network.el"))))
 (define-key global-map (kbd "<f10> o") (lambda() (interactive) (find-file (concat emacs-dir "/rc/lch-org.el"))))
@@ -666,8 +670,8 @@
 (setq one-key-menu-f10s-alist
       '(
         (("<f10>" . "remote-notes-menu") . one-key-menu-rmt)
-        (("c" . "code") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Programming")))
-        (("C" . "code2") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Programming_INBOX")))
+        (("c" . "code") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Code")))
+        (("C" . "code2") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Code_B")))
         (("d" . "downloads") . (lambda () (interactive) (dired-x-find-file "~/Downloads")))
         (("e" . ".emacs.lib") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/.emacs.lib/")))
         (("f" . "flv") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Flv/")))
@@ -682,8 +686,9 @@
         (("P" . "paper") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Research/Papers2/Articles/")))
         (("r" . "research") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Research/")))
         (("s" . "snippet") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/.emacs.d/lib/snippets/lch/")))
-        (("v" . "video") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Video/")))
-        (("V" . "volumes") . (lambda () (interactive) (dired-x-find-file "/Volumes/")))
+        (("t" . "thesis") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Research/Thesis/")))
+        (("v" . "volumes") . (lambda () (interactive) (dired-x-find-file "/Volumes/")))
+        (("V" . "video") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Video/")))
         ))
 
 (defun one-key-menu-f10s ()
@@ -777,7 +782,6 @@
 (provide 'lch-binding)
 (message "~~ lch-binding: done.")
 
-
 ;; Local Variables:
 ;; mode: emacs-lisp
 ;; mode: outline-minor

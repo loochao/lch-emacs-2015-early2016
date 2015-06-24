@@ -24,13 +24,17 @@
 (require 'dired+)
 (require 'dired-details)
 
+;; When dired-dwim-target is t, split windows vertical,
+;; 'C' will automatically use the other window as target.
+(setq dired-dwim-target t)
+
 (setq dired-recursive-copies t)
 (setq dired-recursive-copies 'always)                  ;; No ask when copying recursively.
 (setq dired-recursive-deletes t)
 (setq dired-recursive-deletes 'always)                 ;; No ask when delete recursively.
 
 (setq dired-use-ls-dired nil)
-(toggle-dired-find-file-reuse-dir 1)                   ;; From dired+
+(toggle-diredp-find-file-reuse-dir 1)                  ;; From dired+
 (setq dired-details-hidden-string "[ ... ] ")
 (setq dired-listing-switches "-aluh")                  ;; Parameters passed to ls
 (setq directory-free-space-args "-Pkh")                ;; Options for space
@@ -45,7 +49,7 @@
 
 ;; Dired-single
 (require 'dired-single)
-(define-key global-map (kbd "C-<f9>") 'dired-single-magic-buffer)
+;; (define-key global-map (kbd "C-<f9>") 'dired-single-magic-buffer)
 
 ;; Wdired
 ;; wdired is Part of GNU Emacs.
@@ -105,7 +109,7 @@
                    (aref v 1) (aref v 2)))
        (format "cd '%s'\n" current-dir)))))
 
-;;; Utils
+;;; Dired-Utils
 (defun dired-open-mac ()
   (interactive)
   (let ((file-name (dired-get-file-for-visit)))
@@ -132,6 +136,18 @@ Otherwise, just `dired-up-directory'."
       (kill-buffer old-buffer))))
 (define-key dired-mode-map "'" 'dired-up-directory-single)
 (define-key dired-mode-map (kbd "C-6") 'dired-up-directory-single)
+
+;; Copy from obaoba.
+(defun lch-dired-get-size ()
+  (interactive)
+  (let ((files (dired-get-marked-files)))
+    (with-temp-buffer
+      (apply 'call-process "/usr/bin/du" nil t nil "-sch" files)
+      (message
+       "Size of all marked files: %s"
+       (progn
+         (re-search-backward "\\(^[ 0-9.,]+[A-Za-z]+\\).*total$")
+         (match-string 1))))))
 
 ;;; Color-by-ext
 (let ((cmd "dircolors")
@@ -250,10 +266,14 @@ e.g., (xwl-dircolors-get-escape-seq \"*.gz\") => \"01;31\""
                                (dired-move-to-filename)))
                       nil (0 dired-ignored-face))))))
 
+;;; Dired+
+(set-face-attribute 'diredp-dir-heading nil
+                    :foreground "Cyan"
+                    :background "#2C2C2C")
 ;;; Keymap
 (lch-set-key
  '((";"              . dired-view-minor-mode-toggle)
-   ("?"              . dired-get-size)
+   ("?"              . lch-dired-get-size)
    ("f"              . dired-single-buffer)
    ("<return>"       . dired-single-buffer)
    ("<RET>"          . dired-single-buffer)

@@ -1,5 +1,4 @@
 ;;-*- coding:utf-8; mode:emacs-lisp; -*-
-
 ;;; UTIL
 ;;
 ;; Copyright (c) 2006-2013 Charles LU
@@ -12,9 +11,22 @@
 ;;
 ;; Commentary:
 ;; Settings for interface
-
 ;;; CODE
 (message "=> lch-util: loading...")
+;;; Find-all-files
+(defun find-all-files (dir)
+  "Open all files and sub-directories below the given directory."
+  (interactive "DBase directory: ")
+  (let* ((list (directory-files dir t "^[^.]"))
+         (files (remove-if 'file-directory-p list))
+         (dirs (remove-if-not 'file-directory-p list)))
+    (dolist (file files)
+      (find-file-noselect file))
+    (dolist (dir dirs)
+      (find-file-noselect dir)
+      (find-all-files dir))
+    (message "ALL files in %s loaded in background." dir)))
+;; (define-key global-map (kbd "C-c f") 'find-all-files)
 ;;; Strip-blank-lines
 (defun strip-blank-lines()
   "Strip all blank lines in select area of buffer,
@@ -23,7 +35,6 @@ if not select any area, then strip all blank lines of buffer."
   (strip-regular-expression-string "^[ \t]*\n")
   (message "Have strip blanks line. Wakaka."))
 (define-key global-map (kbd "<f4> s") 'strip-blank-lines)
-
 (defun strip-regular-expression-string (regular-expression)
   "Strip all string that match REGULAR-EXPRESSION in select area of buffer.
 If not select any area, then strip current buffer"
@@ -41,27 +52,22 @@ If not select any area, then strip current buffer"
 ;;; Smart-beginning-of-line
 (defun lch-smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
-
 Move point to the first non-whitespace character on this line.
 If point is already there, move to the beginning of the line.
 Effectively toggle between the first non-whitespace character and
 the beginning of the line.
-
 If ARG is not nil or 1, move forward ARG - 1 lines first.  If
 point reaches the beginning or end of the buffer, stop there."
   (interactive "^p")
   (setq arg (or arg 1))
-
   ;; Move lines first
   (when (/= arg 1)
     (let ((line-move-visual nil))
       (forward-line (1- arg))))
-
   (let ((orig-point (point)))
     (back-to-indentation)
     (when (= orig-point (point))
       (move-beginning-of-line 1))))
-
 ;; remap C-a to `smarter-move-beginning-of-line'
 (global-set-key [remap move-beginning-of-line]
                 'lch-smarter-move-beginning-of-line)
@@ -90,27 +96,21 @@ point reaches the beginning or end of the buffer, stop there."
 ;; to use in dayjob, etc. But when you kill emacs, or it dies, that buffer
 ;; disappears. This code will save the Scratch buffer every five minutes and
 ;; restores it on Emacs startup.
-
 (defvar persistent-scratch-file (concat emacs-var-dir "/emacs-persistent-scratch"))
-
 (defun save-persistent-scratch ()
   "Write the contents of *scratch* to the file name 'Persistent-scratch-file'"
   (with-current-buffer (get-buffer-create "*scratch*")
     (write-region (point-min) (point-max) persistent-scratch-file)))
-
 (defun load-persistent-scracth ()
   (if (file-exists-p persistent-scratch-file)
       (with-current-buffer (get-buffer-create "*scratch*")
         (delete-region (point-min) (point-max))
         (insert-file-contents persistent-scratch-file))))
-
 (push #'load-persistent-scracth after-init-hook)
 (push #'save-persistent-scratch kill-emacs-hook)
-
 (run-with-idle-timer 300 t 'save-persistent-scratch)
 ;;; Invoke-interactives
 (define-key global-map (kbd "M-1") 'shell)
-
 (defun lch-term ()
   "Switch to terminal. Launch if nonexistent."
   (interactive)
@@ -119,16 +119,7 @@ point reaches the beginning or end of the buffer, stop there."
     (ansi-term "/bin/bash"))
   (get-buffer-process "*ansi-term*"))
 (defalias 'tt 'lch-term)
-
 (define-key global-map (kbd "M-2") 'lch-term)
-
-(defun lch-matlab ()
-  (interactive)
-      (if (get-buffer "*MATLAB*")
-          (switch-to-buffer "*MATLAB*")
-        (if (yes-or-no-p "Start Matlab?") (matlab-shell))))
-(define-key global-map (kbd "M-3") 'lch-matlab)
-
 (defun lch-python ()
   (interactive)
   (if (get-buffer "*IPython*")
@@ -137,16 +128,25 @@ point reaches the beginning or end of the buffer, stop there."
       (ipython)
       (switch-to-buffer "*IPython*")
       (delete-other-windows))))
-(define-key global-map (kbd "M-4") 'lch-python)
-
-;; M-5 Ruby
+(define-key global-map (kbd "M-3") 'lch-python)
+(defun lch-ruby ()
+  (interactive)
+  (if (get-buffer "*Ruby*")
+      (switch-to-buffer "*Ruby*")
+    (if (yes-or-no-p "Start Ruby?") (inf-ruby))))
+(define-key global-map (kbd "M-4") 'lch-ruby)
+(defun lch-matlab ()
+  (interactive)
+      (if (get-buffer "*MATLAB*")
+          (switch-to-buffer "*MATLAB*")
+        (if (yes-or-no-p "Start Matlab?") (matlab-shell))))
+(define-key global-map (kbd "M-5") 'lch-matlab)
 (defun lch-R ()
   (interactive)
   (if (get-buffer "*R*")
       (switch-to-buffer "*R*")
-    (R)))
+    (if (yes-or-no-p "Start R?") (R))))
 (define-key global-map (kbd "M-6") 'lch-R)
-
 (defun lch-mathematica ()
   (interactive)
       (if (get-buffer "*Mathematica*")
@@ -154,7 +154,6 @@ point reaches the beginning or end of the buffer, stop there."
         (if (yes-or-no-p "Start Mathematica?")
             (mathematica))))
 (define-key global-map (kbd "M-7") 'lch-mathematica)
-
 ;; Named-term
 ;; What I do when I need more than one terminal Then I just name one: since the
 ;; default one is supposed to be named *ansi-term*, if I create one named
@@ -165,14 +164,12 @@ point reaches the beginning or end of the buffer, stop there."
 (defun lch-named-term (name)
   (interactive "sName: ")
   (ansi-term "/bin/bash" name))
-
 ;; (defun lch-create-switch-term ()
 ;;   (interactive)
 ;;   (if (not (get-buffer "*ansi-term*"))
 ;;       (ansi-term "/usr/texbin/bash")
 ;;     (switch-to-buffer "*ansi-term*")))
 ;; (define-key global-map (kbd "M-2") 'lch-create-switch-term)
-
 ;;; View-clipboard
 (defun view-clipboard ()
   (interactive)
@@ -203,12 +200,10 @@ point reaches the beginning or end of the buffer, stop there."
     ("６" "6") ("７" "7") ("８" "8") ("９" "9") ("０" "0")
     ("－" "-")
     ))
-
 (defun lch-punctuate-buffer ()
   (interactive)
   (mapc 'lch-punctuate lch-punctuate-list))
 (define-key global-map (kbd "<f4> p") 'lch-punctuate-buffer)
-
 ;;; Interaction-with-macosx
 (defun lch-open-ppt-icon ()
    (interactive)
@@ -222,7 +217,6 @@ point reaches the beginning or end of the buffer, stop there."
          )
    (do-applescript apscript)
    )
-
 ;; Open-remotes-with-finder
 (defun lch-open-libns-finder ()
   "Make iTunes either pause or play"
@@ -235,7 +229,6 @@ point reaches the beginning or end of the buffer, stop there."
         )
   (do-applescript apscript)
   )
-
 (defun lch-open-libns-web-finder ()
   "Make iTunes either pause or play"
   (interactive)
@@ -247,8 +240,6 @@ point reaches the beginning or end of the buffer, stop there."
         )
   (do-applescript apscript)
   )
-
-
 (defun lch-open-pu-finder ()
   "Make iTunes either pause or play"
   (interactive)
@@ -260,13 +251,11 @@ point reaches the beginning or end of the buffer, stop there."
         )
   (do-applescript apscript)
   )
-
 ;; Open-with-textmate
 (defun lch-open-with-mate ()
   (interactive)
   (shell-command (format "mate %s" (buffer-file-name))))
 (define-key global-map (kbd "<f1> o") 'lch-open-with-mate)
-
 ;; Start-file-browser
 (defun lch-start-file-browser ()
   "Open current pwd with file browser.
@@ -279,7 +268,6 @@ point reaches the beginning or end of the buffer, stop there."
     (when lch-mac-p (shell-command (format "open -a Finder %s" mydir)))
     ))
 (define-key global-map (kbd "<f9> <f9>") 'lch-start-file-browser)
-
 ;; Start-terminal
 (defun lch-start-terminal ()
   "Open current pwd with terminal.
@@ -299,19 +287,16 @@ end tell" mydir)))
     ))
 (define-key global-map (kbd "<f1> t") 'lch-start-terminal)
 (define-key global-map (kbd "<f1> <f2>") 'lch-start-terminal)
-
 ;;; Buffer-editing
 (defun lch-indent-buffer ()
   "Indent the currently visited buffer."
   (interactive)
   (indent-region (point-min) (point-max)))
-
 (defun lch-clear-empty-lines ()
   (interactive)
   (let ((line (buffer-substring (point-at-bol) (point-at-eol))))
     (when (string-match "^ +$" line)
       (delete-region (point-at-bol) (point-at-eol)))))
-
 (defun lch-indent-region-or-buffer ()
   "Indent a region if selected, otherwise the whole buffer."
   (interactive)
@@ -324,18 +309,15 @@ end tell" mydir)))
         (lch-indent-buffer)
         (message "Indented buffer.")))))
 (define-key global-map (kbd "C-c i") 'lch-indent-region-or-buffer)
-
 (defun lch-indent-defun ()
   "Indent the current defun."
   (interactive)
   (save-excursion
     (mark-defun)
     (indent-region (region-beginning) (region-end))))
-
 (defun lch-untabify-buffer ()
   (interactive)
   (untabify (point-min) (point-max)))
-
 (defun lch-cleanup-buffer ()
   "Perform a bunch of operations on the whitespace content of a buffer."
   (interactive)
@@ -344,7 +326,6 @@ end tell" mydir)))
   (whitespace-cleanup)
   (message "Buffer is cleaned. No tab, no whitespace. With correct indentation."))
 (define-key global-map (kbd "<f4> c") 'lch-cleanup-buffer)
-
 ;;; Sudo-edit
 (defun lch-sudo-edit (&optional arg)
   (interactive "p")
@@ -363,7 +344,6 @@ end tell" mydir)))
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 (define-key global-map (kbd "<f4> 3") 'lch-copy-file-name-to-clipboard)
-
 (defun lch-rename-file-and-buffer ()
   "Renames current buffer and file it is visiting."
   (interactive)
@@ -380,7 +360,6 @@ end tell" mydir)))
                (set-visited-file-name new-name)
                (set-buffer-modified-p nil)))))))
 (define-key global-map (kbd "<f4> r") 'lch-rename-file-and-buffer)
-
 (defun lch-delete-file-and-buffer ()
   "Kill the current buffer and deletes the file it is visiting."
   (interactive)
@@ -393,18 +372,26 @@ end tell" mydir)))
           (message "Deleted file %s" filename)
           (kill-buffer))))))
 (define-key global-map (kbd "<f4> d") 'lch-delete-file-and-buffer)
+;; Another definition of delete current buffer and file.
+;; ----
+;; (defun delete-this-file ()
+;;   "Delete the current file, and kill the buffer."
+;;   (interactive)
+;;   (or (buffer-file-name) (error "No file is currently being edited"))
+;;   (when (yes-or-no-p (format "Really delete '%s'?"
+;;                              (file-name-nondirectory buffer-file-name)))
+;;     (delete-file (buffer-file-name))
+;;     (kill-this-buffer)))
 ;;; Kill-buffer
 (defun kill-current-mode-buffers ()
   "Kill all buffers that major mode same with current mode."
   (interactive)
   (kill-special-mode-buffers-internal major-mode))
-
 (defun kill-current-mode-buffers-except-current ()
   "Kill all buffers that major mode same with current mode.
 And don't kill current buffer."
   (interactive)
   (kill-special-mode-buffers-internal major-mode t))
-
 (defun kill-special-mode-buffers ()
   "Kill all buffers that major mode that user given."
   (interactive)
@@ -414,11 +401,9 @@ And don't kill current buffer."
       (unless (member (symbol-name major-mode) mode-list)
         (add-to-ordered-list 'mode-list (symbol-name major-mode))))
     (kill-special-mode-buffers-internal (intern-soft (completing-read "Mode: " mode-list)))))
-
 (defun kill-org-mode-buffers ()
   (interactive)
   (kill-special-mode-buffers-internal 'org-mode))
-
 (defun kill-special-mode-buffers-internal (mode &optional except-current-buffer)
   "Kill all buffers that major MODE same with special.
 If option EXCEPT-CURRENT-BUFFER is `non-nil',
@@ -434,7 +419,6 @@ kill all buffers with MODE except current buffer."
         (incf count)
         (kill-buffer buffer)))
     (message "Killed %s buffer%s" count (if (> count 1) "s" ""))))
-
 (defun kill-all-buffers-except-current ()
   "Kill all buffers except current buffer."
   (interactive)
@@ -443,17 +427,14 @@ kill all buffers with MODE except current buffer."
       (set-buffer buffer)
       (unless (eq current-buf buffer)
         (kill-buffer buffer)))))
-
 (defun kill-all-buffers ()
   "kill all buffers, leaving *scratch* only"
   (interactive)
   (mapcar (lambda (x) (kill-buffer x))
           (buffer-list))
   (delete-other-windows))
-
 (defvar one-key-menu-kill-alist nil
   "The `one-key' menu alist for KILL.")
-
 (setq one-key-menu-kill-alist
       '(
         (("M-k" . "kill-all-buffers") . kill-all-buffers)
@@ -463,13 +444,11 @@ kill all buffers with MODE except current buffer."
         (("o" . "kill-org-mode-buffers") . kill-org-mode-buffers)
         (("s" . "kill-special-mode-buffers") . kill-special-mode-buffers)
         ))
-
 (defun one-key-menu-kill ()
   "The `one-key' menu for KILL."
   (interactive)
   (one-key-menu "KILL" one-key-menu-kill-alist t))
 (define-key global-map (kbd "M-k") 'one-key-menu-kill)
-
 ;;; Lch-emacs-tips
 (defvar lch-tips
   '(
@@ -499,7 +478,6 @@ kill all buffers with MODE except current buffer."
   (message
    (concat "Tip: " (nth (random (length lch-tips)) lch-tips))))
 (define-key global-map (kbd "<f1> /") 'lch-tip-of-the-day)
-
 ;;; Try-to-switch-buffer
 (defun try-to-switch-buffer (name)
   "Just switch to buffer when found some buffer named NAME."
@@ -523,14 +501,12 @@ Argument STRING the string that need pretty."
       (when (string-match (car replace) string)
         (setq string (replace-match (cdr replace) nil nil string))))
     string))
-
 ;;; Eval-buffer
 (defun lch-eval-buffer ()
   (interactive)
   (eval-buffer)
   (message "%s: EVALED" (buffer-name (current-buffer))))
 (define-key global-map (kbd "C-c e") 'lch-eval-buffer)
-
 ;;; Create-switch-scratch/message
 (defun lch-create-switch-scratch ()
   (interactive)
@@ -539,7 +515,6 @@ Argument STRING the string that need pretty."
     (when (null buf)
       (lisp-interaction-mode))))
 (define-key global-map (kbd "C-c s") 'lch-create-switch-scratch)
-
 (defun lch-switch-to-message ()
   (interactive)
   (switch-to-buffer (get-buffer "*Messages*")))
@@ -553,7 +528,6 @@ Argument STRING the string that need pretty."
                   (get-char-property (point) 'face))))
     (if face (message "Face: %s" face) (message "No face at %d" pos))))
 (define-key global-map (kbd "<f11> F") 'lch-face-at-point)
-
 ;;; Add-exec-permission-to-script
 (defun lch-chmod-x ()
   (and (save-excursion
@@ -567,7 +541,6 @@ Argument STRING the string that need pretty."
            (message
             (concat "Saved as script: " buffer-file-name)))))
 (add-hook 'after-save-hook 'lch-chmod-x)
-
 ;;; Display-fortune
 (defun lch-echo-fortune ()
   (interactive)
@@ -577,7 +550,6 @@ Argument STRING the string that need pretty."
 ;;; PROVIDE
 (provide 'lch-util)
 (message "~~ lch-util: done.")
-
 ;; Local Variables:
 ;; mode: emacs-lisp
 ;; mode: outline-minor

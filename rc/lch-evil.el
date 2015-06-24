@@ -59,19 +59,25 @@
 (setq evil-leader/leader "SPC"
       evil-leader/in-all-states t)
 
+(evil-leader/set-key "1" 'delete-other-windows)
+(evil-leader/set-key "2" 'split-window-right)
+(evil-leader/set-key "3" 'split-window-below)
+
 (evil-leader/set-key "o" 'helm-swoop)         ;; Swoop works like occur.
 ;; (evil-leader/set-key "p" 'print-buffer)
-(evil-leader/set-key "w" 'save-buffer)
+;; (evil-leader/set-key "w" 'save-buffer)
 (evil-leader/set-key "q" 'kill-buffer-and-window)
 (evil-leader/set-key "h" 'dired-jump)
-(evil-leader/set-key "2" 'split-window-right)
-(evil-leader/set-key "1" 'delete-other-windows)
-(evil-leader/set-key "e" 'find-file)
+
+;; (evil-leader/set-key "a" 'lch-todo-a)          ;; => lch-org.el
+;; (evil-leader/set-key "b" 'lch-todo-b)          ;; => lch-org.el 
+;; (evil-leader/set-key "r" 'lch-todo-b)          ;; => lch-org.el
 ;; (evil-leader/set-key "," 'other-window)
 (evil-leader/set-key "c" 'lch-toggle-comment-on-line)
+(evil-leader/set-key "e" 'find-file)
 (evil-leader/set-key "s" 'save-buffer)
 (evil-leader/set-key "B" 'ibuffer)
-;; (evil-leader/set-key "x" 'helm-M-x)
+(evil-leader/set-key "x" 'helm-M-x)
 (evil-leader/set-key "e" 'eval-buffer)
 (evil-leader/set-key "b" 'switch-to-buffer)
 (evil-leader/set-key "d" 'helm-dash)
@@ -79,13 +85,13 @@
 (evil-leader/set-key "k" 'kill-this-buffer)
 (evil-leader/set-key "t" 'transpose-lines)
 (evil-leader/set-key "m" 'evil-motion-state)       ;; ESC back to normal state
-(evil-leader/set-key "j" 'ace-jump-mode)
+;; (evil-leader/set-key "j" 'ace-jump-mode)
 (evil-leader/set-key "/" 'lch-switch-to-message)   ;; Defined in lch-util.el
-;; (evil-leader/set-key "," 'evil-ace-jump-word-mode) ; ,, for Ace Jump (word)
-;; (evil-leader/set-key "l" 'evil-ace-jump-line-mode) ; ,l for Ace Jump (line)
-;; (evil-leader/set-key "x" 'evil-ace-jump-char-mode) ; ,x for Ace Jump (char)
+(evil-leader/set-key "w" 'evil-ace-jump-word-mode) ; ,, for Ace Jump (word)
+(evil-leader/set-key "l" 'evil-ace-jump-line-mode) ; ,l for Ace Jump (line)
+(evil-leader/set-key "j" 'evil-ace-jump-char-mode) ; ,x for Ace Jump (char)
 (evil-leader/set-key "u" 'undo-tree-visualize)
-(evil-leader/set-key "z" 'zap-to-char)
+(evil-leader/set-key "z" 'zop-to-char)
 
 ;; (if (featurep 'er/expand-region)
 (evil-leader/set-key "v" 'er/expand-region)
@@ -108,14 +114,13 @@
 ;;       evil-operator-state-tag (propertize "O" 'face '((:background "purple"))))
 
 ;;; Restore Emacs keys
-
 ;; (define-key evil-normal-state-map (kbd "SPC") 'evil-emacs-state)
+(define-key evil-normal-state-map (kbd "C-6") 'dired-jump)
 
-
-(define-key evil-insert-state-map (kbd "C-e") 'evil-move-end-of-line)
-(define-key evil-normal-state-map (kbd "C-e") 'evil-move-end-of-line)
-(define-key evil-visual-state-map (kbd "C-e") 'evil-move-end-of-line)
-(define-key evil-motion-state-map (kbd "C-e") 'evil-move-end-of-line)
+(define-key evil-insert-state-map (kbd "C-e") 'evil-end-of-line)
+(define-key evil-normal-state-map (kbd "C-e") 'evil-end-of-line)
+(define-key evil-visual-state-map (kbd "C-e") 'evil-end-of-line)
+(define-key evil-motion-state-map (kbd "C-e") 'evil-end-of-line)
 
 (define-key evil-normal-state-map (kbd "C-f") 'evil-forward-char)
 (define-key evil-insert-state-map (kbd "C-f") 'evil-forward-char)
@@ -134,7 +139,6 @@
 ;; (define-key evil-normal-state-map "\C-g" 'evil-normal-state)
 ;; (define-key evil-visual-state-map "\C-g" 'evil-normal-state)
 ;; (define-key evil-insert-state-map "\C-g" 'evil-normal-state)
-
 (define-key evil-normal-state-map (kbd "C-n") 'next-line)
 (define-key evil-insert-state-map (kbd "C-n") 'next-line)
 (define-key evil-visual-state-map (kbd "C-n") 'next-line)

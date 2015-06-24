@@ -1,4 +1,4 @@
-#! /Users/LooChao/.rvm/rubies/ruby-1.9.3-p551/bin/ruby -sWKu
+#! /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby -sWKu
 # -*- coding: utf-8 -*-
 
 #

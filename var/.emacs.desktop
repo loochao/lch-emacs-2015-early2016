@@ -2,27 +2,61 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Sat Feb 14 22:18:39 2015
+;; Created Sat Jun 20 12:35:36 2015
 ;; Desktop file format version 206
-;; Emacs version 24.3.1
+;; Emacs version 24.5.1
 
 ;; Global section:
+(setq desktop-saved-frameset [frameset 1 (21893 38488 969588 0) (desktop . "206") "LooChao@dynamic-oit-equadnet-f-3" nil nil ((((font-backend mac-ct ns) (fontsize . 0) (font . "-apple-Monaco-medium-normal-normal-*-18-*-*-*-m-0-iso10646-1") (border-width . 0) (internal-border-width . 2) (vertical-scroll-bars) (foreground-color . "MistyRose") (background-color . "Black") (line-spacing) (left-fringe . 0) (right-fringe . 0) (menu-bar-lines . 1) (tool-bar-lines . 0) (title) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 0) (alpha) (fullscreen) (horizontal-scroll-bars . t) (display-type . color) (background-mode . dark) (cursor-color . "orange") (environment) (mouse-color . "sienna1") (border-color . "Black") (powerline-cache . "Unprintable entity") (mf-restore-width . 80) (mf-restore-height . 35) (mf-restore-top . 23) (mf-restore-left . 0) (mf-maximized . t) (frameset--id . "4846-5B39-DD66-04FC") (frameset--mini t . t) (modeline . t) (minibuffer . t) (unsplittable) (right-divider-width . 0) (bottom-divider-width . 0) (icon-name) (visibility . t) (display . "dynamic-oit-equadnet-f-3.Princeton.EDU") (explicit-name) (tool-bar-position . top) (height . 44) (width . 305) (left . 0) (top . 0)) ((min-height . 4) (min-width . 10) (min-height-ignore . 3) (min-width-ignore . 2) (min-height-safe . 1) (min-width-safe . 2) (min-pixel-height . 92) (min-pixel-width . 110) (min-pixel-height-ignore . 69) (min-pixel-width-ignore . 22) (min-pixel-height-safe . 23) (min-pixel-width-safe . 22)) leaf (pixel-width . 3355) (pixel-height . 989) (total-width . 305) (total-height . 43) (normal-height . 1.0) (normal-width . 1.0) (buffer "*Messages*" (selected . t) (hscroll . 0) (fringes 0 0 nil) (margins nil) (scroll-bars 0 0 nil nil) (vscroll . 0) (dedicated) (point . 12654) (start . 12165))))])
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name nil)
 (setq tags-table-list nil)
-(setq search-ring '("evil-" "evil" "power" "helm" "recent" "special" "popwin" "outline" "paredit" "diminish" "defun" "re" "powerline" "powe" "model" "M-"))
-(setq regexp-search-ring '("\\<\n\\>" "\\<\\*\\*\\*\\>" "0.9" "0" "paste" "leajkl" "?" "evil" "tes"))
-(setq register-alist (list '(48 . "") '(97 . "(setq viper-inhibit-startup-message 't)") (list 213465889 "Unprintable entity" (let ((mk (make-marker))) (add-hook 'desktop-delay-hook (list 'lambda '() (list 'set-marker mk nil (get-buffer " *temp*")))) mk)) (list 213465879 "Unprintable entity" (let ((mk (make-marker))) (add-hook 'desktop-delay-hook (list 'lambda '() (list 'set-marker mk nil (get-buffer " *temp*")))) mk))))
-(setq file-name-history '("/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/elpa/powerline-evil-20140517.1/powerline-evil-themes.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/powerline-20141125.726/powerline.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/spacemacs/elpa/powerline-20141125.726/powerline-themes.el" "/Users/LooChao/Dropbox/.emacs.d/archive/spacemacs-powerline.el" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.d/lisp/linum-relative-20140731.730/linum-relative.el" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-helm.el" "~/Downloads/" "~/Dropbox/.emacs.d/lisp/popwin/popwin.el" "/Users/LooChao/Downloads/diminish" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/powerline-evil-20140517.1/powerline-evil.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/elpa/powerline-evil-20140517.1/powerline-evil.el" "~/Dropbox/.emacs.d/lisp/golden-ratio-20141208.844/golden-ratio.el" "~/Dropbox/.emacs.d/lisp/" "~/*scratch*" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.d/lisp/expand-region-20141223.1328/expand-region-core.el" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.d/lisp/golden-ratio-20141208.844/golden-ratio-pkg.el" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.d/lisp/golden-ratio-20141208.844/golden-ratio.el" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.d/lisp/multi-term-20141203.1658/multi-term.el" "/Users/LooChao/Downloads/Yinyuetai/baidu_weather.py" "~/Downloads/d_yinyuetai_MV.py" "~/Dropbox/.emacs.d/rc/../" "/Users/LooChao/.emacs" "/bin/bash" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/df1" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/df2" "/Users/LooChao/.rvm/rubies/default/bin/enclient.rb" "/Users/LooChao/.rvm/scripts/rvm" "/Users/LooChao/.profile" "/Users/LooChao/.rvm/rubies/ruby-1.9.3-p551/bin/enclient.rb" "~/.rvm/rubies/default/bin/enclient.rb" "/Users/LooChao/Dropbox/.emacs.d/lisp/evernote-mode/ruby/setup.rb" "/Users/LooChao/Dropbox/.emacs.d/lisp/evernote-mode/evernote-mode.el" "/Users/LooChao/Downloads/spacemacs/travis//opt/local/var/macports/logs/_opt_local_var_macports_sources_rsync.macports.org_release_ports_graphics_poppler/poppler/" "/opt/local/var/macports/logs/_opt_local_var_macports_sources_rsync.macports.org_release_ports_math_gnuplot/gnuplot/main.log" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/Test.org" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/emacs-conf/profiles/home-linux.el" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/110" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/120/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/120" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/140" "~/Downloads/figure/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/run.py" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_fcen_Harmive_With_Dispersion" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_fcen133_Harmive_With_Dispersion/run_bak.sh" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_fcen133_Harmive_With_Dispersion/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_fcen133_Harmive_With_Dispersion" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Research/Project/ChGPhC/Data/Raman/140/phcp_140.m" "~/Dropbox/Research/Project/ChGPhC/Data/Raman/140" "~/Dropbox/Research/Project/ChGPhC/Data/Raman/140/" "/Users/LooChao/Dropbox/Research/Project/ChGPhC/Data/Raman/phcp2.m" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/Research/Project/Surface.Relief/Thesis/Archival_paper/Acknowledgement/acknowledgement.tex" "/Volumes/DATA/Dropbox/research/project/Surface.Relief/Thesis/Archival paper/Chapter1/paper/Chapter1/chapter1.tex" "/Volumes/DATA/Dropbox/research/project/Surface.Relief/Thesis/Archival paper/paper/thesis.tex" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/Research/Thesis/lch-pums-thesis.tex" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/LorenzianMaterialFia_share.m" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_Si_No_Dispersion/n40/Data/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_Si_No_Dispersion/n40" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_Si_No_Dispersion/n36/Data/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_Si_No_Dispersion/n40/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_ChG_With_Dispersion/n18/Data/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_ChG_With_Dispersion/n18/Data" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_ChG_With_Dispersion/n18" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_ChG_With_Dispersion/n23/Data/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_ChG_With_Dispersion/n23" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_Si_No_Dispersion/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_Si_No_Dispersion" "/Users/LooChao/.bash_profile" "/Users/LooChao/.bashrc" "/Users/LooChao/.zshrc" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/evernote-mode/evernote-mode.el" "~/Dropbox/.emacs.d/lisp/evernote-mode" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_No_Dispersion/find_max.pl" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_No_Dispersion/analysis.sh" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_No_Dispersion/sim-150122-07-18-harminv-no-dispersion-r140-T2000/../" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_With_Dispersion/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_With_Dispersion" "~/Dropbox/.emacs.d/" "/Volumes/DATA/Dropbox/.emacs.d/" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Applications/Library/Dash/DocSets/Bash/Bash.docset/Contents/Info.plist" "/Users/LooChao/Downloads/Test.org" "/Users/LooChao/Downloads/Spanish.org" "/Users/LooChao/Dropbox/.emacs.d/lisp/popwin/popwin.el" "~/Dropbox/.emacs.d/lisp/popwin" "/Users/LooChao/Dropbox/.emacs.d/lisp/guide-key/guide-key.el" "~/Dropbox/.emacs.d/lisp/guide-key" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/foo.png" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-custom.el" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.d/lisp/s/20140910.334" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.d/lisp/evil-leader/elpa-version" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-evil.el" "/Users/LooChao/Downloads/test/test.org" "~/Downloads/test" "~/Downloads/Test.org" "/Users/LooChao/Downloads/test.org" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/emacs-conf/init.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/elpa/goto-chg-20131228.1459/goto-chg.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/goto-last-change/goto-last-change.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/elpa/goto-chg-20131228.1459/goto-chg.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/evil-20150105.2348/evil-maps.el" "/Users/LooChao/Dropbox/.emacs.d/lisp/winner/winner.el" "~/Dropbox/.emacs.d/lisp/winner" "/Users/LooChao/Downloads/dotfiles/emacs.d/config/cofi-autoloads.el" "/Users/LooChao/Downloads/dotfiles/emacs.d/config/1print.el" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-ibuffer.el" "~/Downloads/evil-theme.el" "/Users/LooChao/Downloads/evil.el" "~/Downloads/OP2" "~/Dropbox/Org/org/Ruby" "/Users/LooChao/Dropbox/Org/org/Ruby.org" "/Users/LooChao/Dropbox/Org/org/Shell/rvm_installer.sh"))
+(setq search-ring '("org-down" "org" "encl" "rvm" "uninstall" "evernote" "enclient" "enclien" "ever" "W" "plot" "completions-co" "fli" "normal" "iflipi" "theme"))
+(setq regexp-search-ring '("\\<\n\\>" "*" "\\_<{Tanaka\\_>" "tanaka:1998ww" "exist" "3000" ".\\(png\\)$" ".\\(dat\\)$" "r014" "r013" ".\\(\\)$" "T4000" "T3000" "T2000" "2000" "#k"))
+(setq register-alist (list '(107) '(7) '(113) '(24) '(48 . "") '(97 . "(setq viper-inhibit-startup-message 't)") (list 213465889 "Unprintable entity" (let ((mk (make-marker))) (add-hook 'desktop-delay-hook `(lambda nil (set-marker ,mk ,1 (get-buffer ,"plot_all.py")))) mk)) (list 213465879 "Unprintable entity" (let ((mk (make-marker))) (add-hook 'desktop-delay-hook `(lambda nil (set-marker ,mk ,1 (get-buffer ,"plot_all.py")))) mk))))
+(setq file-name-history '("/private/etc/hosts" "/Users/LooChao/.bash_profile" "/Users/LooChao/.bashrc" "/Users/LooChao/.zshrc" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Ports/Library/Mac_Apps/paper3/passwd.txt" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Ports/Library/Mac_Apps/paper3/paswd.txt" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T4000_ALL/band_digram.py" "~/Downloads/orgSgoogle.sh" "/Users/LooChao/Downloads/ical2org.awk" "/Volumes/DATA/Dropbox/Research/Project/ChG_PhC/Simulation_Data/T4000_ALL/" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-dired.el" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.d/projectile-bookmarks.eld" "~/Dropbox/Career/lch-cv-3/Modify_after_Jun" "~/Dropbox/Career/lch-cv-3" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.d/lisp/diff-hl-20150408.1926/diff-hl.el" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/" "/bin/bash" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/.chao" "/Users/LooChao/Dropbox/Research/Project/Chemical/chemical.tex" "/Users/LooChao/Dropbox/Research/Project/Chemical/chemical_original.tex" "/Volumes/DATA/Research/Meep/T4000_ALL/band_digram.py" "/Volumes/DATA/Dropbox/.emacs.d/" "/Applications/Microsoft OneNote.app/Contents/Info.plist" "/Users/LooChao/Downloads/test.org" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/elfeed-20150427.727/elfeed.el" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.dz/oremacs/elpa/elfeed-20150427.727/elfeed.el" "~/Dropbox/.emacs.dz/" "~/Dropbox/.emacs.d/rc/lch-oremacs.el" "~/Downloads/" "/Users/LooChao/.wine/dosdevices/z:/Volumes/LIBNS/LIBRARY/LIBRARY_A/Miscellaneous/Collection/PUC/Courses/MAE306_12-15F/2015/HW/HW9/hw9_solutions.tex" "/Users/LooChao/Dropbox/.emacs.dz/lch-dz-common.el" "/Users/LooChao/Dropbox/.emacs.dz/lch-spacemacs.el" "~/Dropbox/.emacs.dz/lch-live.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.dz/spacemacs/spacemacs/extensions/solarized-theme/README.md" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.dz/spacemacs/init.el" "~/Dropbox/.emacs.dz/lch-spacemacs.el" "~/Dropbox/.emacs.ds/" "~/Dropbox/.emacs.ds" "~/Dropbox/.emacs.D" "~/Dropbox/Research/Thesis/ch-theory/overview.tex" "~/Dropbox/Research/Thesis/ch-theory/overview.te" "~/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T4000/r10/test" "~/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T4000/r14/n_ch24/data/*shell*" "~/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T4000/r14/n_ch24/data/test" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Applications/Library/Application" "/Volumes/DATA/Applications/Library/Application Supports/Firefox/Supports/Firefox/profiles.ini" "~/Dropbox/Code/lch-leetcode" "~/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T4000/r14/n_ch24/data/plot3.py" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T4000/r14/n_ch24/data/run3.py" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T4000/r14/n_ch24/plot_data2.m" "/Users/LooChao/Dropbox/.emacs.d/etc/_bashrc" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Research/Thesis/ch-theory/chapter-theory.tex" "/Users/LooChao/Downloads/download.txt" "~/Downloads/download.txt" "/Users/LooChao/Downloads/test.py" "~/Dropbox/Org/org/Pearl1.org" "/Users/LooChao/Dropbox/Research/Project/ChGPhC/Emitters-vs-r/plot_data2.m" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Research/Project/ChG_PhC/DATA/Photoluminescence/L1_532nm1per20x.txt" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Research/Project/ChG_PhC/As2S3_Absorption/L1_532nm1per20x.txt" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Research/Project/ChG_PhC/As2S3_Absorption/uv_as2s3.m" "~/.wine/dosdevices/z:/Users/LooChao/Dropbox/Research/Project/ChGPhC/Emitters-vs-r/plot_pl_bulk.m" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/Research/Project/ChGPhC/Emitters-vs-r/pl_abs_tingyi.m" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/Research/Project/ChGPhC/Emitters-vs-r/L1_532nm1per20x.txt" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Research/Project/ChG_PhC/As2S3_Absorption/pl_abs.m" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/Research/Project/ChGPhC/Emitters-vs-r/plot_data2.m" "/Users/LooChao/Dropbox/Research/Project/ChGPhC/Peak_plot/peak_plot.m" "~/Dropbox/Research/Project/ChGPhC/Peak_plot" "/Users/LooChao/Dropbox/Research/Thesis/ch-phc/chapter-phc-fdtd.tex" "/Volumes/DATA/Research/Meep/T3000/r14/n_ch24/" "/Volumes/DATA/Research/Meep/T3000/r13/n_ch24/" "/Volumes/DATA/Research/Meep/T3000/r12/n_ch24/" "/Volumes/DATA/Research/Meep/T3000/r11/n_ch24/" "/Volumes/DATA/Research/Meep/T3000/r14/" "/Volumes/DATA/Research/Meep/T3000/r13/" "/Volumes/DATA/Research/Meep/T3000/r12/" "/Volumes/DATA/Research/Meep/T3000/r11/" "/Volumes/DATA/Research/Meep/T3000/r10/n_ch24/" "/Volumes/DATA/Research/Meep/T3000/r10/" "/Volumes/DATA/Research/Meep/T4000/r14/n_ch24/figure/" "/Volumes/DATA/Research/Meep/T4000/r14/n_ch24/data" "/Volumes/DATA/Research/Meep/T4000/r13/n_ch24/data" "/Volumes/DATA/Research/Meep/T4000/r13/n_ch24/figure/" "/Volumes/DATA/Research/Meep/T4000/r10/n_ch24/data/" "/Volumes/DATA/Research/Meep/T4000/r11/n_ch24/data/" "/Volumes/DATA/Research/Meep/T4000/r11/n_ch24/figure/" "/Volumes/DATA/Research/Meep/T4000/r14/n_ch24/" "/Volumes/DATA/Research/Meep/T4000/r13/n_ch24/" "/Volumes/DATA/Research/Meep/T4000/r31/n_ch24/" "/Volumes/DATA/Research/Meep/T4000/r12/n_ch24/" "/Volumes/DATA/Research/Meep/T4000/r14/" "/Volumes/DATA/Research/Meep/T4000/r14" "/Volumes/DATA/Research/Meep/T4000/r13" "/Volumes/DATA/Research/Meep/T4000/r12/" "/Volumes/DATA/Research/Meep/T4000/r11/n_ch24/" "/Volumes/DATA/Research/Meep/T4000/r10/n_ch24/figure/" "/Volumes/DATA/Research/Meep/T4000/r11/" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T4000/r10/n_ch24/plot_data2.m" "/Volumes/DATA/Research/Meep/T4000/r10/n_ch24/figure" "/Volumes/DATA/Research/Meep/T4000/r10/n_ch24/" "/Volumes/DATA/Research/Meep/T4000/" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T4000/r10/plot_data.py" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T4000/r10/sort_data.py" "~/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T4000/r14" "~/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T4000/r13" "~/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T4000/r12" "~/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T4000/r11" "~/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T4000/r10" "~/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T3000/r14" "~/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T3000/r13" "~/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T3000/r12" "~/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T3000/r11" "~/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T3000/r10" "/Volumes/DATA/Research/Meep/" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/T3000/r14.kaka/plot_data.m" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/data_T4000" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/data_T3000/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/data_T2000" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/data_T3000" "~/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/data/T2000/r10/n_ch24/figure/" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Research/Meep/data/T2000/r10/n_ch24/harminv-T2000-r01-fcen10-df1-n-ch24-kx00-ky00-d-si-true.png" "/Volumes/DATA/Research/Meep/data/T2000/r10/n_ch24/" "/Volumes/DATA/Research/Meep/data/T2000/r10/" "/Volumes/DATA/Research/Meep/data/T2000/r10/n_ch24" "~/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Career/lch-email/lch-email-harvard-lieber.org" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Career/lch-email/lch-email.tex" "~/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Career/lch-email" "~/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Career/lch-cover-letter/figures/" "~/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Career/lch-cv/backup" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/Career/lch-cv/Makefile" "/Users/LooChao/.wine/dosdevices/h:/Dropbox/Career_INBOX/loochao_cover_letter/loochao_cover_letter.tex" "~/.wine/dosdevices/z:/Users/LooChao/Dropbox/Career/lch-cover-letter/lch-cover-letter.tex" "~/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Career/lch-cover-letter/lch-cover-letter.tex" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/Career/lch-cover-letter/formal_letter_4.tex" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/Research/Project/ChGPhC/Resonance.png" "/Volumes/DATA/Music/POPCN/" "/Volumes/DATA/Applications/Library/Netease_Music/" "/Volumes/DATA/Research/Meep/data/kx-ky/df1/r12/n_ch24/process_dat.py" "/Volumes/DATA/Research/Meep/data/kx-ky/df1/backup/" "/Volumes/DATA/Research/Meep/data/kx-ky/df1/backup" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/data_si_disperse_nch24_T1000/r08/n_ch24/figure/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/data/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/data" "/Users/LooChao/Downloads/test.tex" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Career/lch-cover-letter/Makefile" "/Volumes/DATA/Research/Meep/data/kx-ky/df1/r09/n_ch24/figure/" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/Research/Thesis/Makefile" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/Research/Thesis/lch-pums-thesis.tex" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/data" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/run_bak.py" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Code/Elisp/skeeto_emacsd/Makefile" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Career/lch-cover-letter/cover_example.tex" "~/Dropbox/Career/lch-cover-letter" "~/Dropbox/Career/lch-cv" "~/Dropbox/Career" "/Volumes/DATA/Research/Meep/data/kx-ky/df1/r11/n_ch24/" "/Volumes/DATA/Research/Meep/data/kx-ky/df1/r10/n_ch24/" "/Volumes/DATA/Research/Meep/data/kx-ky/df1/r09/n_ch24/" "/Volumes/DATA/Research/Meep/data/kx-ky/df1/r08/n_ch24/" "/Volumes/DATA/Research/Meep/data/kx-ky/df1/r14/n_ch24/figure/" "/Volumes/DATA/Research/Meep/data/kx-ky/df1/r13/n_ch24/figure/" "/Volumes/DATA/Research/Meep/data/kx-ky/df1/r12/n_ch24/figure/" "/Applications/Documents/Emacs.app/Contents/Resources/lisp/dired-x.el.gz" "/Users/LooChao/Dropbox/.emacs.d/lisp/dired/dired+/dired+.el" "~/Dropbox/.emacs.d/lisp/dired/dired+/dired+.el" "/Users/LooChao/Dropbox/.emacs.d/lisp/dired/dired+-20150222.2027/dired+.el" "/Users/LooChao/Dropbox/.emacs.d/lisp/sunrise-commander/sunrise-commander.el" "~/Dropbox/.emacs.d/lisp/sunrise-commander" "/Volumes/DATA/Research/Meep/data/kx-ky/df1/r12/plot_data2.py" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/data_dirs_r12/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/data_dirs_r12" "/Volumes/DATA/Research/Meep/data/kx-ky/df1/r012" "/Volumes/DATA/Research/Meep/data/kx-ky/df1/r12" "/Users/LooChao/Dropbox/.emacs.d/lisp/ace-window/ace-window.el" "~/Dropbox/.emacs.d/lisp/ace-window" "/Users/LooChao/Dropbox/.emacs.d/lisp/hydra/lv.el" "/Users/LooChao/Dropbox/.emacs.d/lisp/hydra/iv.el" "/Users/LooChao/Dropbox/.emacs.d/lisp/hydra/hydra.el" "~/Dropbox/.emacs.d/lisp/hydra" "~/Dropbox/.emacs.d/lisp/zop-to-char.el" "/Users/LooChao/.wine/dosdevices/h:/.zlogin" "/Users/LooChao/.wine/dosdevices/h:/.zsh_history" "/Users/LooChao/Downloads/install.sh" "/Users/LooChao/Dropbox/.emacs.d/etc/_osx.sh" "~/Dropbox/.emacs.d/etc/_macosx_setup.sh" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Code/Dotfile/dotfiles/osx/set-defaults.sh" "~/Dropbox/Programming_INBOX/Shell/" "~/Dropbox/Programming/lch-elisp/lch-hotdir.el" "~/Dropbox/Programming/lch-python/netease.py" "~/Dropbox/Programming/lch-closure" "~/Downloads/figure/" "~/Dropbox/.emacs.d/lisp/golden-ratio-20141208.844/golden-ratio.el" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/figure" "~/Dropbox/Career/loochao_resume_2_for_job/" "~/Dropbox/Career/loochao_resume_academia" "~/Downloads/data/kx-ky/df1/r14/kx-ky/.." "~/Downloads/data/kx-ky/df1/r14/kx-ky/../backup/" "~/Downloads/data/kx-ky/df1/r14/backup/" "~/Downloads/data/kx-ky/df1/r14/backup" "~/Downloads/data/kx-ky/df1/r14/kx-ky/" "~/Downloads/data/kx-ky/df1/r14/kx-ky" "~/Downloads/data/kx-ky/df1/r14" "/Volumes/DATA/Research/" "~/Downloads/data/kx-ky/df1/r14/" "~/Downloads/data/kx-ky/df1/r13/" "~/Downloads/data/kx-ky/df1/r12/n_ch25/plot_data2.m" "~/Downloads/data/kx-ky/df1/r12" "~/Downloads/data/kx-ky/df1/r12/" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/Research/Data/Ellipsometry/140219/As2S3_Metal_n.m" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/run.py" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/test/" "~/Downloads/data/kx-ky/df2" "~/Downloads/data/kx-ky/df1/" "~/Downloads/data/kx-ky/df1" "~/Downloads/data/si-d-true/../kx-ky/" "~/Downloads/data/si-n35/" "~/Downloads/data/si-n35" "~/Downloads/data/kx-ky/../foo/" "~/Downloads/data/foo/" "~/Downloads/data/foo" "~/Downloads/data/kx-ky/../si-true/" "~/Downloads/data/kx-ky" "~/Downloads/data/si-true" "~/Downloads/data/kx-ky/" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/elpa/powerline-evil-20140517.1/powerline-evil-themes.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/powerline-20141125.726/powerline.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/spacemacs/elpa/powerline-20141125.726/powerline-themes.el" "/Users/LooChao/Dropbox/.emacs.d/archive/spacemacs-powerline.el" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.d/lisp/linum-relative-20140731.730/linum-relative.el" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-helm.el" "~/Dropbox/.emacs.d/lisp/popwin/popwin.el" "/Users/LooChao/Downloads/diminish" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/powerline-evil-20140517.1/powerline-evil.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/elpa/powerline-evil-20140517.1/powerline-evil.el" "~/Dropbox/.emacs.d/lisp/" "~/*scratch*" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.d/lisp/expand-region-20141223.1328/expand-region-core.el" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.d/lisp/golden-ratio-20141208.844/golden-ratio-pkg.el" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.d/lisp/golden-ratio-20141208.844/golden-ratio.el" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.d/lisp/multi-term-20141203.1658/multi-term.el" "/Users/LooChao/Downloads/Yinyuetai/baidu_weather.py" "~/Downloads/d_yinyuetai_MV.py" "~/Dropbox/.emacs.d/rc/../" "/Users/LooChao/.emacs" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/df1" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/df2" "/Users/LooChao/.rvm/rubies/default/bin/enclient.rb" "/Users/LooChao/.rvm/scripts/rvm" "/Users/LooChao/.profile" "/Users/LooChao/.rvm/rubies/ruby-1.9.3-p551/bin/enclient.rb" "~/.rvm/rubies/default/bin/enclient.rb" "/Users/LooChao/Dropbox/.emacs.d/lisp/evernote-mode/ruby/setup.rb" "/Users/LooChao/Dropbox/.emacs.d/lisp/evernote-mode/evernote-mode.el" "/Users/LooChao/Downloads/spacemacs/travis//opt/local/var/macports/logs/_opt_local_var_macports_sources_rsync.macports.org_release_ports_graphics_poppler/poppler/" "/opt/local/var/macports/logs/_opt_local_var_macports_sources_rsync.macports.org_release_ports_math_gnuplot/gnuplot/main.log" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/Test.org" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/emacs-conf/profiles/home-linux.el" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/110" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/120/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/120" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Fcen_Harmive_With_Dispersion/140" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_fcen_Harmive_With_Dispersion" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_fcen133_Harmive_With_Dispersion/run_bak.sh" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_fcen133_Harmive_With_Dispersion/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_fcen133_Harmive_With_Dispersion" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Research/Project/ChGPhC/Data/Raman/140/phcp_140.m" "~/Dropbox/Research/Project/ChGPhC/Data/Raman/140" "~/Dropbox/Research/Project/ChGPhC/Data/Raman/140/" "/Users/LooChao/Dropbox/Research/Project/ChGPhC/Data/Raman/phcp2.m" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/Research/Project/Surface.Relief/Thesis/Archival_paper/Acknowledgement/acknowledgement.tex" "/Volumes/DATA/Dropbox/research/project/Surface.Relief/Thesis/Archival paper/Chapter1/paper/Chapter1/chapter1.tex" "/Volumes/DATA/Dropbox/research/project/Surface.Relief/Thesis/Archival paper/paper/thesis.tex" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/LorenzianMaterialFia_share.m" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_Si_No_Dispersion/n40/Data/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_Si_No_Dispersion/n40" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_Si_No_Dispersion/n36/Data/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_Si_No_Dispersion/n40/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_ChG_With_Dispersion/n18/Data/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_ChG_With_Dispersion/n18/Data" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_ChG_With_Dispersion/n18" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_ChG_With_Dispersion/n23/Data/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_ChG_With_Dispersion/n23" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_Si_No_Dispersion/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_Var_n_Si_No_Dispersion" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/evernote-mode/evernote-mode.el" "~/Dropbox/.emacs.d/lisp/evernote-mode" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_No_Dispersion/find_max.pl" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_No_Dispersion/analysis.sh" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_No_Dispersion/sim-150122-07-18-harminv-no-dispersion-r140-T2000/../" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_With_Dispersion/" "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl/chao/Unit_Cell_Harmive_With_Dispersion" "~/Dropbox/.emacs.d/" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Applications/Library/Dash/DocSets/Bash/Bash.docset/Contents/Info.plist" "/Users/LooChao/Downloads/Test.org" "/Users/LooChao/Downloads/Spanish.org" "/Users/LooChao/Dropbox/.emacs.d/lisp/popwin/popwin.el" "~/Dropbox/.emacs.d/lisp/popwin" "/Users/LooChao/Dropbox/.emacs.d/lisp/guide-key/guide-key.el" "~/Dropbox/.emacs.d/lisp/guide-key" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/foo.png" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-custom.el" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.d/lisp/s/20140910.334" "/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/.emacs.d/lisp/evil-leader/elpa-version" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-evil.el" "/Users/LooChao/Downloads/test/test.org" "~/Downloads/test" "~/Downloads/Test.org" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/emacs-conf/init.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/elpa/goto-chg-20131228.1459/goto-chg.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/goto-last-change/goto-last-change.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/elpa/goto-chg-20131228.1459/goto-chg.el" "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/evil-20150105.2348/evil-maps.el" "/Users/LooChao/Dropbox/.emacs.d/lisp/winner/winner.el" "~/Dropbox/.emacs.d/lisp/winner" "/Users/LooChao/Downloads/dotfiles/emacs.d/config/cofi-autoloads.el" "/Users/LooChao/Downloads/dotfiles/emacs.d/config/1print.el" "/Users/LooChao/Dropbox/.emacs.d/rc/lch-ibuffer.el" "~/Downloads/evil-theme.el" "/Users/LooChao/Downloads/evil.el" "~/Downloads/OP2" "~/Dropbox/Org/org/Ruby" "/Users/LooChao/Dropbox/Org/org/Ruby.org" "/Users/LooChao/Dropbox/Org/org/Shell/rvm_installer.sh"))
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
 (desktop-create-buffer 206
-  "/Users/LooChao/Dropbox/.emacs.d/rc/lch-powerline-theme.el"
-  "lch-powerline-theme.el"
+  "/Volumes/DATA/Applications/Library/Alfred 2/Alfred.alfredpreferences/workflows/user.workflow.2CA7D4CA-44F7-4B16-9DF3-5710EFC1907A/clipboard.php"
+  "clipboard.php"
+  'fundamental-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode undo-tree-mode yas-minor-mode guide-key-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/.emacs.d/rc/lch-ox.el"
+  "lch-ox.el"
   'emacs-lisp-mode
-  '(global-auto-revert-mode rainbow-delimiters-mode golden-ratio-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode linum-mode)
-  3422
-  '(3422 nil)
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  2640
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/Org/org/iPrv.org"
+  "iPrv.org"
+  'org-mode
+  '(auto-fill-mode global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode flyspell-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  51797
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix) (truncate-lines . t)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/.emacs.d/rc/lch-org.el"
+  "lch-org.el"
+  'emacs-lisp-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  8176
+  '(1082 nil)
   nil
   nil
   '((buffer-file-coding-system . utf-8-unix)))
@@ -31,86 +65,174 @@
   nil
   "rc"
   'dired-mode
-  '(global-auto-revert-mode rainbow-delimiters-mode golden-ratio-mode smooth-scroll-mode volatile-highlights-mode yas-minor-mode guide-key-mode dired-omit-mode)
-  1839
-  '(nil nil)
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode yas-minor-mode guide-key-mode dired-omit-mode)
+  1791
+  '(136 nil)
   t
   '("/Users/LooChao/Dropbox/.emacs.d/rc/")
   nil)
 
 (desktop-create-buffer 206
-  nil
-  "lisp"
-  'dired-mode
-  '(global-auto-revert-mode rainbow-delimiters-mode golden-ratio-mode smooth-scroll-mode volatile-highlights-mode yas-minor-mode guide-key-mode dired-omit-mode)
-  4137
-  '(nil nil)
-  t
-  '("/Users/LooChao/Dropbox/.emacs.d/lisp/")
-  nil)
-
-(desktop-create-buffer 206
-  nil
-  "archive"
-  'dired-mode
-  '(global-auto-revert-mode rainbow-delimiters-mode golden-ratio-mode smooth-scroll-mode volatile-highlights-mode yas-minor-mode guide-key-mode dired-omit-mode)
-  258
-  '(nil nil)
-  t
-  '("/Users/LooChao/Dropbox/.emacs.d/archive/")
-  nil)
-
-(desktop-create-buffer 206
-  nil
-  "lisp"
-  'dired-mode
-  '(global-auto-revert-mode rainbow-delimiters-mode golden-ratio-mode smooth-scroll-mode volatile-highlights-mode yas-minor-mode guide-key-mode dired-omit-mode)
-  4171
-  '(nil nil)
-  t
-  '("/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Dropbox/.emacs.d/lisp/")
-  nil)
-
-(desktop-create-buffer 206
-  nil
-  "powerline-20141125.726"
-  'dired-mode
-  '(global-auto-revert-mode rainbow-delimiters-mode golden-ratio-mode smooth-scroll-mode volatile-highlights-mode yas-minor-mode guide-key-mode dired-omit-mode)
-  500
-  '(nil nil)
-  t
-  '("/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/spacemacs/elpa/powerline-20141125.726/")
-  nil)
-
-(desktop-create-buffer 206
-  "/Users/LooChao/.wine/dosdevices/z:/Users/LooChao/Downloads/spacemacs/elpa/powerline-20141125.726/powerline-themes.el"
-  "powerline-themes.el"
-  'emacs-lisp-mode
-  '(global-auto-revert-mode rainbow-delimiters-mode golden-ratio-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode linum-mode)
-  1
+  "/Volumes/DATA/Applications/Library/Alfred 2/Alfred.alfredpreferences/workflows/user.workflow.2CA7D4CA-44F7-4B16-9DF3-5710EFC1907A/info.plist"
+  "info.plist"
+  'nxml-mode
+  '(auto-fill-mode global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode flyspell-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  514
   '(nil nil)
   nil
   nil
   '((buffer-file-coding-system . utf-8-unix)))
 
 (desktop-create-buffer 206
+  "/Volumes/DATA/Applications/Library/Alfred 2/Alfred.alfredpreferences/workflows/user.workflow.2CA7D4CA-44F7-4B16-9DF3-5710EFC1907A/setappid.php"
+  "setappid.php"
+  'fundamental-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode undo-tree-mode yas-minor-mode guide-key-mode)
+  93
+  '(93 nil)
   nil
-  "evernote"
-  'dired-mode
-  '(global-auto-revert-mode rainbow-delimiters-mode golden-ratio-mode smooth-scroll-mode volatile-highlights-mode undo-tree-mode yas-minor-mode guide-key-mode dired-omit-mode)
-  152
-  '(nil nil)
-  t
-  '("/Users/LooChao/Downloads/spacemacs/contrib/evernote/")
-  '((indicate-empty-lines . t)))
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
 
 (desktop-create-buffer 206
-  "/Users/LooChao/Dropbox/.emacs.d/archive/spacemacs-powerline.el"
-  "spacemacs-powerline.el"
+  "/Users/LooChao/Dropbox/.emacs.d/lisp/evernote-mode/ruby/setup.rb"
+  "setup.rb"
+  'ruby-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode undo-tree-mode yas-minor-mode auto-complete-mode guide-key-mode)
+  32597
+  '(36116 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  nil
+  "/"
+  'dired-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode yas-minor-mode guide-key-mode dired-omit-mode)
+  136
+  '(nil nil)
+  t
+  '("/")
+  nil)
+
+(desktop-create-buffer 206
+  nil
+  "Dropbox"
+  'dired-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode yas-minor-mode guide-key-mode dired-omit-mode)
+  126
+  '(nil nil)
+  t
+  '("/Users/LooChao/Dropbox/")
+  nil)
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/.emacs.d/rc/lch-elisp.el"
+  "lch-elisp.el"
   'emacs-lisp-mode
-  '(global-auto-revert-mode rainbow-delimiters-mode golden-ratio-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode linum-mode)
-  2117
-  '(6233 nil)
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  3982
+  '(3655 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/Org/org/Pearl.org"
+  "Pearl.org"
+  'org-mode
+  '(auto-fill-mode global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode flyspell-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  881
+  '(278 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix) (truncate-lines . t)))
+
+(desktop-create-buffer 206
+  "/Volumes/DATA/Research/Meep/T4000_ALL/band_digram.py"
+  "band_digram.py"
+  'python-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  4112
+  '(4114 nil)
+  nil
+  nil
+  '((tab-width . 4) (indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Volumes/DATA/Research/Meep/T3000_ALL/plot_all.py"
+  "plot_all.py"
+  'python-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  4291
+  '(3504 nil)
+  nil
+  nil
+  '((tab-width . 4) (indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Downloads/orgSgoogle.sh"
+  "orgSgoogle.sh"
+  'sh-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode undo-tree-mode yas-minor-mode auto-complete-mode guide-key-mode)
+  364
+  '(342 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/.emacs.d/rc/color-theme-lazycat.el"
+  "color-theme-lazycat.el"
+  'emacs-lisp-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  29603
+  '(29603 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/Org/org/Humor.org"
+  "Humor.org"
+  'org-mode
+  '(auto-fill-mode global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode flyspell-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  371
+  '(299 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix) (truncate-lines . t)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/.emacs.d/lisp/iflipb-20130331.1108/iflipb.el"
+  "iflipb.el"
+  'emacs-lisp-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  11494
+  '(9665 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/.emacs.d/rc/lch-evil.el"
+  "lch-evil.el"
+  'emacs-lisp-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  6077
+  '(6077 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/.emacs.d/rc/lch-dired.el"
+  "lch-dired.el"
+  'emacs-lisp-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  11400
+  '(12556 nil)
   nil
   nil
   '((buffer-file-coding-system . utf-8-unix)))
@@ -119,31 +241,9 @@
   "/Users/LooChao/Dropbox/.emacs.d/rc/lch-binding.el"
   "lch-binding.el"
   'emacs-lisp-mode
-  '(global-auto-revert-mode rainbow-delimiters-mode golden-ratio-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode linum-mode)
-  39815
-  '(39815 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix)))
-
-(desktop-create-buffer 206
-  "/Users/LooChao/Downloads/spacemacs/spacemacs/packages.el"
-  "packages.el"
-  'emacs-lisp-mode
-  '(global-auto-revert-mode rainbow-delimiters-mode golden-ratio-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode linum-mode)
-  65262
-  '(65262 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix)))
-
-(desktop-create-buffer 206
-  "/Users/LooChao/Dropbox/.emacs.d/rc/lch-conf.el"
-  "lch-conf.el"
-  'emacs-lisp-mode
-  '(global-auto-revert-mode rainbow-delimiters-mode golden-ratio-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode linum-mode)
-  408
-  '(nil nil)
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  903
+  '(903 nil)
   nil
   nil
   '((buffer-file-coding-system . utf-8-unix)))
@@ -152,21 +252,120 @@
   "/Users/LooChao/Dropbox/.emacs.d/rc/lch-ui.el"
   "lch-ui.el"
   'emacs-lisp-mode
-  '(global-auto-revert-mode rainbow-delimiters-mode golden-ratio-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode linum-mode)
-  4770
-  '(4734 nil)
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  1
+  '(13172 nil)
   nil
   nil
   '((buffer-file-coding-system . utf-8-unix)))
 
 (desktop-create-buffer 206
-  "/Users/LooChao/Dropbox/.emacs.d/rc/lch-elisp.el"
-  "lch-elisp.el"
+  "/Users/LooChao/Dropbox/.emacs.d/rc/lch-auto-complete.el"
+  "lch-auto-complete.el"
   'emacs-lisp-mode
-  '(global-auto-revert-mode rainbow-delimiters-mode golden-ratio-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode linum-mode)
-  1276
-  '(1439 nil)
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  318
+  '(318 nil)
   nil
   nil
-  '((indicate-empty-lines . t) (buffer-file-coding-system . utf-8-unix)))
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/.emacs.d/rc/lch-conf.el"
+  "lch-conf.el"
+  'emacs-lisp-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  1254
+  '(574 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/.emacs.d/rc/lch-hydra.el"
+  "lch-hydra.el"
+  'emacs-lisp-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  1770
+  '(281 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/.emacs.d/rc/lch-util.el"
+  "lch-util.el"
+  'emacs-lisp-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  14037
+  '(13982 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/.zshrc"
+  ".zshrc"
+  'sh-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode undo-tree-mode yas-minor-mode auto-complete-mode guide-key-mode)
+  2065
+  '(1844 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Volumes/DATA/Dropbox/.emacs.d/etc/_bashrc"
+  "_bashrc"
+  'sh-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode undo-tree-mode yas-minor-mode auto-complete-mode guide-key-mode)
+  7359
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/.bash_profile"
+  ".bash_profile"
+  'sh-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode undo-tree-mode yas-minor-mode auto-complete-mode guide-key-mode)
+  83
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/Users/LooChao/Dropbox/.emacs.d/lisp/evernote-mode/evernote-mode.el"
+  "evernote-mode.el"
+  'emacs-lisp-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode paredit-mode undo-tree-mode yas-minor-mode auto-complete-mode outline-minor-mode guide-key-mode)
+  68260
+  '(68202 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  nil
+  "LooChao"
+  'dired-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode yas-minor-mode guide-key-mode dired-omit-mode)
+  118
+  '(nil nil)
+  t
+  '("/Users/LooChao/")
+  nil)
+
+(desktop-create-buffer 206
+  "/Volumes/DATA/Applications/Library/Alfred 2/Alfred.alfredpreferences/workflows/user.workflow.2CA7D4CA-44F7-4B16-9DF3-5710EFC1907A/appid.php"
+  "appid.php"
+  'fundamental-mode
+  '(global-auto-revert-mode rainbow-delimiters-mode projectile-mode smooth-scroll-mode volatile-highlights-mode undo-tree-mode yas-minor-mode guide-key-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
 
