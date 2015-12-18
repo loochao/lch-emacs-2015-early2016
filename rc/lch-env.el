@@ -25,6 +25,7 @@
 (defconst emacs-lib-dir (concat emacs-dir "/lib"))
 (defconst emacs-doc-dir (concat emacs-dir "/doc"))
 (defconst emacs-info-dir (concat emacs-dir "/info"))
+(defconst emacs-bin-dir (concat emacs-dir "/bin"))
 
 ;; ;; If you have a pkg outside site-lisp
 ;; (mapc (lambda (path) (add-to-list 'load-path path))
@@ -50,10 +51,11 @@
                              ":/usr/texbin"
                              ":/opt/local/bin"
                              ":/Applications/Documents/Emacs.app/Contents/MacOS/bin"
-                             ":/Applications/Mathematics/MATLAB_R2014a.app/bin"
+                             ":/Volumes/DATA/Applications/Mathematics/MATLAB_R2015b.app/bin/"
                              ))
       (setq exec-path (append exec-path
                               '(
+                                "/Volumes/DATA/Applications/Mathematics/MATLAB_R2015b.app/bin/"                                
                                 "/Applications/Mathematics/MATLAB_R2014a.app/bin"
                                 "/Applications/Documents/Emacs.app/Contents/MacOS/bin"
                                 "/usr/texbin"

@@ -641,18 +641,21 @@
 ;; F10-end
 
 ;;; F10s (dir-map)
+(defvar remote-boox-su "/scpc:root@10.0.0.18")
 (defvar remote-notes "/scpc:chaol@nobel.princeton.edu:/u/chaol/Scan")
 (defvar remote-mit "/scpc:jaimevrl@ab-initio.mit.edu:/home/jaimevrl")
 (defvar remote-lib "/scpc:loochao@loochao.synology.me:/")
 (defvar remote-chili "/scpc:chaol@chili.princeton.edu:/home/chaol")
 (defvar remote-chili-su "/scpc:gradstudent@chili.princeton.edu:/home/chaol")
 
+
 (defvar one-key-menu-rmt-alist nil "")
 (setq one-key-menu-rmt-alist
       '(
+        (("b" . "boox") . (lambda () (interactive) (dired-x-find-file (concat remote-boox-su "/data"))))        
         (("m" . "mit") . (lambda () (interactive) (dired-x-find-file (concat remote-mit "/chao/"))))
         (("c" . "chili") . (lambda () (interactive) (dired-x-find-file (concat remote-chili "/Downloads/"))))
-        (("C" . "chili-su") . (lambda () (interactive) (dired-x-find-file (concat remote-chili "/Downloads/"))))
+        (("C" . "chili-su") . (lambda () (interactive) (dired-x-find-file (concat remote-chili-su "/Downloads/"))))
         (("e" . "emacs-rmt") . (lambda () (interactive) (dired-x-find-file (concat remote-notes "/ComputerSE/Emacs/"))))
         (("p" . "programming-rmt") . (lambda () (interactive) (dired-x-find-file (concat remote-notes "/Programming/"))))
         (("s" . "scaned_notes") . (lambda () (interactive) (dired-x-find-file remote-notes)))
@@ -674,15 +677,17 @@
         (("C" . "code2") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Code_B")))
         (("d" . "downloads") . (lambda () (interactive) (dired-x-find-file "~/Downloads")))
         (("e" . ".emacs.lib") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/.emacs.lib/")))
-        (("f" . "flv") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Flv/")))
+        (("f" . "ffx_profile") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Applications/Library/Application Supports/Firefox/")))
+        (("F" . "flv") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Flv/")))
         (("h" . "public_html") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Org/public_html/")))
         (("g" . "git-repo") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Repository/")))
         (("l" . "library") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Library/")))
         (("m" . "music") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Music/")))
         (("n" . "netease-music") . (lambda () (interactive) (dired-x-find-file netease-music-dir)))
         (("N" . "remote-notes") . (lambda () (interactive) (dired-x-find-file remote-notes)))
-        (("o" . "Org") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Org/org/")))
-        (("p" . "PPTNotes") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/PPTNotes/")))
+        (("o" . "org") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Org/org/")))
+        ;; (("p" . "PPTNotes") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/PPTNotes/")))
+        (("p" . "ports") . (lambda () (interactive) (dired-x-find-file "/Volumes/DATA/Ports/")))
         (("P" . "paper") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Research/Papers2/Articles/")))
         (("r" . "research") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/Research/")))
         (("s" . "snippet") . (lambda () (interactive) (dired-x-find-file "~/Dropbox/.emacs.d/lib/snippets/lch/")))

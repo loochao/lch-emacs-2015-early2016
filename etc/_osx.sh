@@ -54,6 +54,9 @@ defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
 
+# <http://hints.macworld.com/article.php?story=20050919045154542>
+/usr/bin/defaults write -g 'NSRecentDocumentsLimit' -int 20
+  
 # Disable smooth scrolling
 # (Uncomment if you’re on an older Mac that messes up the animation)
 #defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false

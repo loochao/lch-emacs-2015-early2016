@@ -27,6 +27,7 @@
       (find-all-files dir))
     (message "ALL files in %s loaded in background." dir)))
 ;; (define-key global-map (kbd "C-c f") 'find-all-files)
+
 ;;; Strip-blank-lines
 (defun strip-blank-lines()
   "Strip all blank lines in select area of buffer,
@@ -34,7 +35,9 @@ if not select any area, then strip all blank lines of buffer."
   (interactive)
   (strip-regular-expression-string "^[ \t]*\n")
   (message "Have strip blanks line. Wakaka."))
+
 (define-key global-map (kbd "<f4> s") 'strip-blank-lines)
+
 (defun strip-regular-expression-string (regular-expression)
   "Strip all string that match REGULAR-EXPRESSION in select area of buffer.
 If not select any area, then strip current buffer"
@@ -49,6 +52,7 @@ If not select any area, then strip current buffer"
       (while (and (> (point) begin)                              ;when above beginning position
                   (re-search-backward regular-expression nil t)) ;and find string that match regular expression
         (replace-match "" t t)))))                               ;replace target string with null
+
 ;;; Smart-beginning-of-line
 (defun lch-smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
@@ -220,10 +224,12 @@ point reaches the beginning or end of the buffer, stop there."
 ;; Open-remotes-with-finder
 (defun lch-open-libns-finder ()
   "Make iTunes either pause or play"
+  ;; tell app \"Finder\" to open location \"afp://loochao@loochao.synology.me:/LIBNS/\"
+
   (interactive)
   (setq apscript
         "
-         tell app \"Finder\" to open location \"afp://loochao@loochao.synology.me:/LIBNS/\"
+         tell app \"Finder\" to open location \"afp://loochao@10.0.0.14:/LIBNS/\"
          activate
         "
         )

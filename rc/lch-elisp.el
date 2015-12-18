@@ -25,6 +25,11 @@
 (setq package-user-dir (concat emacs-dir "/elpa"))
 (package-initialize)
 
+;;; Rtf-mode
+;; Does not work that well.
+;; (autoload 'rtf-mode "rtf-mode" "RTF mode" t)
+;; (add-to-list 'auto-mode-alist
+;;   '("\\.rtf$" . rtf-mode))
 ;;; Projectile
 ;; Projectile is useful. Especially, projectile-replace and projectile-find-file.
 ;; Projectile commands are bound with the default C-c p prefix. So I can type C-c p C-h to list all of them.
@@ -32,6 +37,33 @@
 (projectile-global-mode +1)
 (require 'diminish)
 (diminish 'projectile-mode " ⅋")
+;;; Openwith
+;; (require 'openwith)
+;; (setq openwith-associations
+;;             (list
+;;              (list (openwith-make-extension-regexp
+;;                     '("mpg" "mpeg" "mp3" "mp4"
+;;                       "avi" "wmv" "wav" "mov" "flv"
+;;                       "ogm" "ogg" "mkv"))
+;;                    "/usr/bin/open"
+;;                    '(file))
+;;              (list (openwith-make-extension-regexp
+;;                     '("xbm" "pbm" "pgm" "ppm" "pnm"
+;;                       "png" "gif" "bmp" "tif" "jpeg" "jpg"))
+;;                    "/usr/bin/open"
+;;                    '(file))
+;;              (list (openwith-make-extension-regexp
+;;                     '("doc" "docx" "xls" "xlsx" "ppt" "pptx"))
+;;                    "/usr/bin/open"
+;;                    '(file))
+;;              '("\\.lyx" "lyx" (file))
+;;              (list (openwith-make-extension-regexp
+;;                     '("pdf" "ps" "ps.gz" "dvi"))
+;;                    "/usr/bin/open"
+;;                    '(file))
+;;              ))
+;; (openwith-mode 1)
+;; 
 ;;; Elfeed
 ;; Do not like the way it displays all the items, could not specify a certain newsfeed.
 ;;(require 'elfeed)

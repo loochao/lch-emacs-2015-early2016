@@ -94,7 +94,8 @@
 (add-hook 'dired-mode-hook '(lambda ()
                               (progn
                                 (require 'dired-extension)
-                                (dired-omit-method))))
+                                (dired-omit-method)
+                                (lambda () (dired-hide-details-mode -1)))))
 ;; Terminal
 (define-key dired-mode-map (kbd "`") 'dired-open-term)
 (defun dired-open-term ()
@@ -110,6 +111,7 @@
        (format "cd '%s'\n" current-dir)))))
 
 ;;; Dired-Utils
+(eval-after-load 'dired (lambda () dired-hide-details-mode -1))
 (defun dired-open-mac ()
   (interactive)
   (let ((file-name (dired-get-file-for-visit)))

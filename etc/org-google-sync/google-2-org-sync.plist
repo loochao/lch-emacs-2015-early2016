@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>google-2-org-sync</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/texbin/bash</string>
+    <string>/Users/LooChao/Dropbox/Org/org/Agenda/google-2-org.sh</string>
+  </array>
+
+  <key>StartInterval</key>
+    <integer>1800</integer>
+
+  <key>StandardErrorPath</key>                                                                                                       <string>/tmp/org-google-sync.err</string>                                                                                                                                     
+  <key>StandardOutPath</key>
+    <string>/tmp/google-2-org.out</string>
+</dict>
+</plist>

@@ -47,7 +47,17 @@
 
 (setq evil-default-state 'normal)
 
-(add-hook 'evil-insert-state-exit-hook 'save-buffer)
+(defun lch-evil-save ()
+  (interactive)
+ (if (buffer-file-name)
+         (progn
+           (save-buffer)
+           )
+       ;; (message "no file is associated to this buffer: do nothing")
+       ))
+
+(add-hook 'evil-insert-state-exit-hook 'lch-evil-save)
+
 ;;; evil-leader
 (defun lch-toggle-comment-on-line ()
   "comment or uncomment current line"
@@ -117,6 +127,8 @@
 ;; (define-key evil-normal-state-map (kbd "SPC") 'evil-emacs-state)
 (define-key evil-normal-state-map (kbd "C-6") 'dired-jump)
 
+(define-key evil-insert-state-map (kbd "C-a") 'beginning-of-line)
+
 (define-key evil-insert-state-map (kbd "C-e") 'evil-end-of-line)
 (define-key evil-normal-state-map (kbd "C-e") 'evil-end-of-line)
 (define-key evil-visual-state-map (kbd "C-e") 'evil-end-of-line)
@@ -125,8 +137,8 @@
 (define-key evil-normal-state-map (kbd "C-f") 'evil-forward-char)
 (define-key evil-insert-state-map (kbd "C-f") 'evil-forward-char)
 (define-key evil-visual-state-map (kbd "C-f") 'evil-forward-char)
-
 (define-key evil-normal-state-map (kbd "C-f") 'evil-forward-char)
+
 (define-key evil-normal-state-map (kbd "C-b") 'evil-backward-char)
 (define-key evil-insert-state-map (kbd "C-b") 'evil-backward-char)
 (define-key evil-visual-state-map (kbd "C-b") 'evil-backward-char)
@@ -174,6 +186,14 @@
 (define-key evil-insert-state-map "\C-r" 'isearch-backward)
 (define-key evil-emacs-state-map "\C-r" 'isearch-backward)
 
+(define-key evil-emacs-state-map (kbd "C-v") 'scroll-up)
+(define-key evil-insert-state-map (kbd "C-v") 'scroll-up)
+(define-key evil-normal-state-map (kbd "C-v") 'scroll-up)
+
+(define-key evil-normal-state-map (kbd "C-o") 'occur)
+(define-key evil-insert-state-map (kbd "C-o") 'occur)
+(define-key evil-emacs-state-map (kbd "C-o") 'occur)
+
 ;; (define-key evil-normal-state-map (kbd "Q") 'call-last-kbd-macro)
 ;; (define-key evil-visual-state-map (kbd "Q") 'call-last-kbd-macro)
 
@@ -201,6 +221,7 @@
 
 ;; (define-key evil-normal-state-map (kbd "SPC") 'evil-ace-jump-char-mode)
 ;; (define-key evil-normal-state-map (kbd "SPC") 'scroll-up-command)
+
 (evil-leader/set-key "SPC" 'scroll-up-command)
 (evil-leader/set-key "n" 'scroll-up-command)
 (evil-leader/set-key "p" 'scroll-down-command)

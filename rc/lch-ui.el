@@ -1,4 +1,3 @@
-
 ;;-*- coding:utf-8; mode:emacs-lisp; -*-
 
 ;;; UI
@@ -43,8 +42,8 @@
 (global-rainbow-delimiters-mode)
 ;;; Maxframe
 ;; FIXME: Not working under some monitor.
-;; (require 'maxframe)
-;; (add-hook 'window-setup-hook 'maximize-frame t)
+(require 'maxframe)
+(add-hook 'window-setup-hook 'maximize-frame t)
 (autoload 'mf-max-display-pixel-width "maxframe" "" nil)
 (autoload 'mf-max-display-pixel-height "maxframe" "" nil)
 (autoload 'maximize-frame "maxframe" "" t)
@@ -67,6 +66,7 @@
 
 (add-hook 'after-make-frame-functions 'maximize-frame)
 (add-hook 'after-init-hook 'maximize-frame)
+
 ;;; Color-theme
 (defvar emacs-theme-dir (concat emacs-lib-dir "/themes"))
 (lch-add-subdirs-to-load-path emacs-theme-dir)
@@ -89,7 +89,7 @@
 (when lch-win32-p
   ;; (set-face-attribute 'default nil :height 160)
   (set-default-font "Courier New:pixelsize=24"))
-(if lch-mac-p (set-default-font "Monaco New:pixelsize=18"))
+;; (if lch-mac-p (set-default-font "Monaco New:pixelsize=18"))
 ;;; Tabbar
 (require 'tabbar)
 (tabbar-mode 1)
@@ -336,32 +336,6 @@ See `cycle-color'."
 ;;           (:eval (or (buffer-file-name) (buffer-name))))))
 
 ;; (mode-line-setting)
-
-;;; Powerline
-;; (setq powerline-default-separator 'wave)
-;; (powerline-evil-theme)
-(when (and (>= emacs-major-version 24) (>= emacs-minor-version 3))
-    (require 'powerline)
-    )
-;; (custom-set-faces
-;;  `(powerline-evil-normal-face ((t (:foreground "White"  :background "Darkred"))))
-;;  `(powerline-evil-insert-face ((t (:foreground "White" :background "#f8b78e"))))
-;;  )
-
-(defun lch-evil-modeline-change (default-color)
-  "changes the modeline color when the evil mode changes"
-  (let ((color (cond ((evil-insert-state-p) '("Darkred" . "#000000"))
-                     ((evil-insert-state-p) '("#252525" . "#ffffff"))
-                     ;; ((evil-visual-state-p) '("#282828" . "#ffffff"))
-                     ;; ((evil-visual-state-p) '("#f8b78e" . "black"))
-                     ((evil-normal-state-p) default-color)
-                     (t '("Darkred" . "#ffffff")))))
-    (set-face-background 'mode-line (car color))
-    (set-face-foreground 'mode-line (cdr color))))
-
-(lexical-let ((default-color (cons (face-background 'mode-line)
-                                   (face-foreground 'mode-line))))
-  (add-hook 'post-command-hook (lambda () (lch-evil-modeline-change default-color))))
 
 ;;; Golden-ratio
 ;; (require 'golden-ratio)

@@ -247,12 +247,12 @@
         (emms-show)
         )))
 
-(defun lch-emms-dump ()
+(defun lch-emms-dump (&optional no-prompt)
   "Jump to postion of current playing music."
   (interactive)
   (let* ((music-file (emms-track-name (emms-playlist-current-selected-track))) ;get playing music file name
          (music-folder (file-name-directory music-file))) ;get playing music directory
-    (when (y-or-n-p (format "DUMP %s? " music-file))
+    (when (or no-prompt (y-or-n-p (format "DUMP %s? " music-file)))
       (with-current-emms-playlist
         (emms-playlist-mode-center-current)
         (emms-playlist-mode-kill-entire-track)
@@ -263,6 +263,11 @@
       (message (format "%s has deleted~" music-file))
       (sit-for 2)
       (emms-show))))
+
+(defun lch-emms-dump-no-prompt ()
+  "For working with keyboard maestro on macintosh, to be ivoked by a global hotkey."
+  (interactive)
+  (lch-emms-dump t))
 
 ;;; Keymap
 ;; q -- only bury the emms playlist buffer, emms is still there.

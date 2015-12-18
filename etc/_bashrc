@@ -96,7 +96,9 @@ export MANPATH=.:$MANPATH
 
 #-- Global Configuration --#
 export PAGER="less"
-export EDITOR="vi"
+# export EDITOR="vi"
+export EDITOR=emacsclient
+export VISUAL=$EDITOR
 export SVN_EDITOR=vi
 
 #-- Set the default permission for new files to rwx------.
@@ -172,13 +174,15 @@ alias c="clear"
 alias e="exit"
 alias ssh="ssh -X"
 alias ..="cd .."
+alias cde="cd /Volumes/DATA/Dropbox/.emacs.d"
 alias cdd="cd ~/Downloads/"
+alias cdp="cd /Volumes/DATA/Ports/"
+alias cdv="cd /Volumes/DATA/"
 alias l="ls"
 alias ll="ls -lh"
 alias la="ls -a"
 alias lal="ls -alh"
 alias ec="emacsclient"
-alias cde="cd /Volumes/DATA/Dropbox/.emacs.d"
 alias ls="ls -G -v"     # -v to display chs
 alias tecplot="/Applications/Tec360_2009/bin/tec360"
 alias rmds='find . -name .DS_Store -exec rm {} \;'
@@ -239,6 +243,20 @@ alias edp='/Applications/Documents/Emacs.app/Contents/MacOS/Emacs -q --load ~/Dr
 alias edp24='/Applications/Documents/Emacs24.app/Contents/MacOS/Emacs -q --load ~/Dropbox/.emacs.dz/lch-deepin.el'
 
 alias elv24='/Applications/Documents/Emacs24.app/Contents/MacOS/Emacs -q --load ~/Dropbox/.emacs.dz/lch-live.el'
+alias h='history|tail'
+alias hh='history'
+
+alias fm='ffmpeg -acodec libmp3lame -aq 4 -i'
+## ssh LIBNS
+alias sl='ssh root@10.0.0.14'
+
+alias yd='youtube-dl'
+## youtube-dl mp3 
+alias ym='youtube-dl --extract-audio --audio-format mp3'
+## youtube-dl list
+alias yp='youtube-dl -cit -f 135'
+
+alias m='mplayer'
 # export PATH="$HOME/.rvm/bin:$HOME/.rvm/rubies/default/bin:$PATH" # Add RVM to PATH for scripting
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 # export PYTHONPATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages"

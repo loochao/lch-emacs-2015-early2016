@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <15/06/18 18:50:15 /Users/LooChao/Dropbox/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <15/11/27 12:40:04 /Users/LooChao/Dropbox/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -35,23 +35,6 @@
   ("readlink" "\\readlink")
   ("uid-integer" 77296)
   ("~" "/home/chaol"))
- (["scp" "chaol" "chili.princeton.edu" nil nil]
-  ("uname" "Linux 3.2.0-67-generic")
-  ("test" "test")
-  ("remote-path"
-   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
-  ("remote-shell" "/bin/sh")
-  ("busybox" nil)
-  ("id" "/usr/bin/id")
-  ("gid-integer" 1001)
-  ("readlink" "\\readlink")
-  ("stat" "\\stat")
-  ("file-exists" "test -e")
-  ("ls" "/bin/ls --color=never")
-  ("ls-dired" t)
-  ("perl-file-spec" t)
-  ("perl-cwd-realpath" t)
-  ("perl" "\\perl"))
  (["scpc" "jaimevrl" "ab-initio.mit.edu" nil nil]
   ("uname" "Linux 2.6.32-5-amd64")
   ("test" "test")
@@ -70,8 +53,8 @@
   ("perl-cwd-realpath" t)
   ("perl" "\\perl")
   ("~" "/home/jaimevrl"))
- (["scpc" "chaol" "chili.princeton.edu" nil nil]
-  ("uname" "Linux 3.2.0-79-generic")
+ (["scpc" "gradstudent" "chili.princeton.edu" nil nil]
+  ("uname" "Linux 3.2.0-90-generic")
   ("test" "test")
   ("remote-path"
    ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
@@ -83,22 +66,40 @@
   ("ls-dired" t)
   ("stat" "\\stat")
   ("id" "/usr/bin/id")
-  ("gid-integer" 1001))
- (["sudo" "root" "localhost" nil nil]
-  ("uname" "Darwin 14.3.0")
+  ("gid-integer" 1000))
+ (["scp" "yuy214" "ssh.lehigh.edu" nil nil]
+  ("uname" "Linux 2.6.32-358.2.1.el6.x86_64")
   ("test" "test")
   ("remote-path"
-   ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/bin" "/opt/local/bin"))
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
   ("remote-shell" "/bin/sh")
   ("busybox" nil)
-  ("stat" nil)
+  ("~" "/home/yuy214")
+  ("file-exists" "test -e")
+  ("readlink" "\\readlink")
+  ("ls" "/bin/ls --color=never")
+  ("ls-dired" t)
+  ("stat" "\\stat")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 355)
   ("perl-file-spec" t)
   ("perl-cwd-realpath" t)
-  ("perl" "\\perl5")
-  ("id" "/usr/bin/id")
-  ("gid-integer" 0)
-  ("readlink" nil)
+  ("perl" "\\perl"))
+ (["scpc" "mscully" "nobel.princeton.edu" nil nil]
+  ("uname" "Linux 2.6.32-573.3.1.el6.cgfix.x86_64")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("busybox" nil)
+  ("~" "/u/mscully")
   ("file-exists" "test -e")
-  ("uid-integer" 0)
-  ("ls" "/bin/ls")
-  ("ls-dired" nil)))
+  ("readlink" "\\readlink")
+  ("ls" "/bin/ls --color=never")
+  ("ls-dired" t)
+  ("stat" "\\stat")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 33)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")))

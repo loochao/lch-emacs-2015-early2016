@@ -30,6 +30,7 @@
 ;; Org now part of GNU Emacs
 ;;(require 'org-install)
 (require 'org)
+
 ;; Org drill
 (autoload 'org-drill "org-drill" t)
 (define-key global-map (kbd "C-z d") 'org-drill)
@@ -52,7 +53,8 @@
 (setq org-directory org-private-dir)
 ;; (setq org-agenda-files
 ;;       (append (file-expand-wildcards (concat org-source-dir "/*.org"))))
-(setq org-agenda-files `(,(concat org-source-dir "/iPrv.org")))
+(setq org-agenda-files `(,(concat org-source-dir "/iPrv.org")
+                         ,(concat org-source-dir "/Agenda/lch-google.org")))
 (setq org-export-default-language "EN")
 
 (setq org-mobile-directory org-mobile-dir)
@@ -177,6 +179,7 @@
         ("TRIPLY" . (:foreground "Cyan" :weight bold))
         ("WEEKLY" . (:foreground "Cyan" :weight bold))
         ))
+
 ;;; Babel
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -203,13 +206,13 @@
 ;; %t          timestamp, date only
 ;; %T          timestamp with date and time
 ;; %u, %U      like the above, but inactive timestamps
-;; (require 'org-download)
+(require 'org-download)
 
 (define-key global-map (kbd "M-0") 'org-capture)
 
 (setq org-capture-templates
       '(
-        ("a" "TODO-#A" entry (file+olp (concat org-private-dir "/iPrv.org") "TODO-#A" "TODO-#A-") "* %? :#A:\n%U" :prepend t)
+        ("a" "TODO-#A" entry (file+olp (concat org-private-dir "/iPrv.org") "TODO-#A" "TODO-#A-") "* ACTIVE %? :#A:\n%U" :prepend t)
         ;; ("A" "TODO-#A~" entry (file+olp (concat org-private-dir "/Refile.org") "TODOs" "TODO-#A") "* %? :#A:\n%U" :prepend t)
         ("b" "TODO-#B" entry (file+olp (concat org-private-dir "/iPrv.org") "TODO-#B" "TODO-#B-") "* %? :#B:\n%U" :prepend t)
         ("B" "ACTIVE-#B" entry (file+olp (concat org-private-dir "/iPrv.org") "TODO-#B" "TODO-#B-") "* ACTIVE %? :#B:\n%U" :prepend t)
@@ -254,11 +257,31 @@
 (evil-leader/set-key "b" 'lch-todo-b)
 (defun lch-todo-r () (interactive) (org-agenda "" "3"))
 (evil-leader/set-key "r" 'lch-todo-b)
-
 (defun lch-todo-f () (interactive) (org-agenda "" "4"))
 (evil-leader/set-key "f" 'lch-todo-f)
 
-(run-with-idle-timer 300 t 'lch-todo-a)
+;; lch-agenda-popup
+;; (defvar lch-agenda-popup 0)
+;; (defun lch-agenda-popup ()
+;;   (if lch-agenda-popup
+;;       (progn (message "lch-agenda-popup running.")
+;;              (run-with-idle-timer 300 t 'lch-todo-a))
+;;     (message "lch-agenda-popup disabled."))
+;;)
+;; (lch-agenda-popup)
+
+;; (defun lch-agenda-popup-toggle ()
+;;   (interactive)
+;;   (if lch-agenda-popup
+;;       (progn (setq lch-agenda-popup nil)
+;;              (message "lch-agenda-popup disabled."))
+;;     (progn (setq lch-agenda-popup t)
+;;            (message "lch-agenda-popup enabled."))
+;;     )
+;;   (sit-for 1)
+;;   (lch-agenda-popup)
+;;   )
+
 ;; (run-with-idle-timer 600 t  'lch-todo-b)
 
 (define-key global-map (kbd "M-8") 'org-agenda)
@@ -306,24 +329,24 @@
           ) nil (,TODO-A-txt))
          ("2" "ACTIVE BLOCKS"
           (
+           (tags "#B|OBTAIN/ACTIVE")
            (tags "MOBILE|AUDIO|CAR/ACTIVE")
            (tags "DAILY&T|DUALLY&T|WEEKLY/ACTIVE")
-           (tags "#B|OBTAIN/ACTIVE")
            ;; (tags "#C/ACTIVE")
            ) nil (,TODO-B-txt)
           )
          ("3" "RECUR ACTIVE"
           (
-           (tags "DAILY/ACTIVE")
-           (tags "DUALLY/ACTIVE")
-           (tags "WEEKLY/ACTIVE")
+           (tags "DAILY&T/ACTIVE")
+           (tags "DUALLY&T/ACTIVE")
+           (tags "WEEKLY&T/ACTIVE")
            ;; (tags "RECUR/ACTIVE")
            )
           nil (,TODO-R-txt)
           )
          ("4" "RECUR TOFNSH"
           (
-           (tags "DAILY|DUALLY|WEEKLY/ACTIVE" ""
+           (tags "DAILY-T|DUALLY-T|WEEKLY-T/ACTIVE" ""
 	    ((org-agenda-skip-function
 		'(org-agenda-skip-entry-if 'regexp "ACTIVE")))
            )))
@@ -375,6 +398,52 @@
                  (org-agenda-remove-tags t)))
         ("te" "Emacs #B" tags "#B" ((org-agenda-files (list (concat org-source-dir "/iPrv.org")))))
         ))
+;;; Google-sync
+(defvar lch-google-2-org-sh (concat emacs-bin-dir "/shell/google-2-org.sh"))
+(defun lch-google-2-org-sync ()
+  (interactive)
+  (shell-command lch-google-2-org-sh))
+(define-key global-map (kbd "<f1> o") 'lch-google-2-org-sync)
+
+;; (require 'ox-icalendar)
+;; (setq org-agenda-default-appointment-duration 60)
+;; (setq org-icalendar-combined-agenda-file (concat org-source-dir "/Agenda/lch-org-2-google.ics"))
+;; ;; define categories that should be excluded
+;; (setq org-export-exclude-category (list "google" "private"))
+
+;; define filter. The filter is called on each entry in the agenda.
+;; It defines a regexp to search for two timestamps, gets the start
+;; and end point of the entry and does a regexp search. It also
+;; checks if the category of the entry is in an exclude list and
+;; returns either t or nil to skip or include the entry.
+
+;; (defun org-mycal-export-limit ()
+;;   "Limit the export to items that have a date, time and a range. Also exclude certain categories."
+;;   (setq org-tst-regexp "<\\([0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\} ... [0-9]\\{2\\}:[0-9]\\{2\\}[^\r\n>]*?\
+;; \)>")
+;;   (setq org-tstr-regexp (concat org-tst-regexp "--?-?" org-tst-regexp))
+;;   (save-excursion
+;;     ;; get categories
+;;     (setq mycategory (org-get-category))
+;;     ;; get start and end of tree
+;;     (org-back-to-heading t)
+;;     (setq mystart (point))
+;;     (org-end-of-subtree)
+;;     (setq myend (point))
+;;     (goto-char mystart)
+;;     ;; search for timerange
+;;     (setq myresult (re-search-forward org-tstr-regexp myend t))
+;;     ;; search for categories to exclude
+;;     (setq mycatp (member mycategory org-export-exclude-category))
+;;     ;; return t if ok, nil when not ok
+;;     (if (and myresult (not mycatp)) t nil)))
+
+;; ;; activate filter and call export function
+;; (defun org-mycal-export ()
+;;   (interactive)
+;;   (let ((org-icalendar-verify-function 'org-mycal-export-limit))
+;;     (org-icalendar-combine-agenda-files)))
+
 ;;; Key-binding
 (define-key org-mode-map (kbd "M-<left>") 'hide-body)
 (define-key org-mode-map (kbd "M-<right>") 'show-all)

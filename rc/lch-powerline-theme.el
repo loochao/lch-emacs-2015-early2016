@@ -51,5 +51,31 @@
                              (powerline-fill face2 (powerline-width rhs))
                              (powerline-render rhs)))))))
 
+;;; Powerline
+(when (and (>= emacs-major-version 24) (>= emacs-minor-version 3))
+   (require 'powerline))
+;; (setq powerline-default-separator 'wave)
+;; (powerline-evil-theme)
+
+;; (custom-set-faces
+;;  `(powerline-evil-normal-face ((t (:foreground "White"  :background "Darkred"))))
+;;  `(powerline-evil-insert-face ((t (:foreground "White" :background "#f8b78e"))))
+;;  )
+
+;; (defun lch-evil-modeline-change (default-color)
+;;   "changes the modeline color when the evil mode changes"
+;;   (let ((color (cond ((evil-insert-state-p) '("Darkred" . "#000000"))
+;;                      ((evil-insert-state-p) '("#252525" . "#ffffff"))
+;;                      ;; ((evil-visual-state-p) '("#282828" . "#ffffff"))
+;;                      ;; ((evil-visual-state-p) '("#f8b78e" . "black"))
+;;                      ((evil-normal-state-p) default-color)
+;;                      (t '("Darkred" . "#ffffff")))))
+;;     (set-face-background 'mode-line (car color))
+;;     (set-face-foreground 'mode-line (cdr color))))
+
+;; (lexical-let ((default-color (cons (face-background 'mode-line)
+;;                                    (face-foreground 'mode-line))))
+;;   (add-hook 'post-command-hook (lambda () (lch-evil-modeline-change default-color))))
+
 (powerline-loochao-theme)
 (provide 'lch-powerline-theme)
