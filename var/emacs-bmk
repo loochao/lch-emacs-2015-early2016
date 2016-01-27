@@ -14,7 +14,7 @@
  (position . 1065))
 ("org-capture-last-stored"
  (filename . "~/Dropbox/Org/org/iPrv.org")
- (front-context-string . "*** ACTIVE Track")
+ (front-context-string . "*** ACTIVE Eatin")
  (rear-context-string . "ND:\n** TODO-#B-\n")
- (position . 2353))
+ (position . 2315))
 )

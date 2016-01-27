@@ -37,6 +37,13 @@
 	     ("\\<\\(TODOs\\)"  1 'font-lock-todo-face  t))))
 	lch-keyword-highlight-modes))
 
+;; (defun spacemacs/highlight-TODO-words ()
+;;   "Highlight keywords for  "
+;;   (interactive)
+;;   (font-lock-add-keywords
+;;    nil '(("\\<\\(\\(FIX\\(ME\\)?\\|TODO\\|OPTIMIZE\\|HACK\\|REFACTOR\\):\\)"
+;;           1 font-lock-warning-face t))))
+
 (lch-highlight-special-keywords)
 
 ;;; CC-mode

@@ -35,7 +35,8 @@
 
 (setq dired-use-ls-dired nil)
 (toggle-diredp-find-file-reuse-dir 1)                  ;; From dired+
-(setq dired-details-hidden-string "[ ... ] ")
+;; (setq dired-details-hidden-string "[ ... ] ")
+(setq dired-details-hidden-string "... ")
 (setq dired-listing-switches "-aluh")                  ;; Parameters passed to ls
 (setq directory-free-space-args "-Pkh")                ;; Options for space
 (setq dired-omit-size-limit nil)                       ;; Number of file omitted

@@ -23,14 +23,19 @@
 ;; others are command-map-prefix
 ;; according how often the command will be used, it goes into those maps by this seq:
 ;; [C-c/C-x] => f1 => C-z => C-{. , / o}
-;;; Guide-key
-(require 'guide-key)
-(setq guide-key/guide-key-sequence
-      '("," "SPC" "g" "C-c" "C-z" "C-x r"
-        "<f1>" "<f2>" "<f3>" "<f4>" "<f5>" "<f6>"
-        "<f7>" "<f8>" "<f11>" "<f12>"))
-(guide-key-mode 1)
-(lch-diminish guide-key-mode " Ⓚ" " K")
+;;; Which-key, key prompt system
+;; Guide-key
+;; -- Replaced with which-key mode
+;; (require 'guide-key)
+;; (setq guide-key/guide-key-sequence
+;;       '("," "SPC" "g" "C-c" "C-z" "C-x r"
+;;         "<f1>" "<f2>" "<f3>" "<f4>" "<f5>" "<f6>"
+;;         "<f7>" "<f8>" "<f11>" "<f12>"))
+;; (guide-key-mode 1)
+;; (lch-diminish guide-key-mode " Ⓚ" " K")
+;;
+(require 'which-key)
+(which-key-mode 1)
 ;;; Mouse
 (define-key global-map (kbd "<C-wheel-up>") 'text-scale-increase)
 (define-key global-map (kbd "<C-wheel-down>") 'text-scale-decrease)
@@ -463,13 +468,15 @@
         (("<f3>" . "thing-edit") . one-key-menu-edit)                      ;; => lch-one-key.el
         (("3" . "copy-filename") . lch-copy-file-name-to-clipboard)        ;; => lch-util.el
         (("c" . "cleanup-buffer") . lch-cleanup-buffer)                    ;; => lch-util.el
+        (("C" . "count-each-word") . lch-count-each-word)                  ;; => lch-util.el
         (("d" . "delete-buffer-n-file") . lch-delete-file-and-buffer)      ;; => lch-util.el
         (("f" . "fill-region") . fill-region)                              ;; => lch-binding.el
         (("i" . "indent-region") . indent-region)                          ;; => lch-binding.el
         (("k" . "kill-all-buffers") . kill-all-buffers)                    ;; => lch-util.el
         (("p" . "punctuate-buffer") . lch-punctuate-buffer)                ;; => lch-util.el
         (("r" . "rename-buffer-n-file") . lch-rename-file-and-buffer)      ;; => lch-util.el
-        (("s" . "strip-blank-lines") . strip-blank-lines)                  ;; => lch-util.el
+        (("s" . "strip-duplicate-blanks") . lch-strip-duplicate-blanks)    ;; => lch-util.el
+        (("S" . "strip-blank-lines") . strip-blank-lines)                  ;; => lch-util.el        
         (("t" . "insert-template") . template-expand-template)             ;; => lch-elisp.el
         ))
 
@@ -533,7 +540,7 @@
   (one-key-menu "DICT" one-key-menu-dict-alist t))
 (define-key global-map (kbd "<f7> m") 'one-key-menu-dict)
 
-;;; F8:
+;;; F8:  (hydra/microstate-map)
 ;;; F9:  (file-map)
 (define-key global-map (kbd "<f9> 1") (lambda() (interactive) (dired org-source-dir)))
 
@@ -648,7 +655,6 @@
 (defvar remote-chili "/scpc:chaol@chili.princeton.edu:/home/chaol")
 (defvar remote-chili-su "/scpc:gradstudent@chili.princeton.edu:/home/chaol")
 
-
 (defvar one-key-menu-rmt-alist nil "")
 (setq one-key-menu-rmt-alist
       '(
@@ -733,6 +739,7 @@
         (("h" . "highlight-line") . global-hl-line-mode)                        ;; => lch-binding.el
         (("l" . "setnu-mode") . linum-mode)                                     ;; => lch-binding.el
         (("L" . "line-relative") . linum-relative-toggle)                       ;; => lch-binding.el
+        (("M" . "hide-mode-line") . hidden-mode-line-mode)                      ;; => lch-ui.el
         (("r" . "rainbow-mode") . rainbow-mode)                                 ;; => lch-ui.el
         (("t" . "tool-bar-mode") . tool-bar-mode)                               ;; => lch-binding.el
         ))

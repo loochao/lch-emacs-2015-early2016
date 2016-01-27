@@ -1,0 +1,3 @@
+;;; Spacemacs core functions
+
+

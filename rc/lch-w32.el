@@ -47,11 +47,11 @@
 ;; (cygwin-mount-activate)
 
 ;;; Print-w32
-(if lch-win32-p
-    (progn
-      (require 'w32-winprint)
-      (define-key global-map (kbd "<f2> p") 'w32-winprint-print-buffer-htmlize)
-      (define-key global-map (kbd "<f2> P") 'w32-winprint-print-buffer-notepad)))
+;; (if lch-win32-p
+    ;; (progn
+      ;; (require 'w32-winprint)
+      ;; (define-key global-map (kbd "<f2> p") 'w32-winprint-print-buffer-htmlize)
+      ;; (define-key global-map (kbd "<f2> P") 'w32-winprint-print-buffer-notepad)))
 
 ;;; No-Menu-bar
 (if lch-win32-p (menu-bar-mode -1))

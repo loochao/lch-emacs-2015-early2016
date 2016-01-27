@@ -228,7 +228,7 @@
     (dired-goto-file music-file)
     ))
 
-(defun lch-emms-check-in ()
+(defun lch-emms-check-in (&optional dest-dir)
   (interactive)
   (let* ((music-track (emms-playlist-current-selected-track))
 	 (music-file (emms-track-name music-track))

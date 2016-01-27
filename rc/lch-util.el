@@ -13,7 +13,52 @@
 ;; Settings for interface
 ;;; CODE
 (message "=> lch-util: loading...")
-;;; Find-all-files
+;;; count-each-word
+;; from spacemacs and http://www.emacswiki.org/emacs/WordCount
+(defun lch-count-each-word (start end)
+  "Count how many times each word is used in the region.
+ Punctuation is ignored."
+  (interactive "r")
+  (let (words)
+    (save-excursion
+      (goto-char start)
+      (while (re-search-forward "\\w+" end t)
+        (let* ((word (intern (match-string 0)))
+               (cell (assq word words)))
+          (if cell
+              (setcdr cell (1+ (cdr cell)))
+            (setq words (cons (cons word 1) words))))))
+    (when (interactive-p)
+      (message "%S" words))
+    words))
+(define-key global-map (kbd "<f4> C") 'lch-count-each-word)
+
+;;; open-in-external-app
+;; Collect and modified from spacemacs
+(defun lch-open-in-external-app ()
+  "Open current file in external application."
+  (interactive)
+  (let ((file-path (if (eq major-mode 'dired-mode)
+                       (dired-get-file-for-visit)
+                     (buffer-file-name))))
+    (if file-path
+        (cond
+         ((lch-windows-p) (w32-shell-execute "open" (replace-regexp-in-string "/" "\\\\" file-path)))
+         ((lch-mac-p) (shell-command (format "open \"%s\"" file-path)))
+         ((lch-linux-p) (let ((process-connection-type nil))
+                              (start-process "" nil "xdg-open" file-path))))
+      (message "No file associated to this buffer."))))
+
+;;; spacemacs-alternate-buffer
+(defun spacemacs/alternate-buffer ()
+  "Switch back and forth between current and last buffer in the
+current window."
+  (interactive)
+  (if (evil-alternate-buffer)
+      (switch-to-buffer (car (evil-alternate-buffer)))
+    (switch-to-buffer (other-buffer (current-buffer) t))))
+
+;;; find-all-files
 (defun find-all-files (dir)
   "Open all files and sub-directories below the given directory."
   (interactive "DBase directory: ")
@@ -28,54 +73,33 @@
     (message "ALL files in %s loaded in background." dir)))
 ;; (define-key global-map (kbd "C-c f") 'find-all-files)
 
-;;; Strip-blank-lines
-(defun strip-blank-lines()
-  "Strip all blank lines in select area of buffer,
-if not select any area, then strip all blank lines of buffer."
-  (interactive)
-  (strip-regular-expression-string "^[ \t]*\n")
-  (message "Have strip blanks line. Wakaka."))
+;;; smart-beginning-of-line
+;; Works, but do not perform well, when codes are folded.
+;;
+;; (defun lch-smarter-move-beginning-of-line (arg)
+;;   "Move point back to indentation of beginning of line.
+;; Move point to the first non-whitespace character on this line.
+;; If point is already there, move to the beginning of the line.
+;; Effectively toggle between the first non-whitespace character and
+;; the beginning of the line.
+;; If ARG is not nil or 1, move forward ARG - 1 lines first.  If
+;; point reaches the beginning or end of the buffer, stop there."
+;;   (interactive "^p")
+;;   (setq arg (or arg 1))
+;;   ;; Move lines first
+;;   (when (/= arg 1)
+;;     (let ((line-move-visual nil))
+;;       (forward-line (1- arg))))
+;;   (let ((orig-point (point)))
+;;     (back-to-indentation)
+;;     (when (= orig-point (point))
+;;       (move-beginning-of-line 1))))
+;; ;; remap C-a to `smarter-move-beginning-of-line'
+;; (global-set-key [remap move-beginning-of-line]
+;;                 'lch-smarter-move-beginning-of-line)
+;; 
 
-(define-key global-map (kbd "<f4> s") 'strip-blank-lines)
-
-(defun strip-regular-expression-string (regular-expression)
-  "Strip all string that match REGULAR-EXPRESSION in select area of buffer.
-If not select any area, then strip current buffer"
-  (interactive)
-  (let ((begin (point-min))             ;initialization make select all buffer
-        (end (point-max)))
-    (if mark-active                     ;if have select some area of buffer, then strip this area
-        (setq begin (region-beginning)
-              end (region-end)))
-    (save-excursion                                              ;save position
-      (goto-char end)                                            ;goto end position
-      (while (and (> (point) begin)                              ;when above beginning position
-                  (re-search-backward regular-expression nil t)) ;and find string that match regular expression
-        (replace-match "" t t)))))                               ;replace target string with null
-
-;;; Smart-beginning-of-line
-(defun lch-smarter-move-beginning-of-line (arg)
-  "Move point back to indentation of beginning of line.
-Move point to the first non-whitespace character on this line.
-If point is already there, move to the beginning of the line.
-Effectively toggle between the first non-whitespace character and
-the beginning of the line.
-If ARG is not nil or 1, move forward ARG - 1 lines first.  If
-point reaches the beginning or end of the buffer, stop there."
-  (interactive "^p")
-  (setq arg (or arg 1))
-  ;; Move lines first
-  (when (/= arg 1)
-    (let ((line-move-visual nil))
-      (forward-line (1- arg))))
-  (let ((orig-point (point)))
-    (back-to-indentation)
-    (when (= orig-point (point))
-      (move-beginning-of-line 1))))
-;; remap C-a to `smarter-move-beginning-of-line'
-(global-set-key [remap move-beginning-of-line]
-                'lch-smarter-move-beginning-of-line)
-;;; Enhanced-window-splitting
+;;; enhanced-window-splitting
 ;; it opens the previous buffer instead of giving me two panes with the same buffer
 (defun lch-vsplit-last-buffer (prefix)
   "Split the window vertically and display the previous buffer."
@@ -92,7 +116,7 @@ point reaches the beginning or end of the buffer, stop there."
   (if (= prefix 1) (switch-to-next-buffer)))
 (define-key global-map (kbd "C-x 2") 'lch-vsplit-last-buffer)
 (define-key global-map (kbd "C-x 3") 'lch-hsplit-last-buffer)
-;;; Persistent-scratch
+;;; persistent-scratch
 ;; By default, my machine drops me in to a =*scratch*= buffer. Originally designed
 ;; to be an lisp playground that you could dive right in to on start up, it's sort
 ;; of eclipsed that for me in to a general purpose buffer, where I will put things
@@ -113,7 +137,8 @@ point reaches the beginning or end of the buffer, stop there."
 (push #'load-persistent-scracth after-init-hook)
 (push #'save-persistent-scratch kill-emacs-hook)
 (run-with-idle-timer 300 t 'save-persistent-scratch)
-;;; Invoke-interactives
+
+;;; invoke-interactives
 (define-key global-map (kbd "M-1") 'shell)
 (defun lch-term ()
   "Switch to terminal. Launch if nonexistent."
@@ -174,7 +199,7 @@ point reaches the beginning or end of the buffer, stop there."
 ;;       (ansi-term "/usr/texbin/bash")
 ;;     (switch-to-buffer "*ansi-term*")))
 ;; (define-key global-map (kbd "M-2") 'lch-create-switch-term)
-;;; View-clipboard
+;;; view-clipboard
 (defun view-clipboard ()
   (interactive)
   (switch-to-buffer "*Clipboard*")
@@ -185,7 +210,7 @@ point reaches the beginning or end of the buffer, stop there."
     (html-mode)
     (view-mode)))
 (define-key global-map (kbd "C-z v") 'view-clipboard)
-;;; Punctuation-substitution
+;;; punctuation-substitution
 (defun lch-punctuate (pct)
   "pct:(a b); sub all the a in buffer with b"
   (save-excursion
@@ -208,13 +233,13 @@ point reaches the beginning or end of the buffer, stop there."
   (interactive)
   (mapc 'lch-punctuate lch-punctuate-list))
 (define-key global-map (kbd "<f4> p") 'lch-punctuate-buffer)
-;;; Interaction-with-macosx
+;;; interaction-with-macosx
 (defun lch-open-ppt-icon ()
    (interactive)
    (setq apscript
          "
           tell app \"Microsoft Powerpoint\"
-            open \"~/Dropbox/PPTNotes/iCon.pptx\"
+            open \"~/Dropbox/Notes/PPTNotes/iCon.pptx\"
             activate
           end tell
          "
@@ -293,16 +318,56 @@ end tell" mydir)))
     ))
 (define-key global-map (kbd "<f1> t") 'lch-start-terminal)
 (define-key global-map (kbd "<f1> <f2>") 'lch-start-terminal)
-;;; Buffer-editing
+;;; buffer-editing
+(defun strip-blank-lines()
+  "Strip all blank lines in select area of buffer,
+if not select any area, then strip all blank lines of buffer."
+  (interactive)
+  (strip-regular-expression-string "^[ \t]*\n")
+  (message "Have strip blanks line. Wakaka."))
+
+(define-key global-map (kbd "<f4> S") 'strip-blank-lines)
+
+(defun strip-regular-expression-string (regular-expression)
+  "Strip all string that match REGULAR-EXPRESSION in select area of buffer.
+If not select any area, then strip current buffer"
+  (interactive)
+  (let ((begin (point-min))             ;initialization make select all buffer
+        (end (point-max)))
+    (if mark-active                     ;if have select some area of buffer, then strip this area
+        (setq begin (region-beginning)
+              end (region-end)))
+    (save-excursion                                              ;save position
+      (goto-char end)                                            ;goto end position
+      (while (and (> (point) begin)                              ;when above beginning position
+                  (re-search-backward regular-expression nil t)) ;and find string that match regular expression
+        (replace-match "" t t)))))                               ;replace target string with null
+
+;; from Spacemacs
+(defun lch-strip-duplicate-blanks ()
+  "Remove duplicate adjacent lines in region or current buffer"
+  (interactive)
+  (save-excursion
+    (save-restriction
+      (let ((beg (if (region-active-p) (region-beginning) (point-min)))
+            (end (if (region-active-p) (region-end) (point-max))))
+        (goto-char beg)
+        (while (re-search-forward "^\\(.*\n\\)\\1+" end t)
+          (replace-match "\\1")))))
+  (message "Have strip duplicate blanks line. Wakaka."))
+(define-key global-map (kbd "<f4> s") 'lch-strip-duplicate-blanks)
+
 (defun lch-indent-buffer ()
   "Indent the currently visited buffer."
   (interactive)
   (indent-region (point-min) (point-max)))
+
 (defun lch-clear-empty-lines ()
   (interactive)
   (let ((line (buffer-substring (point-at-bol) (point-at-eol))))
     (when (string-match "^ +$" line)
       (delete-region (point-at-bol) (point-at-eol)))))
+
 (defun lch-indent-region-or-buffer ()
   "Indent a region if selected, otherwise the whole buffer."
   (interactive)
@@ -315,15 +380,18 @@ end tell" mydir)))
         (lch-indent-buffer)
         (message "Indented buffer.")))))
 (define-key global-map (kbd "C-c i") 'lch-indent-region-or-buffer)
+
 (defun lch-indent-defun ()
   "Indent the current defun."
   (interactive)
   (save-excursion
     (mark-defun)
     (indent-region (region-beginning) (region-end))))
+
 (defun lch-untabify-buffer ()
   (interactive)
   (untabify (point-min) (point-max)))
+
 (defun lch-cleanup-buffer ()
   "Perform a bunch of operations on the whitespace content of a buffer."
   (interactive)
@@ -332,14 +400,14 @@ end tell" mydir)))
   (whitespace-cleanup)
   (message "Buffer is cleaned. No tab, no whitespace. With correct indentation."))
 (define-key global-map (kbd "<f4> c") 'lch-cleanup-buffer)
-;;; Sudo-edit
+;;; sudo-edit
 (defun lch-sudo-edit (&optional arg)
   (interactive "p")
   (if (or arg (not buffer-file-name))
       (find-file (concat "/sudo:root@localhost:" (ido-read-file-name "File: ")))
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 (define-key global-map (kbd "C-c C-f") 'lch-sudo-edit)
-;;; Buffer-operation
+;;; buffer-operation
 (defun lch-copy-file-name-to-clipboard ()
   "Copy the current buffer file name to the clipboard."
   (interactive)
@@ -388,7 +456,7 @@ end tell" mydir)))
 ;;                              (file-name-nondirectory buffer-file-name)))
 ;;     (delete-file (buffer-file-name))
 ;;     (kill-this-buffer)))
-;;; Kill-buffer
+;;; kill-buffer
 (defun kill-current-mode-buffers ()
   "Kill all buffers that major mode same with current mode."
   (interactive)
@@ -455,7 +523,7 @@ kill all buffers with MODE except current buffer."
   (interactive)
   (one-key-menu "KILL" one-key-menu-kill-alist t))
 (define-key global-map (kbd "M-k") 'one-key-menu-kill)
-;;; Lch-emacs-tips
+;;; lch-emacs-tips
 (defvar lch-tips
   '(
     "Press M-f1 <=>  Access Emacs help system M-<f1> (one-key-menu-help)"
@@ -484,13 +552,13 @@ kill all buffers with MODE except current buffer."
   (message
    (concat "Tip: " (nth (random (length lch-tips)) lch-tips))))
 (define-key global-map (kbd "<f1> /") 'lch-tip-of-the-day)
-;;; Try-to-switch-buffer
+;;; try-to-switch-buffer
 (defun try-to-switch-buffer (name)
   "Just switch to buffer when found some buffer named NAME."
   (if (get-buffer name)
       (switch-to-buffer name)
     (message "Haven't found buffer named `%s`." name)))
-;;; Prettyfy-string
+;;; prettyfy-string
 ;; used in w3m-search-advance
 (defun prettyfy-string (string &optional after)
   "Strip starting and ending whitespace and pretty `STRING'.
@@ -507,13 +575,13 @@ Argument STRING the string that need pretty."
       (when (string-match (car replace) string)
         (setq string (replace-match (cdr replace) nil nil string))))
     string))
-;;; Eval-buffer
+;;; eval-buffer
 (defun lch-eval-buffer ()
   (interactive)
   (eval-buffer)
   (message "%s: EVALED" (buffer-name (current-buffer))))
 (define-key global-map (kbd "C-c e") 'lch-eval-buffer)
-;;; Create-switch-scratch/message
+;;; create-switch-scratch/message
 (defun lch-create-switch-scratch ()
   (interactive)
   (let ((buf (get-buffer "*scratch*")))
@@ -526,7 +594,7 @@ Argument STRING the string that need pretty."
   (switch-to-buffer (get-buffer "*Messages*")))
 ;; "/" means system output.
 (define-key global-map (kbd "C-c /") 'lch-switch-to-message)
-;;; Face-at-point
+;;; face-at-point
 (defun lch-face-at-point (pos)
   "Return the name of the face at point"
   (interactive "d")
@@ -534,7 +602,7 @@ Argument STRING the string that need pretty."
                   (get-char-property (point) 'face))))
     (if face (message "Face: %s" face) (message "No face at %d" pos))))
 (define-key global-map (kbd "<f11> F") 'lch-face-at-point)
-;;; Add-exec-permission-to-script
+;;; add-exec-permission-to-script
 (defun lch-chmod-x ()
   (and (save-excursion
          (save-restriction
@@ -547,7 +615,7 @@ Argument STRING the string that need pretty."
            (message
             (concat "Saved as script: " buffer-file-name)))))
 (add-hook 'after-save-hook 'lch-chmod-x)
-;;; Display-fortune
+;;; display-fortune
 (defun lch-echo-fortune ()
   (interactive)
   (message (shell-command-to-string "fortune")))

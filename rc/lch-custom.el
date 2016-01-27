@@ -10,7 +10,7 @@
     ac-trigger-commands-on-completing))
  '(org-agenda-files (quote ("~/Dropbox/Org/org/iPrv.org")))
  '(org-drill-optimal-factor-matrix nil)
- '(package-selected-packages (quote (yasnippet skewer-mode evil async)))
+ '(package-selected-packages (quote (yasnippet skewer-mode async)))
  '(safe-local-variable-values (quote ((bhj-force-cleanup-buffer . t)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

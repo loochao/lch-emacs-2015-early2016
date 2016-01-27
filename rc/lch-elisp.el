@@ -14,7 +14,7 @@
 ;;; CODE
 (message "=> lch-elisp: loading...")
 
-;;; Emacs-package
+;;; emacs-package
 (require 'package)
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -25,19 +25,19 @@
 (setq package-user-dir (concat emacs-dir "/elpa"))
 (package-initialize)
 
-;;; Rtf-mode
+;;; rtf-mode
 ;; Does not work that well.
 ;; (autoload 'rtf-mode "rtf-mode" "RTF mode" t)
 ;; (add-to-list 'auto-mode-alist
 ;;   '("\\.rtf$" . rtf-mode))
-;;; Projectile
+;;; projectile
 ;; Projectile is useful. Especially, projectile-replace and projectile-find-file.
 ;; Projectile commands are bound with the default C-c p prefix. So I can type C-c p C-h to list all of them.
 (require 'projectile)
 (projectile-global-mode +1)
 (require 'diminish)
-(diminish 'projectile-mode " ⅋")
-;;; Openwith
+(diminish 'projectile-mode " P")
+;;; openwith
 ;; (require 'openwith)
 ;; (setq openwith-associations
 ;;             (list
@@ -64,10 +64,10 @@
 ;;              ))
 ;; (openwith-mode 1)
 ;; 
-;;; Elfeed
+;;; elfeed
 ;; Do not like the way it displays all the items, could not specify a certain newsfeed.
 ;;(require 'elfeed)
-;;; Spray
+;;; spray
 ;; (autoload 'spray "spray.el")
 (require 'spray)
 ;; (setq spray-wpm 320)
@@ -88,7 +88,7 @@
           (evil-normal-state)))
 (define-key global-map (kbd "C-z s") 'lch-init-spray)
 
-;;; Diminish
+;;; diminish
 ;; Diminish some common modes; Diminishing a mode makes it eat less space in the
 ;; modeline, by replacing the text on the modeline with something else. The Emacs
 ;; config I stole these from uses a bunch of unicode characters, so I kind of
@@ -98,19 +98,19 @@
 (require 'diminish)
 (lch-diminish auto-fill-function " Ⓕ" " F")
 
-;;; Ace-window
+;;; ace-window
 (require 'ace-window)
-;;; Zop-to-char
+;;; zop-to-char
 (require 'zop-to-char)
 ;; To replace `zap-to-char':
 (define-key global-map (kbd "M-z") 'zop-to-char)
 
-;;; Vi-tilde-fringe-mode
+;;; vi-tilde-fringe-mode
 ;; (require 'vi-tilde-fringe)
 ;; (add-hook 'prog-mode-hook 'vi-tilde-fringe-mode)
 ;; (global-vi-tilde-fringe-mode)
 
-;;; Popwin
+;;; popwin
 (require 'popwin)
 (popwin-mode 1)
 ;; (evil-leader/set-key "wpm" 'popwin:messages)
@@ -126,13 +126,13 @@
         (-remove (lambda (x) (if (and (listp x) (stringp (car x)))
                                  (string-match str (car x))))
                  popwin:special-display-config)))
-;;; Expand-region
+;;; expand-region
 (require 'expand-region)
 
-;;; Guide-key-mode
+;;; which-key
 ;; in lch-binding.el
 
-;;; Evernote
+;;; evernote
 ;; (require 'evernote-mode)
 ;; (setq evernote-enml-formatter-command '("w3m" "-dump" "-I" "UTF8" "-O" "UTF8"))
 ;; (defvar enh-enclient-command "/usr/texbin/enclient.rb" "Name of the enclient.rb command")
@@ -153,7 +153,7 @@
 ;; (global-set-key "\C-cep" 'evernote-post-region)
 ;; (global-set-key "\C-ceb" 'evernote-browser)
 
-;;; Whitespace-mode
+;;; whitespace-mode
 ;; Whitespace Mode lets you do a couple of neat things, reporting issues,
 ;; and fixing them.
 (require 'whitespace)
@@ -162,7 +162,7 @@
 ;; (diminish 'global-whitespace-mode " ᗣ")
 ;; (add-hook 'before-save-hook 'whitespace-cleanup)
 
-;;; Switch-window
+;;; switch-window
 (require 'switch-window)
 ;;; mac-print
 
@@ -203,7 +203,7 @@
 
 (add-hook 'htmlize-before-hook 'my-htmlize-before-hook-default)
 
-;;; AppleScript-mode
+;;; applescript-mode
 ;; (autoload 'applescript-mode "applescript-mode"
 ;;   "Major mode for editing AppleScript source." t)
 ;; (add-to-list 'auto-mode-alist '("\\.applescript$" . applescript-mode))
@@ -216,7 +216,7 @@
   (inf-ruby)
   (delete-other-windows))
 ;; (define-key global-map (kbd "M-5") 'lch-ruby)
-;;; Coffee-mode
+;;; coffee-mode
 ;; (require 'coffee-mode)
 ;; (add-to-list 'auto-mode-alist '("\\.coffee\\'" . coffee-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.iced\\'" . coffee-mode))
@@ -227,13 +227,13 @@
 (define-key global-map (kbd "C-<f8>") 'iflipb-previous-buffer)
 (define-key global-map (kbd "C-<f9>") 'iflipb-next-buffer)
 
-;;; Multiple-cursor
+;;; multiple-cursor
 (require 'multiple-cursors)
 (define-key global-map (kbd "<f2> <f2>") 'mc/edit-lines)
-;;; Magit
+;;; magit
 (require 'magit)
 (define-key global-map (kbd "<f1> g") 'magit-status)
-;;; Keyfreq
+;;; keyfreq
 ;; Use keyfreq-show to see how many times you used a command.
 ;; (require 'keyfreq)
 ;; (keyfreq-mode 1)
@@ -243,17 +243,17 @@
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-hook 'js-mode-hook 'js2-minor-mode)
-;;; Emmet-mode
+;;; emmet-mode
 ;; Enable when editing HTML
 ;; (require 'emmet-mode)
 ;; (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
 ;; (add-hook 'html-mode-hook 'emmet-mode)
 ;; (add-hook 'css-mode-hook  'emmet-mode)
-;;; Python-mode
+;;; python-mode
 (setq py-install-directory (concat emacs-lisp-dir "/python-mode/"))
 (require 'python-mode)
 
-;;; Multi-term/scratch
+;;; multi-term/scratch
 (require 'multi-term)
 (require 'multi-scratch)
 
@@ -295,13 +295,13 @@
   (one-key-menu "TERM" one-key-menu-term-scratch-alist t))
 (define-key global-map (kbd "M-`") 'one-key-menu-term-scratch)
 
-;;; ASCII
+;;; ascii
 (autoload 'ascii-display "ascii" "" t)
 (autoload 'ascii-on "ascii" "" t)
 (autoload 'ascii-off "ascii" "" t)
 (define-key global-map (kbd "<f11> a") 'ascii-on)
 (define-key global-map (kbd "<f11> A") 'ascii-off)
-;;; Calendar
+;;; calendar
 (defun calendar-settings ()
   "settings for calendar mode"
   ;; required features
@@ -312,11 +312,11 @@
   (setq calendar-holidays cal-china-x-important-holidays))
 
 (add-hook 'calendar-load-hook 'calendar-settings)
-;;; Smart-Compile
+;;; smart-compile
 (autoload 'smart-compile "smart-compile" "" t)
 (define-key global-map (kbd "M-<f2>") 'smart-compile)
 (define-key global-map (kbd "<f1> c") 'smart-compile)
-;;; Skeleton
+;;; skeleton
 ;; Skeleton pair works with paredit, and more generally.
 ;; (setq skeleton-pair t)
 ;; (define-key global-map (kbd "(") 'skeleton-pair-insert-maybe)
@@ -337,7 +337,7 @@
 
 (defalias 'weibo 'weibo-timeline)
 (define-key global-map (kbd "<f6> w") 'weibo)
-;;; Eperiodic
+;;; eperiodic
 (defun eperiodic-setting ()
   (custom-set-variables
    '(eperiodic-web-lookup-location "http://www.webelements.com/webelements/elements/text/%s/key.html")))
@@ -348,7 +348,7 @@
 (autoload 'eperiodic "eperiodic"
   "Display the periodic table of the elements in its own buffer" t)
 
-;;; Template
+;;; template
 ;; FIXME: template files need more adjustment.
 (defconst emacs-template-dir (concat emacs-lib-dir "/templates"))
 (defun template-setting ()
@@ -366,20 +366,20 @@
 
 (define-key global-map (kbd "<f4> t") 'template-expand-template)
 
-;;; Smooth-scroll
+;;; smooth-scroll
 ;; Feel better when you use C-v.
 (require 'smooth-scroll)
 (smooth-scroll-mode 1)
 (lch-diminish smooth-scroll-mode "")
-;;; Unbound
+;;; unbound
 (autoload 'describe-unbound-keys "unbound.el"
   "Display a list of unbound keystrokes of complexity no greater than MAX." t)
 (define-key global-map (kbd "C-h u") 'describe-unbound-keys)
-;;; Hexview
+;;; hexview
 (autoload 'hexview-mode "hexview-mode"
   "Major mode for viewing file in hexical mode" t)
 (define-key global-map (kbd "<f11> x") 'hexview-mode)
-;;; Mathematica
+;;; mathematica
 (require 'mathematica)
 (setq mathematica-command-line "/Applications/Mathematics/Mathematica.app/Contents/MacOS/MathKernel")
 (define-key global-map (kbd "M-7") 'mathematica)
@@ -391,7 +391,7 @@
 ;; (require 'ess-site)
 
 ;; (setq ess-ask-for-ess-directory nil)
-;;; Dictionary
+;;; dictionary
 (autoload 'dictionary-search "dictionary" "Ask for a word and search it in all dictionaries" t)
 (autoload 'dictionary "dictionary" "Create a new dictionary buffer" t)
 (autoload 'dictionary-match-words "dictionary" "Ask for a word and search all matching words in the dictionaries" t)
@@ -403,18 +403,18 @@
 
 (define-key global-map (kbd "<f7> <f6>") 'dictionary-search)
 
-;;; Windmove
+;;; windmove
 ;; Part of GNU Emacs
 ;; Use shift + arrow to navigate between windows.
 (require 'windmove)
 (windmove-default-keybindings)
-;;; Color-grep
+;;; color-grep
 (require 'color-grep)
 
-;;; Go-to-char
+;;; go-to-char
 (require 'go-to-char)
 
-;;; Less-mode
+;;; less-mode
 (require 'less)
 (require 'lch-key-util)
 (define-key global-map (kbd "C-c l") 'less-minor-mode)
@@ -442,14 +442,14 @@
    )
  less-minor-mode-map
  )
-;;; Rainbow-delimiter
+;;; rainbow-delimiter
 (require 'rainbow-delimiters)
 (define-key global-map (kbd "<f11> r") 'rainbow-delimiters-mode)  ;p stands for parenthesis
-;;; Matlab
+;;; matlab
 ;; Work like a charm, but only enable when needed
 (require 'matlab-load)
 
-;;; Ace-jump-mode
+;;; ace-jump-mode
 (autoload
   'ace-jump-mode
   "ace-jump-mode"
@@ -463,7 +463,7 @@
 (define-key global-map (kbd "C-c j") 'ace-jump-mode)
 (define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
 
-;;; Savehist
+;;; savehist
 ;; keeps track of some history
 ;; Part of GNU Emacs
 (require 'savehist)
@@ -479,7 +479,7 @@
 (setq savehist-save-minibuffer-history 1)
 (savehist-mode +1)
 
-;;; Saveplace
+;;; saveplace
 ;; Save point position between sessions
 ;; When you visit a file, point goes to the last place where it was
 ;; when you previously visited. Save file is set to emacs-var-dir/saveplace
@@ -489,11 +489,11 @@
 (setq-default save-place t)
 (setq save-place-file (concat emacs-var-dir "/saveplace"))
 
-;;; Volatile-highlights
+;;; volatile-highlights
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
 (diminish 'volatile-highlights-mode)
-;;; Cowsay-fortune
+;;; cowsay-fortune
 (require 'cowsay-fortune)
 (defun lch-cowsay-fortune ()
   (interactive)
@@ -510,7 +510,7 @@
              (file-exists-p "/usr/texbin/cowsay"))
     (run-with-idle-timer 600 t 'lch-cowsay-fortune)))
 ;; (lch-toggle-cowsay)
-;;; Paredit
+;;; paredit
 ;; (autoload 'enable-paredit-mode "paredit"
 ;;   "Turn on pseudo-structural editing of Lisp code."
 ;;   t)
@@ -525,14 +525,14 @@
 (eval-after-load 'paredit
   '(lch-diminish paredit-mode " Ⓟ" " P"))
 
-;;; Eye-dropper
+;;; eye-dropper
 ;; To pick the fg and bg color at point
 (require 'eyedropper)
-;;; Thing-edit
+;;; thing-edit
 ;; Written by lazy cat, do sth after get things at point
 ;; An one key menu defined in lch-one-key.el
 (require 'thing-edit)
-;;; Flyspell
+;;; flyspell
 
 (require 'flyspell)
 ;; (diminish 'flyspell-mode " ✓")
@@ -547,7 +547,7 @@
     (flyspell-mode +1)))
 (add-hook 'text-mode-hook 'lch-enable-flyspell)
 (setq ispell-personal-dictionary (concat emacs-var-dir "/ispell_dict"))
-;;; AucTeX
+;;; auctex
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
 
@@ -557,7 +557,7 @@
   (abbrev-mode +1)
   (flyspell-mode +1))
 (add-hook 'LaTeX-mode-hook 'lch-latex-mode-hook)
-;;; Anything
+;;; anything
 ;; Anything.el provides a framework.
 ;; has to enable anything-config to make it really go.
 ;; anything-config is quite long and powerful.
@@ -567,7 +567,7 @@
 ;; (require 'anything-config)
 ;; (define-key global-map (kbd "M-SPC") 'anything)
 ;; (define-key global-map (kbd "M-a") 'anything-command-map)
-;;; Outline
+;;; outline
 ;; Outline is part of GNU Emacs
 ;; TODO: bind the outline-minor-mode-prefix C-c @ to C-o
 (add-hook 'outline-minor-mode-hook 'hide-body)
@@ -600,7 +600,7 @@
 (setq browse-kill-ring-no-duplicates t)
 (setq kill-ring-max 1024)
 
-;;; Recentf
+;;; recentf
 ;; Part of GNU Emacs
 (require 'recentf)
 
@@ -625,7 +625,7 @@
 ;; Key bindings
 (define-key global-map (kbd "C-x C-r") 'recentf-open-files)
 
-;;; Undo-tree
+;;; undo-tree
 ;; Represent undo-history as an actual tree (visualize with C-x u)
 (require 'undo-tree)
 (global-undo-tree-mode 1)
@@ -636,7 +636,7 @@
 (setq undo-tree-save-history t
       undo-tree-history-directory-alist `(("." . ,(concat emacs-var-dir "undo-tree-history"))))
 
-;;; Uniquify
+;;; uniquify
 ;; Make filename unique.
 ;; Part of GNU Emacs.
 (require 'uniquify)
@@ -646,11 +646,11 @@
 (setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
 (setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
 
-;;; Rainbow-mode
+;;; rainbow-mode
 ;; Autoload to speed up.
 (autoload 'rainbow-mode "rainbow-mode.el" "" t)
 (define-key global-map (kbd "<f11> R") 'rainbow-mode)
-;;; Live-fontify-hex
+;;; live-fontify-hex
 ;; Display colors directly in lisp mode
 ;; Helpful when you write color-theme.
 ;; Enable only when work with color.
@@ -664,7 +664,7 @@
 (font-lock-add-keywords 'css-mode
                         '((live-fontify-hex-colors)))
 
-;;; Smex
+;;; smex
 (require 'smex)
 (smex-initialize)
 (setq smex-save-file (concat emacs-var-dir "/.smex-items"))
@@ -673,26 +673,26 @@
 ;; Old M-x.
 (define-key global-map (kbd "C-c C-c M-x") 'execute-extended-command)
 
-;;; Markdown-mode
+;;; markdown-mode
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
 ;; (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-;;; iDo
+;;; ido
 (ido-mode t)
 (define-key global-map (kbd "C-x b") 'ido-switch-buffer)
 
 ;; Ignore .DS_Store files with ido mode
 (add-to-list 'ido-ignore-files "\\.DS_Store")
 
-;;; Goto-last-change
+;;; goto-last-change
 (require 'goto-chg)
 (define-key global-map (kbd "C-x C-\\") 'goto-last-change)
 (define-key global-map (kbd "<f4> <f4>") 'goto-last-change)
 (define-key global-map (kbd "<f4> <f5>") 'goto-last-change-reverse)
-;;; Desktop
+;;; desktop
 ;; Part of GNU Emacs
 (require 'desktop)
 
@@ -706,7 +706,7 @@
       (desktop-read desktop-dirname)))
 
 (add-hook 'after-init-hook 'desktop-settings-setup)
-;;; Yasnippet
+;;; yasnippet
 (require 'yasnippet)
 (lch-diminish yas-minor-mode " Ⓨ" " Y")
 (defvar snippet-root-dir (concat emacs-lib-dir "/snippets") "")
@@ -743,7 +743,7 @@
 ;; (define-key yas-minor-mode-map (kbd "TAB") nil)
 (define-key yas-minor-mode-map (kbd "M-'") 'yas-expand)
 
-;;; Auto-complete
+;;; auto-complete
 ;; Disable it usually, for it's slow and distracting.
 ;; Try dabbrev-expand (M-/)
 ;; (require 'auto-complete)

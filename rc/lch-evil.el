@@ -69,6 +69,8 @@
 (setq evil-leader/leader "SPC"
       evil-leader/in-all-states t)
 
+(evil-leader/set-key "!" 'shell-command)
+(evil-leader/set-key "TAB" 'spacemacs/alternate-buffer)
 (evil-leader/set-key "1" 'delete-other-windows)
 (evil-leader/set-key "2" 'split-window-right)
 (evil-leader/set-key "3" 'split-window-below)
@@ -189,7 +191,6 @@
 (define-key evil-emacs-state-map (kbd "C-v") 'scroll-up)
 (define-key evil-insert-state-map (kbd "C-v") 'scroll-up)
 (define-key evil-normal-state-map (kbd "C-v") 'scroll-up)
-
 (define-key evil-normal-state-map (kbd "C-o") 'occur)
 (define-key evil-insert-state-map (kbd "C-o") 'occur)
 (define-key evil-emacs-state-map (kbd "C-o") 'occur)

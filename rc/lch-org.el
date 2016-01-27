@@ -206,7 +206,9 @@
 ;; %t          timestamp, date only
 ;; %T          timestamp with date and time
 ;; %u, %U      like the above, but inactive timestamps
-(require 'org-download)
+;; (require 'org-download)
+(require 'org-download "org-download.el")
+
 
 (define-key global-map (kbd "M-0") 'org-capture)
 

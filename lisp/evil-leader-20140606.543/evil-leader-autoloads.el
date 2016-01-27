@@ -5,7 +5,7 @@
 
 ;;;### (autoloads (evil-leader/set-key-for-mode evil-leader/set-key
 ;;;;;;  evil-leader-mode global-evil-leader-mode) "evil-leader" "evil-leader.el"
-;;;;;;  (21828 14756 0 0))
+;;;;;;  (22146 54776 0 0))
 ;;; Generated autoloads from evil-leader.el
 
 (autoload 'global-evil-leader-mode "evil-leader" "\
@@ -35,7 +35,7 @@ See `evil-leader/set-key'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("evil-leader-pkg.el") (21828 14756 415742
+;;;### (autoloads nil nil ("evil-leader-pkg.el") (22146 54776 724723
 ;;;;;;  0))
 
 ;;;***

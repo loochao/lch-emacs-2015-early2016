@@ -17,7 +17,7 @@
 (message "=> lch-env: loading...")
 (setenv "LANG" "en_US.UTF-8" )
 (setenv "LC_ALL" "en_US.UTF-8" )
-
+
 ;;; LOAD-PATH
 ;; emacs-dir defined in .emacs
 (defconst emacs-lisp-dir (concat emacs-dir "/lisp"))
@@ -26,6 +26,7 @@
 (defconst emacs-doc-dir (concat emacs-dir "/doc"))
 (defconst emacs-info-dir (concat emacs-dir "/info"))
 (defconst emacs-bin-dir (concat emacs-dir "/bin"))
+(defconst emacs-banner-dir (concat emacs-lib-dir "/banners"))
 
 ;; ;; If you have a pkg outside site-lisp
 ;; (mapc (lambda (path) (add-to-list 'load-path path))
@@ -62,7 +63,7 @@
                                 "/opt/local/bin"
                                 "/usr/local/bin"
                                 )))))
-
+
 ;;; FLAGs
 (defconst lch-cygwin-p (eq system-type 'cygwin) "Are we on cygwin")
 (defconst lch-mbp-win (and (eq system-type 'windows-nt) (string-match (system-name) "LCH-MBP")) "Are we on MBP-WIN?")
@@ -74,10 +75,10 @@
 (defconst is-before-emacs-21 (>= 21 emacs-major-version) "Is Emacs older than 21")
 (defconst is-after-emacs-23  (<= 23 emacs-major-version) "Is Emacs newer than 23")
 
-
+
 ;;; VARs
 (defconst git-dir (concat dropbox-path "/REPO/GIT") "git dir")
-(setq emacs-var-dir (concat emacs-path "/.emacs.d/var"))
+(defvar emacs-var-dir (concat emacs-path "/.emacs.d/var") "storage area for persistent files")
 (if lch-aquamacs-p
     (setq custom-file (concat emacs-dir "/rc/lch-aqua-custom.el"))
     (setq custom-file (concat emacs-dir "/rc/lch-custom.el")))
@@ -88,7 +89,7 @@
 ;; (load (concat emacs-lib-dir "/emacs-starter-kit/init.el"))
 ;; (load (concat emacs-lib-dir "/conf/dea-read-only/.emacs"))
 
-
+
 ;;; INFO
 ;; (add-to-list 'Info-default-directory-list emacs-info-dir)
 (dolist (dir `(,emacs-info-dir
@@ -97,7 +98,7 @@
                "~/local/share/info"))
   (add-to-list 'Info-default-directory-list dir))
 
-
+
 ;;; KEYMAP
 (define-prefix-command 'm-f1-map)
 (define-key global-map (kbd "M-<f1>") 'm-f1-map)
@@ -158,7 +159,7 @@
 
 (define-prefix-command 'Super-z-map)
 (define-key global-map (kbd "s-z") 'Super-z-map)
-
+
 ;;; PROVIDE
 (provide 'lch-env)
 (message "~~ lch-env: done.")

@@ -59,6 +59,8 @@ if [[ $ARCH == 'Darwin' ]]; then
     add_to_path /Volumes/DATA/Applications/Utilities/MATLAB_R2010b.app/bin
     add_to_path /Volumes/DATA/Macports/bin #Macports
     add_to_path /Volumes/DATA/Macports/sbin #Macports
+    add_to_path /opt/local/libexec/qt4/bin #QT
+    add_to_path /opt/local/libexec/Elmer_devel_12-22-15/bin #Elmer
     add_to_path /Volumes/DATA/Applications/Emacs.app/Contents/MacOS/bin
 fi
 
@@ -206,11 +208,12 @@ export HISTFILESIZE=1000000
 #export HISTTIMEFORMAT='%b %d %I:%M %p '                 #Display time when that cmd used.
 
 #---- Bash Completion, if available ----#
-if [ -f /usr/local/etc/bash_completion ]; then
+# enable bash completion in interactive shells
+if [ -f /usr/local/etc/bash_completion ] && ! shopt -oq posix; then
   . /usr/local/etc/bash_completion
-elif  [ -f /etc/bash_completion ]; then
+elif  [ -f /etc/bash_completion ] && ! shopt -oq posix; then
   . /etc/bash_completion
-elif  [ -f /etc/profile.d/bash_completion ]; then
+elif  [ -f /etc/profile.d/bash_completion ] && ! shopt -oq posix; then
   . /etc/profile.d/bash_completion
 fi
 

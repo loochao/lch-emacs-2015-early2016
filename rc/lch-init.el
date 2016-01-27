@@ -1,4 +1,5 @@
 ;; -*- coding:utf-8; -*-
+
 ;;; INIT.EL
 ;;
 ;; Copyright (c)  Chao LU 2005 2006-2011
@@ -39,7 +40,10 @@
 ;; (electric-pair-mode t)
 
 ;; Auto refresh buffers
-(global-auto-revert-mode 1)
+(global-auto-revert-mode t)
+;; Also auto refresh dired, but be quiet about it
+(setq global-auto-revert-non-file-buffers t
+      auto-revert-verbose nil)
 
 ;; Frame title
 ;; that show either a file or a buffer name

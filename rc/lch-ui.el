@@ -16,6 +16,46 @@
 ;;; CODE
 (message "=> lch-ui: loading...")
 (require 'lch-key-util)
+;;; bzg-big-fringe-mode
+(define-minor-mode bzg-big-fringe-mode
+"Minor mode to use big fringe in the current buffer."
+:init-value nil
+:global t
+:variable bzg-big-fringe-mode
+:group 'editing-basics
+(if (not bzg-big-fringe-mode)
+    (set-fringe-style nil)
+  (set-fringe-mode
+   (/ (- (frame-pixel-width)
+         (* 100 (frame-char-width)))
+      2))))
+
+;;; hide mode line
+;; from http://bzg.fr/emacs-hide-mode-line.html
+(defvar-local hidden-mode-line-mode nil)
+(define-minor-mode hidden-mode-line-mode
+  "Minor mode to hide the mode-line in the current buffer."
+  :init-value nil
+  :global t
+  :variable hidden-mode-line-mode
+  :group 'editing-basics
+  (if hidden-mode-line-mode
+      (setq hide-mode-line mode-line-format
+            mode-line-format nil)
+    (setq mode-line-format hide-mode-line
+          hide-mode-line nil))
+  (force-mode-line-update)
+  ;; Apparently force-mode-line-update is not always enough to
+  ;; redisplay the mode-line
+  (redraw-display)
+  (when (and (called-interactively-p 'interactive)
+             hidden-mode-line-mode)
+    (run-with-idle-timer
+     0 nil 'message
+     (concat "Hidden Mode Line Mode enabled.  "
+             "Use M-x hidden-mode-line-mode to make the mode-line appear."))))
+(define-key global-map (kbd "<f11> M") 'hidden-mode-line-mode)
+
 ;;; Fullscreen
 (defun toggle-fullscreen (&optional f)
   (interactive)
@@ -42,30 +82,43 @@
 (global-rainbow-delimiters-mode)
 ;;; Maxframe
 ;; FIXME: Not working under some monitor.
-(require 'maxframe)
-(add-hook 'window-setup-hook 'maximize-frame t)
-(autoload 'mf-max-display-pixel-width "maxframe" "" nil)
-(autoload 'mf-max-display-pixel-height "maxframe" "" nil)
-(autoload 'maximize-frame "maxframe" "" t)
-(autoload 'restore-frame "maxframe" "" t)
+;; (require 'maxframe)
+;; (add-hook 'window-setup-hook 'maximize-frame t)
+;; (autoload 'mf-max-display-pixel-width "maxframe" "" nil)
+;; (autoload 'mf-max-display-pixel-height "maxframe" "" nil)
+;; (autoload 'maximize-frame "maxframe" "" t)
+;; (autoload 'restore-frame "maxframe" "" t)
 
-(when lch-mac-p
-  (eval-after-load 'maxframe
-    '(progn
-       (fset 'maximize-frame 'x-maximize-frame)
-       (fset 'restore-frame 'x-restore-frame))))
+;; (when lch-mac-p
+;;   (eval-after-load 'maxframe
+;;     '(progn
+;;        (fset 'maximize-frame 'x-maximize-frame)
+;;        (fset 'restore-frame 'x-restore-frame))))
 
-(when lch-mac-p
-  (setq mf-display-padding-width 4
-        mf-offset-x 0
-        mf-offset-y 0
-        mf-display-padding-height (if (when (boundp 'ns-auto-hide-menu-bar)
-                                        ns-auto-hide-menu-bar)
-                                      23
-                                    (+ 27 23))))
+;; (when lch-mac-p
+;;   (setq mf-display-padding-width 4
+;;         mf-offset-x 0
+;;         mf-offset-y 0
+;;         mf-display-padding-height (if (when (boundp 'ns-auto-hide-menu-bar)
+;;                                         ns-auto-hide-menu-bar)
+;;                                       23
+;;                                     (+ 27 23))))
 
-(add-hook 'after-make-frame-functions 'maximize-frame)
-(add-hook 'after-init-hook 'maximize-frame)
+;; (add-hook 'after-make-frame-functions 'maximize-frame)
+;; (add-hook 'after-init-hook 'maximize-frame)
+
+(defun spacemacs/toggle-fullscreen ()
+  "Toggle full screen on X11 and Carbon"
+  (interactive)
+  (cond
+   ((eq window-system 'x)
+    (set-frame-parameter nil 'fullscreen
+                         (when (not (frame-parameter nil 'fullscreen))
+                           'fullboth)))
+   ((eq window-system 'mac)
+    (set-frame-parameter
+     nil 'fullscreen
+     (when (not (frame-parameter nil 'fullscreen)) 'fullscreen)))))
 
 ;;; Color-theme
 (defvar emacs-theme-dir (concat emacs-lib-dir "/themes"))
@@ -88,8 +141,17 @@
 (if lch-linux-p (set-face-attribute 'default nil :height 160))
 (when lch-win32-p
   ;; (set-face-attribute 'default nil :height 160)
-  (set-default-font "Courier New:pixelsize=24"))
+  (set-face-attribute 'default nil
+                      :family "Consolas" :height 160))
+  ;;(set-default-font "Courier New:pixelsize=18")
+
 ;; (if lch-mac-p (set-default-font "Monaco New:pixelsize=18"))
+
+;;(set-face-attribute 'default nil
+;;                    :family "Monaco" :height (case system-type
+;;                                                    ('gnu/linux 130)
+;;                                                    ('darwin 180)) :weight 'normal)
+
 ;;; Tabbar
 (require 'tabbar)
 (tabbar-mode 1)

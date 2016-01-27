@@ -1,74 +1,21 @@
 ;;; -*- coding: utf-8 -*-
-(("/"
-  (dired-filename . "/User Guides And Information"))
- ("/Users/LooChao/"
-  (dired-filename . "/Users/LooChao/Documents"))
- ("/Users/LooChao/.breadcrumb" . 1201)
- ("/Users/LooChao/.ido.last" . 111142)
- ("/Users/LooChao/.wine/dosdevices/z:/Volumes/DATA/Dropbox/Pharmaseq/Sorter/Data/Camera/151201_Testing_w.Chip_no.Control.Board_2/Video.Please.See.Volume.DATA" . 45)
- ("/Users/LooChao/Downloads/"
-  (dired-filename . "/Users/LooChao/Downloads/Chao_Trexquant"))
- ("/Users/LooChao/Downloads/Chao_Trexquant/IND_R5.m" . 320)
- ("/Users/LooChao/Dropbox/.emacs.d/"
-  (dired-filename . "/Users/LooChao/Dropbox/.emacs.d/elpa"))
- ("/Users/LooChao/Dropbox/.emacs.d/elpa/"
-  (dired-filename . "/Users/LooChao/Dropbox/.emacs.d/elpa/evil"))
- ("/Users/LooChao/Dropbox/.emacs.d/elpa/archives/ELPA/archive-contents" . 11669)
- ("/Users/LooChao/Dropbox/.emacs.d/elpa/archives/gnu/archive-contents" . 25457)
- ("/Users/LooChao/Dropbox/.emacs.d/elpa/archives/melpa/archive-contents" . 463407)
- ("/Users/LooChao/Dropbox/.emacs.d/elpa/archives/org/archive-contents" . 185)
- ("/Users/LooChao/Dropbox/.emacs.d/elpa/org-download-20151030.716/org-download-autoloads.el" . 416)
- ("/Users/LooChao/Dropbox/.emacs.d/lisp/"
-  (dired-filename . "/Users/LooChao/Dropbox/.emacs.d/lisp/evil-leader-20140606.543"))
- ("/Users/LooChao/Dropbox/.emacs.d/lisp/org-download-20150414.1005/"
-  (dired-filename . "/Users/LooChao/Dropbox/.emacs.d/lisp/org-download-20150414.1005/org-download-autoloads.el"))
- ("/Users/LooChao/Dropbox/.emacs.d/rc/"
-  (dired-filename . "/Users/LooChao/Dropbox/.emacs.d/rc/lch-evil.el"))
- ("/Users/LooChao/Dropbox/.emacs.d/rc/lch-binding.el" . 1212)
- ("/Users/LooChao/Dropbox/.emacs.d/rc/lch-conf.el" . 460)
- ("/Users/LooChao/Dropbox/.emacs.d/rc/lch-dired.el" . 3183)
- ("/Users/LooChao/Dropbox/.emacs.d/rc/lch-env.el" . 1837)
- ("/Users/LooChao/Dropbox/.emacs.d/rc/lch-org.el" . 8253)
- ("/Users/LooChao/Dropbox/.emacs.d/rc/lch-ui.el" . 2893)
- ("/Users/LooChao/Dropbox/.emacs.d/rc/lch-util.el" . 6088)
- ("/Users/LooChao/Dropbox/.emacs.d/var/emacs.recentf" . 195)
+(("/Users/LooChao/Dropbox/.emacs.d/var/emacs.recentf" . 244)
+ ("/Users/LooChao/.ido.last" . 112674)
  ("/Users/LooChao/Dropbox/.emacs.d/var/emms/emms-history" . 158)
- ("/Users/LooChao/Dropbox/Code/"
-  (dired-filename . "/Users/LooChao/Dropbox/Code/lch-python"))
- ("/Users/LooChao/Dropbox/Code/lch-python/loochao.py" . 5)
- ("/Users/LooChao/Dropbox/Org/org/"
-  (dired-filename . "/Users/LooChao/Dropbox/Org/org/15GT-Hotel.org"))
- ("/Users/LooChao/Dropbox/Org/org/15GT-Hotel.org" . 991)
- ("/Users/LooChao/Dropbox/Org/org/Music.org" . 489)
- ("/Users/LooChao/Dropbox/Org/org/Pharmaseq.org" . 470)
- ("/Users/LooChao/Dropbox/Org/org/iPrv.org" . 594)
- ("/Users/LooChao/Dropbox/Org/org/iPrv.org_archive" . 188701)
- ("/Users/LooChao/Dropbox/Pharmaseq/Sorter/Code/"
-  (dired-filename . "/Users/LooChao/Dropbox/Pharmaseq/Sorter/Code/sorter_2k6.m"))
- ("/Users/LooChao/Dropbox/Pharmaseq/Sorter/Code/sorter_2k6.m" . 2388)
- ("/Users/LooChao/Dropbox/Research/FPO/Slides/"
-  (dired-filename . "/Users/LooChao/Dropbox/Research/FPO/Slides/diagram"))
- ("/Users/LooChao/Dropbox/Research/README.md" . 33)
- ("/Users/LooChao/Dropbox/Research/Thesis/ch-theory/chapter-theory.tex" . 47435)
- ("/Volumes/"
-  (dired-filename . "/Volumes/DATA"))
- ("/Volumes/DATA/"
-  (dired-filename . "/Volumes/DATA/Private"))
- ("/Volumes/DATA/Applications/Library/Netease_Music/"
-  (dired-filename . "/Volumes/DATA/Applications/Library/Netease_Music/Acetre - Auroros De Zarzacapilla.mp3"))
- ("/Volumes/DATA/Dropbox/"
-  (dired-filename . "/Volumes/DATA/Dropbox/Applications"))
- ("/Volumes/DATA/Dropbox/Pharmaseq/"
-  (dired-filename . "/Volumes/DATA/Dropbox/Pharmaseq/Sorter"))
- ("/Volumes/DATA/Dropbox/Pharmaseq/Sorter/"
-  (dired-filename . "/Volumes/DATA/Dropbox/Pharmaseq/Sorter/Data"))
- ("/Volumes/DATA/Dropbox/Pharmaseq/Sorter/Data/"
-  (dired-filename . "/Volumes/DATA/Dropbox/Pharmaseq/Sorter/Data/Camera"))
- ("/Volumes/DATA/Dropbox/Pharmaseq/Sorter/Data/Camera/"
-  (dired-filename . "/Volumes/DATA/Dropbox/Pharmaseq/Sorter/Data/Camera/151201_Testing_w.Chip_no.Control.Board_2"))
- ("/Volumes/DATA/Dropbox/Pharmaseq/Sorter/Data/Camera/151201_Testing_w.Chip_no.Control.Board_2/"
-  (dired-filename . "/Volumes/DATA/Dropbox/Pharmaseq/Sorter/Data/Camera/151201_Testing_w.Chip_no.Control.Board_2/Chip1"))
- ("/Volumes/DATA/Dropbox/Pharmaseq/Sorter/Data/Camera/151201_Testing_w.Chip_no.Control.Board_2/Chip1_small/resize.sh" . 18)
- ("/Volumes/DATA/Pharmaseq/Sorter_Video/"
-  (dired-filename . "/Volumes/DATA/Pharmaseq/Sorter_Video/151201_Testing_w.Chip_no.Control.Board_2.avi"))
+ ("/Users/LooChao/.breadcrumb" . 1379)
+ ("/"
+  (dired-filename . "/User Guides And Information"))
+ ("/Users/LooChao/Dropbox/.emacs.d/rc/lch-emms.el" . 8756)
+ ("/Users/LooChao/Dropbox/Code/test.c" . 75)
+ ("/Users/LooChao/Dropbox/Org/org/Culture.org" . 193577)
+ ("/Users/LooChao/Dropbox/Org/org/Culture/YuShan.org" . 396)
+ ("/Users/LooChao/Dropbox/Org/org/Humor.org" . 1330)
+ ("/Users/LooChao/Dropbox/Org/org/Pearl.org" . 1728)
+ ("/Users/LooChao/Dropbox/Org/org/iPrv.org" . 2886)
+ ("/Users/LooChao/Dropbox/Org/org/iPrv.org_archive" . 190486)
+ ("/Users/LooChao/Dropbox/Research/Project/Chemical/Makefile" . 38)
+ ("/Users/LooChao/Dropbox/Research/Project/Chemical/chem_header.tex" . 132)
+ ("/Users/LooChao/Dropbox/Research/Project/Chemical/rev_header.tex" . 167)
+ ("/Users/LooChao/Dropbox/Research/Project/Silver/silver.tex" . 2540)
+ ("/Users/LooChao/Dropbox/Research/Thesis/ch-theory/chapter-theory.tex" . 1822)
  ("/sudo:root@localhost:/etc/hosts" . 325))
